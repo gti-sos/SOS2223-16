@@ -13,4 +13,4 @@
 
 -Repository:
 
-        gti-sos/SOS2223-16
+        https://github.com/gti-sos/SOS2223-16
