@@ -1,9 +1,9 @@
 # SOS2223-16 description
 -Team.
 
-    Carlos López Cárdenas
-    Carolina Bernal Marchena
-    Marcos Morales Campos
+   - [Carlos López Cárdenas](https://github.com/carlopcar4)
+   - [Carolina Bernal Marchena](https://github.com/CarolinaBernalMarchena)
+   - [Marcos Morales Campos](https://github.com/marcos1812)
 
 
 -Project description:
