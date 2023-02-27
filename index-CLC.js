@@ -100,7 +100,7 @@ let data = [
     },
 ]
 
-function suma(location, data) {
+function solution(location, data) {
     let filtro = data.filter(x => x.location == location);
     total = 0;
     filtro.forEach(x => {
@@ -110,5 +110,5 @@ function suma(location, data) {
     return total / filtro.length;
 }
 
-console.log(suma("Cádiz", data))
+console.log(solution("Cádiz", data))
 
