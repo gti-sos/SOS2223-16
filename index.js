@@ -280,7 +280,7 @@ function CLC_solution(location, data) {
 
 
 /**
- * CLC
+ * MMC
  */
 
 let data_MMC =[  
