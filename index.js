@@ -2,17 +2,21 @@ var express = require("express");
 var cool = require("cool-ascii-faces");
 var app = express();
 
+
+/** BODY PARSER */
+var bodyParser =require("body-parser");
+app.use(bodyParser.json())
+
 /**
  * Constants
  */
 
-const PORT = 8080;
+const PORT = 8081;
 
 
 /**
  * ROUTES
  */
-
 app.get("/cool", (req,res) => { 
     res.send(cool()); 
     console.log("New request"); 
@@ -33,6 +37,12 @@ app.get("/samples/MMC", (req,res) => {
     res.send(`<h1 style="text-align:center;"> The arithmetic mean of the ids in Cádiz is ${result_MMC}</h1>`)
 });
 
+
+/**
+ * API ROUTES
+ */
+
+require('./APIs/professionalorganisations-stats')(app);
 /**
  * Initialization
  */
