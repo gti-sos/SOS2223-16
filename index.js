@@ -11,7 +11,7 @@ app.use(bodyParser.json())
  * Constants
  */
 
-const PORT = 8081;
+const PORT = 8080;
 
 
 /**
