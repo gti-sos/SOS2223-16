@@ -17,6 +17,7 @@ const PORT = 8080;
 /**
  * ROUTES
  */
+
 app.get("/cool", (req,res) => { 
     res.send(cool()); 
     console.log("New request"); 
