@@ -104,7 +104,7 @@ app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req,res) => 
         professionalorganisations_stats=INITIAL_DATA;
         res.sendStatus(201);
     }else{
-        res.status(400).send("Data is not empty")
+        res.status(400).send("Data is not empty");
     }
     
 });
@@ -129,7 +129,7 @@ app.post("/api/v1/professionalorganisations-stats", (req,res) => {
         res.sendStatus(201);
 
     }else{
-        res.status(400).send("Professionalorganisation is wrong");
+        res.sendStatus(400);
     }
 
 
@@ -195,7 +195,7 @@ app.delete("/api/v1/professionalorganisations-stats", (req,res) => {
 
 /** PUT ALL */
 app.put("/api/v1/professionalorganisations-stats", (req,res) => { 
-    res.status(405).send("Method not Allowed");
+    res.sendStatus(405);
 });
 
 
@@ -225,7 +225,7 @@ app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) =>
     }
     //validate modify professionalOrganisation object with req params
     if(!validate_professionalorganisations(req.body)){
-        res.status(400).send("Professionalorganisation is wrong");
+        res.sendStatus(400);
     }
     /** Update the data */
     exist.date=req.body.date;
@@ -244,7 +244,7 @@ app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) =>
 app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
 
     //check if exist
-    let exist = professionalorganisations_stats.find(x=>x.professionalOrganisation == req.params.registry_number)
+    let exist = professionalorganisations_stats.find(x=>x.registry_number == req.params.registry_number)
     if(exist == undefined){
         res.sendStatus(404);
     }else{
@@ -256,7 +256,7 @@ app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req,res)
 
 /** POST by ID */
 app.post("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
-    res.status(405).send("Method not Allowed");
+    res.sendStatus(405);
 });
 
 
