@@ -244,7 +244,7 @@ app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) =>
 app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
 
     //check if exist
-    let exist = professionalorganisations_stats.find(x=>x.professionalOrganisation == req.params.registry_number)
+    let exist = professionalorganisations_stats.find(x=>x.registry_number == req.params.registry_number)
     if(exist == undefined){
         res.sendStatus(404);
     }else{
