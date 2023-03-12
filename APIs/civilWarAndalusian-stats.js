@@ -224,9 +224,9 @@ app.put("/api/v1/civilWarAndalusian-stats", (req,res) => {
 
 
 /** GET by ID (ID) */
-app.get("/api/v1/civilWarAndalusian-stats/:Id", function(req, res) {
+app.get("/api/v1/civilWarAndalusian-stats/:dateNumeric", function(req, res) {
 
-    let civilWarAndalusian = civilWarAndalusian_stats.find(x=> x.Id == req.params.Id);
+    let civilWarAndalusian = civilWarAndalusian_stats.find(x=> x.dateNumeric == req.params.dateNumeric);
     if(civilWarAndalusian == undefined){
         res.sendStatus(404);
     }else{
@@ -239,12 +239,12 @@ app.get("/api/v1/civilWarAndalusian-stats/:Id", function(req, res) {
 
 app.put("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
     //check if exist
-    let exist = civilWarAndalusian_stats.find(x=>x.Id == req.params.Id)
+    let exist = civilWarAndalusian_stats.find(x=>x.dateNumeric == req.params.dateNumeric)
     if(exist == undefined){
         res.sendStatus(404);
     }
     //check if Id is the same in object and url 
-    if(req.params.Id != req.body.Id){
+    if(req.params.dateNumeric != req.body.dateNumeric){
         res.sendStatus(400);
     }
     //validate modify civilWarAndalusian object with req params
@@ -252,11 +252,12 @@ app.put("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => {
         res.sendStatus(400);
     }
     /** Update the data */
+    exist.Id=req.body.Id;
     exist.title=req.body.title;
     exist.character=req.body.character;
     exist.province=req.body.province;
     exist.municipality=req.body.municipality;
-    exist.dateNumeric=req.body.dateNumeric;
+   // exist.dateNumeric=req.body.dateNumeric;
     exist.Photo_PieFosa=req.body.Photo_PieFosa;
     exist.victims=req.body.victims;
     exist.dates_act=req.body.dates_act;
