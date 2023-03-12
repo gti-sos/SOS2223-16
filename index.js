@@ -44,6 +44,7 @@ app.get("/samples/MMC", (req,res) => {
  */
 
 require('./APIs/professionalorganisations-stats')(app);
+require('./APIs/civilWarAndalusian-stats')(app);
 /**
  * Initialization
  */
