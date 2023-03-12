@@ -98,6 +98,7 @@ const INITIAL_DATA=[
 
 let professionalorganisations_stats=[];
 
+/** GET ALL */
 app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req,res) => { 
     if(professionalorganisations_stats.length==0){
         professionalorganisations_stats=INITIAL_DATA;
@@ -108,23 +109,27 @@ app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req,res) => 
     
 });
 
-
-
 app.get("/api/v1/professionalorganisations-stats", (req,res) => { 
     res.send(professionalorganisations_stats); 
 });
 
 
+/** POST ALL */
 app.post("/api/v1/professionalorganisations-stats", (req,res) => { 
-    console.log(req.body);
     let newProfessionalOrganisation=req.body;
+
+    //check if resource previusly exists.
+    let professionalOrganisation = professionalorganisations_stats.find(x=> x.registry_number == req.body.registry_number);
+        if(professionalOrganisation != undefined){
+            res.sendStatus(409);
+        }
 
     if(validate_professionalorganisations(newProfessionalOrganisation)){
         professionalorganisations_stats.push(newProfessionalOrganisation);
         res.sendStatus(201);
 
     }else{
-        res.status(400).send("Professionalorganisations is wrong")
+        res.status(400).send("Professionalorganisation is wrong");
     }
 
 
@@ -182,9 +187,77 @@ function validate_professionalorganisations(professionalorganisation){
 
 }
 
+/** DELETE ALL */
 app.delete("/api/v1/professionalorganisations-stats", (req,res) => { 
     professionalorganisations_stats = [];
     res.sendStatus(200);
 });
+
+/** PUT ALL */
+app.put("/api/v1/professionalorganisations-stats", (req,res) => { 
+    res.status(405).send("Method not Allowed");
+});
+
+
+/** GET by ID (Registry number) */
+app.get("/api/v1/professionalorganisations-stats/:registry_number", function(req, res) {
+
+    let professionalorganisation = professionalorganisations_stats.find(x=> x.registry_number == req.params.registry_number);
+    if(professionalorganisation == undefined){
+        res.sendStatus(404);
+    }else{
+        res.status(200).send(professionalorganisation);
+    }
+});
+
+//** PUT by ID */
+
+
+app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
+    //check if exist
+    let exist = professionalorganisations_stats.find(x=>x.registry_number == req.params.registry_number)
+    if(exist == undefined){
+        res.sendStatus(404);
+    }
+    //check if registy_number is the same in object and url 
+    if(req.params.registry_number != req.body.registry_number){
+        res.sendStatus(400);
+    }
+    //validate modify professionalOrganisation object with req params
+    if(!validate_professionalorganisations(req.body)){
+        res.status(400).send("Professionalorganisation is wrong");
+    }
+    /** Update the data */
+    exist.date=req.body.date;
+    exist.professional_org=req.body.professional_org;
+    exist.location=req.body.location;
+    exist.phone_number=req.body.phone_number;
+    exist.postal_code=req.body.postal_code;
+    exist.adress=req.body.adress;
+    res.sendStatus(200);
+
+
+});
+
+
+/** DELETE by ID */
+app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
+
+    //check if exist
+    let exist = professionalorganisations_stats.find(x=>x.professionalOrganisation == req.params.registry_number)
+    if(exist == undefined){
+        res.sendStatus(404);
+    }else{
+        professionalorganisations_stats = professionalorganisations_stats.filter(x=> x.registry_number != req.params.registry_number);
+        res.sendStatus(200);
+    }
+
+});
+
+/** POST by ID */
+app.post("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
+    res.status(405).send("Method not Allowed");
+});
+
 
 }
