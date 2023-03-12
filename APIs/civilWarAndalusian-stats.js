@@ -210,11 +210,80 @@ module.exports = function(app){
         return true;
     
     }
-    
+    // delete all
+
     app.delete("/api/v1/civilWarAndalusian-stats", (req,res) => { 
         civilWarAndalusian_stats = [];
         res.sendStatus(200);
     });
     
+    /** PUT ALL */
+app.put("/api/v1/civilWarAndalusian-stats", (req,res) => { 
+    res.sendStatus(405);
+});
+
+
+/** GET by ID (ID) */
+app.get("/api/v1/civilWarAndalusian-stats/:Id", function(req, res) {
+
+    let civilWarAndalusian = civilWarAndalusian_stats.find(x=> x.Id == req.params.Id);
+    if(civilWarAndalusian == undefined){
+        res.sendStatus(404);
+    }else{
+        res.status(200).send(civilWarAndalusian);
+    }
+});
+
+//** PUT by ID */
+
+
+app.put("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
+    //check if exist
+    let exist = civilWarAndalusian_stats.find(x=>x.Id == req.params.Id)
+    if(exist == undefined){
+        res.sendStatus(404);
+    }
+    //check if registy_number is the same in object and url 
+    if(req.params.Id != req.body.Id){
+        res.sendStatus(400);
+    }
+    //validate modify civilWarAndalusian object with req params
+    if(!validate_civilWarAndalusian(req.body)){
+        res.sendStatus(400);
+    }
+    /** Update the data */
+    exist.title=req.body.title;
+    exist.character=req.body.character;
+    exist.province=req.body.province;
+    exist.municipality=req.body.municipality;
+    exist.dateNumeric=req.body.dateNumeric;
+    exist.Photo_PieFosa=req.body.Photo_PieFosa;
+    exist.victims=req.body.victims;
+    exist.dates_act=req.body.dates_act;
+    res.sendStatus(200);
+
+
+});
+
+
+/** DELETE by ID */
+app.delete("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
+
+    //check if exist
+    let exist = civilWarAndalusian_stats.find(x=>x.Id == req.params.Id)
+    if(exist == undefined){
+        res.sendStatus(404);
+    }else{
+        civilWarAndalusian_stats = civilWarAndalusian_stats.filter(x=> x.Id != req.params.Id);
+        res.sendStatus(200);
+    }
+
+});
+
+/** POST by ID */
+app.post("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
+    res.sendStatus(405);
+});
+
     }
     
