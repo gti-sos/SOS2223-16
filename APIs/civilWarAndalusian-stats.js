@@ -243,7 +243,7 @@ app.put("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => {
     if(exist == undefined){
         res.sendStatus(404);
     }
-    //check if registy_number is the same in object and url 
+    //check if Id is the same in object and url 
     if(req.params.Id != req.body.Id){
         res.sendStatus(400);
     }
