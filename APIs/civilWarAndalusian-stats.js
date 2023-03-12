@@ -137,7 +137,7 @@ module.exports = function(app){
     
     app.post("/api/v1/civilWarAndalusian-stats", (req,res) => { 
         console.log(req.body);
-        let newcivilWarAndalusian=req.body;
+        let newCivilWarAndalusian=req.body;
     
         if(validate_civilWarAndalusian(newCivilWarAndalusian)){
             civilWarAndalusian_stats.push(newCivilWarAndalusian);
