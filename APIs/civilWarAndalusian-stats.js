@@ -136,19 +136,24 @@ module.exports = function(app){
     
     
     app.post("/api/v1/civilWarAndalusian-stats", (req,res) => { 
-        console.log(req.body);
-        let newCivilWarAndalusian=req.body;
-    
-        if(validate_civilWarAndalusian(newCivilWarAndalusian)){
-            civilWarAndalusian_stats.push(newCivilWarAndalusian);
-            res.sendStatus(201);
-    
-        }else{
-            res.status(400).send("civilWarAndalusian is wrong")
+       let newCivilWarAndalusian=req.body;
+
+    //check if resource previusly exists.
+    let civilWarAndalusian = civilWarAndalusian_stats.find(x=> x.dateNumeric == req.body.dateNumeric);
+        if(civilWarAndalusian != undefined){
+            res.sendStatus(409);
         }
-    
-    
-    
+
+    if(validate_civilWarAndalusian(newCivilwarAndalusian)){
+        civilWarAndalusian_stats.push(newCivilwarAndalusian);
+        res.sendStatus(201);
+
+    }else{
+        res.sendStatus(400);
+    }
+
+
+
     });
     
     
@@ -237,7 +242,7 @@ app.get("/api/v1/civilWarAndalusian-stats/:dateNumeric", function(req, res) {
 //** PUT by ID */
 
 
-app.put("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
+app.put("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => { 
     //check if exist
     let exist = civilWarAndalusian_stats.find(x=>x.dateNumeric == req.params.dateNumeric)
     if(exist == undefined){
