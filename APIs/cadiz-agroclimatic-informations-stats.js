@@ -225,7 +225,7 @@ module.exports = function (app) {
     app.put("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", (req,res) => {
         let exist = cadizAgroclimaticInformations_stats.find(x=>x.reg_num == req.params.reg_num)
         if(exist==undefined){
-            res.sendStatus(404);
+            res.sendStatus(400);
         }
         if(req.params.reg_num != req.body.reg_num){
             res.sendStatus(400);
@@ -245,6 +245,6 @@ module.exports = function (app) {
 
     /** Post con un ID (reg_num) */
     app.post("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", (req,res) => {
-        res.sendStatus(405);
+        res.sendStatus(409);
     });
 }
