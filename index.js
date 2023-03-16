@@ -3,9 +3,11 @@ var cool = require("cool-ascii-faces");
 var app = express();
 
 
+app.use("/", express.static("./public"));
+
 /** BODY PARSER */
 var bodyParser =require("body-parser");
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 /**
  * Constants
@@ -46,6 +48,7 @@ app.get("/samples/MMC", (req,res) => {
 require('./APIs/professionalorganisations-stats')(app);
 require('./APIs/civilWarAndalusian-stats')(app);
 require('./APIs/cadiz-agroclimatic-informations-stats')(app);
+
 /**
  * Initialization
  */

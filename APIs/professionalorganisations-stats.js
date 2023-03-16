@@ -1,3 +1,7 @@
+const datastore = require('nedb')
+    , db = new datastore();
+const BASE_API_URL = "/api/v1"
+
 module.exports = function(app){
 
 const INITIAL_DATA=[
@@ -100,17 +104,22 @@ let professionalorganisations_stats=[];
 
 /** GET ALL */
 app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req,res) => { 
-    if(professionalorganisations_stats.length==0){
-        professionalorganisations_stats=INITIAL_DATA;
-        res.sendStatus(201);
-    }else{
-        res.status(400).send("Data is not empty");
-    }
-    
+
+    db.count({}, function (err, count) {
+        if(count==0){
+            db.insert(INITIAL_DATA);
+            res.sendStatus(201);
+        }else{
+            res.status(400).send("Data is not empty");
+        }
+    });
+
 });
 
 app.get("/api/v1/professionalorganisations-stats", (req,res) => { 
-    res.send(professionalorganisations_stats); 
+    db.find({},function (err, docs) {
+        res.send(docs); 
+    });
 });
 
 
@@ -119,18 +128,21 @@ app.post("/api/v1/professionalorganisations-stats", (req,res) => {
     let newProfessionalOrganisation=req.body;
 
     //check if resource previusly exists.
-    let professionalOrganisation = professionalorganisations_stats.find(x=> x.registry_number == req.body.registry_number);
-        if(professionalOrganisation != undefined){
+    db.findOne({ registry_number: req.body.registry_number }, function (err, exisistingProfessionalOrganisation) {
+        if(exisistingProfessionalOrganisation != undefined){
             res.sendStatus(409);
+            return;
+        }; 
+        if(validate_professionalorganisations(newProfessionalOrganisation)){
+            db.insert(newProfessionalOrganisation);
+            res.sendStatus(201);
+    
+        }else{
+            res.sendStatus(400);
         }
+        
+    });
 
-    if(validate_professionalorganisations(newProfessionalOrganisation)){
-        professionalorganisations_stats.push(newProfessionalOrganisation);
-        res.sendStatus(201);
-
-    }else{
-        res.sendStatus(400);
-    }
 
 
 
@@ -178,19 +190,18 @@ function validate_professionalorganisations(professionalorganisation){
     }
 
     //adress is a string
-   if(typeof professionalorganisation.adress != "string"){
+    if(typeof professionalorganisation.adress != "string"){
         return false;
-
     }
-
     return true;
 
 }
 
 /** DELETE ALL */
-app.delete("/api/v1/professionalorganisations-stats", (req,res) => { 
-    professionalorganisations_stats = [];
-    res.sendStatus(200);
+app.delete("/api/v1/professionalorganisations-stats", (req,res) => {
+    db.remove({}, { multi: true }, function (err, numRemoved) {
+        res.sendStatus(200);
+    });
 });
 
 /** PUT ALL */
