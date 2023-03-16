@@ -2,7 +2,7 @@
    - [Carlos López Cárdenas](https://github.com/carlopcar4)
    - [Carolina Bernal Marchena](https://github.com/CarolinaBernalMarchena)
    - [Marcos Morales Campos](https://github.com/marcos1812)
-- **Project description**: Our project consists of analyzing Cadiz professional organisations stats, Cadiz andalusian civil war graves and Cadiz agroclimatic information between 2000 and 2011.
+- **Project description**: Our project consists of analyzing professional organisations stats, andalusian civil war graves and Cadiz agroclimatic information.
 
 - **Repository**: [gti-sos/SOS2223-16](https://github.com/gti-sos/SOS2223-16)
 - **URL**: [https://sos2223-16.appspot.com](https://sos2223-16.ew.r.appspot.com/)
