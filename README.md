@@ -1,16 +1,12 @@
-# SOS2223-16 description
--Team.
-
+- **Team**
    - [Carlos López Cárdenas](https://github.com/carlopcar4)
    - [Carolina Bernal Marchena](https://github.com/CarolinaBernalMarchena)
    - [Marcos Morales Campos](https://github.com/marcos1812)
+- **Project description**: Our project consists of analyzing Cadiz professional organisations stats, Cadiz andalusian civil war graves and Cadiz agroclimatic information between 2000 and 2011.
 
-
--Project description:
-
-        Our project consists of analyzing Cadiz professional organisations stats, Cadiz andalusian civil war graves and Cadiz agroclimatic information between 2000 and 2011.
-
-
--Repository:
-
-        https://github.com/gti-sos/SOS2223-16
+- **Repository**: [gti-sos/SOS2223-16](https://github.com/gti-sos/SOS2223-16)
+- **URL**: [https://sos2223-16.appspot.com](https://sos2223-16.ew.r.appspot.com/)
+- **APIs**:
+  - [https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/docs](https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/docs) (developed by Carolina Bernal Marchena)
+  - [https://sos2223-16.ew.r.appspot.com/api/v1/civilWarAndalusian-stats/docs](https://sos2223-16.ew.r.appspot.com/api/v1/civilWarAndalusian-stats/docs) (developed by Marcos Morales Campos)
+  - [https://sos2223-16.ew.r.appspot.com/api/v1/cadizagroclimaticinformations-stats/docs](https://sos2223-16.ew.r.appspot.com/api/v1/cadizagroclimaticinformations-stats/docs) (developed by Carlos López Cárdenas)
