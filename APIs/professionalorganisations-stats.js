@@ -212,13 +212,13 @@ app.put("/api/v1/professionalorganisations-stats", (req,res) => {
 
 /** GET by ID (Registry number) */
 app.get("/api/v1/professionalorganisations-stats/:registry_number", function(req, res) {
-
-    let professionalorganisation = professionalorganisations_stats.find(x=> x.registry_number == req.params.registry_number);
-    if(professionalorganisation == undefined){
-        res.sendStatus(404);
-    }else{
-        res.status(200).send(professionalorganisation);
-    }
+    db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
+        if(professionalorganisation == undefined){
+            res.sendStatus(404);
+        }else{
+            res.status(200).send(professionalorganisation); 
+        }
+    });
 });
 
 //** PUT by ID */
@@ -226,9 +226,9 @@ app.get("/api/v1/professionalorganisations-stats/:registry_number", function(req
 
 app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
     //check if exist
-    let exist = professionalorganisations_stats.find(x=>x.registry_number == req.params.registry_number)
-    if(exist == undefined){
-        res.sendStatus(404);
+    db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
+        if(professionalorganisation == undefined){
+            res.sendStatus(404);
     }
     //check if registy_number is the same in object and url 
     if(req.params.registry_number != req.body.registry_number){
@@ -238,15 +238,11 @@ app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) =>
     if(!validate_professionalorganisations(req.body)){
         res.sendStatus(400);
     }
-    /** Update the data */
-    exist.date=req.body.date;
-    exist.professional_org=req.body.professional_org;
-    exist.location=req.body.location;
-    exist.phone_number=req.body.phone_number;
-    exist.postal_code=req.body.postal_code;
-    exist.adress=req.body.adress;
-    res.sendStatus(200);
 
+
+    db.update({ registry_number: parseInt(req.params.registry_number)  }, { $set: req.body });
+    res.sendStatus(200);
+    });
 
 });
 
@@ -255,14 +251,15 @@ app.put("/api/v1/professionalorganisations-stats/:registry_number", (req,res) =>
 app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req,res) => { 
 
     //check if exist
-    let exist = professionalorganisations_stats.find(x=>x.registry_number == req.params.registry_number)
-    if(exist == undefined){
-        res.sendStatus(404);
-    }else{
-        professionalorganisations_stats = professionalorganisations_stats.filter(x=> x.registry_number != req.params.registry_number);
-        res.sendStatus(200);
-    }
-
+    db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
+        if(professionalorganisation == undefined){
+            res.sendStatus(404);
+        }else{
+            db.remove({registry_number: parseInt(req.params.registry_number)}, { multi: true }, function (err, numRemoved){
+                res.sendStatus(200);
+            });
+        }
+    });
 });
 
 /** POST by ID */
