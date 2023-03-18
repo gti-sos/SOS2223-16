@@ -2,7 +2,6 @@ var express = require("express");
 var cool = require("cool-ascii-faces");
 var app = express();
 
-
 app.use("/", express.static("./public"));
 
 /** BODY PARSER */

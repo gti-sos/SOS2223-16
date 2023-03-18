@@ -117,9 +117,47 @@ app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req,res) => 
 });
 
 app.get("/api/v1/professionalorganisations-stats", (req,res) => { 
-    db.find({},function (err, docs) {
+
+    //paginating
+    let offset=0;
+    let limit=0;
+
+    if(req.query.offset){
+        offset=parseInt(req.query.offset);
+    }
+    if(req.query.limit){
+        limit=parseInt(req.query.limit);
+    }
+
+    //search
+    let query={};
+    if(req.query.date){
+        query.date=parseInt(req.query.date);
+    }
+    if(req.query.registry_number){
+        query.registry_number=parseInt(req.query.registry_number);
+    }
+    if(req.query.professional_org){
+        query.professional_org=req.query.professional_org;
+    }
+    if(req.query.location){
+        query.location=req.query.location;
+    }
+    if(req.query.phone_number){
+        query.phone_number=req.query.phone_number;
+    }
+    if(req.query.postal_code){
+        query.postal_code=parseInt(req.query.postal_code);
+    }
+    if(req.query.adress){
+        query.adress=req.query.adress;
+    }
+
+
+    db.find(query).sort({ registry_number: req.body.registry_number }).skip(offset).limit(limit).exec(function (err, docs) {
         res.send(docs); 
     });
+
 });
 
 
