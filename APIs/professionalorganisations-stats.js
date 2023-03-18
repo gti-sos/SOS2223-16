@@ -4,6 +4,12 @@ const BASE_API_URL = "/api/v1"
 
 module.exports = function(app){
 
+    app.get("/api/v1/professionalorganisations-stats/docs", (req,res) => { 
+
+        res.redirect('https://documenter.getpostman.com/view/26011834/2s93JzM1BX');
+    
+    });
+
 const INITIAL_DATA=[
 
     {
@@ -100,7 +106,7 @@ const INITIAL_DATA=[
 ];
 
 
-let professionalorganisations_stats=[];
+
 
 /** GET ALL */
 app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req,res) => { 
@@ -151,6 +157,32 @@ app.get("/api/v1/professionalorganisations-stats", (req,res) => {
     }
     if(req.query.adress){
         query.adress=req.query.adress;
+    }
+
+    //numeric search
+
+    //registry_number
+    if(req.query.registry_number_over){
+        query.registry_number={ $gte: parseInt(req.query.registry_number_over) };
+    }
+    if(req.query.registry_number_below){
+        query.registry_number={ $lte: parseInt(req.query.registry_number_below) };
+    }
+
+    //date
+    if(req.query.date_over){
+        query.date={ $gte: parseInt(req.query.date_over) };
+    }
+    if(req.query.date_below){
+        query.date={ $lte: parseInt(req.query.date_below) };
+    }
+
+    //postal_code
+    if(req.query.postal_code_over){
+        query.postal_code={ $gte: parseInt(req.query.postal_code_over) };
+    }
+    if(req.query.postal_code_below){
+        query.postal_code={ $lte: parseInt(req.query.postal_code_below) };
     }
 
 
