@@ -323,9 +323,9 @@ app.put("/api/v1/civilwarandalusian-stats", (req,res) => {
 
 
 /** GET by ID (ID) */
-app.get("/api/v1/civilwarandalusian-stats/:dateNumeric", function(req, res) {
+app.get("/api/v1/civilwarandalusian-stats/:Id", function(req, res) {
 
-    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
+    db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilWarAndalusian) {
         if(civilWarAndalusian == undefined){
             res.sendStatus(404);
         }else{
