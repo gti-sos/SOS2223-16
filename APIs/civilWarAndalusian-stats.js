@@ -4,7 +4,7 @@ const BASE_API_URL = "/api/v1"
 module.exports = function(app){
     app.get("/api/v1/civilWarAndalusian-stats/docs", (req,res) => { 
 
-        res.redirect('https://documenter.getpostman.com/view');
+        res.redirect('https://documenter.getpostman.com/view/7223889/2s93K1oeYD');
     
     });
 
@@ -252,56 +252,56 @@ app.post("/api/v1/civilWarAndalusian-stats", (req,res) => {
     
         /** function to validate that the post method is correctly done */
     
-    function validate_civilWarAndalusian(CivilWarAndalusian){
+    function validate_civilWarAndalusian(civilWarAndalusian){
     
     
         //Object length is 8
-        if(Object.keys(CivilWarAndalusian).length!=9){
+        if(Object.keys(civilWarAndalusian).length!=9){
             return false;
         }
     
         //id is a number
-        if(typeof CivilWarAndalusian.Id != "number"){
+        if(typeof civilWarAndalusian.Id != "number"){
             return false;
         }
     
         //title is a string
-        if(typeof CivilWarAndalusian.title != "string"){
+        if(typeof civilWarAndalusian.title != "string"){
             return false;
         }
     
         //character is a string
-        if(typeof CivilWarAndalusian.character != "string"){
+        if(typeof civilWarAndalusian.character != "string"){
             return false;
         }
     
         //province is a string
-        if(typeof CivilWarAndalusian.province != "string"){
+        if(typeof civilWarAndalusian.province != "string"){
             return false;
         }
     
         //municipality is a string
-        if(typeof CivilWarAndalusian.municipality != "string"){
+        if(typeof civilWarAndalusian.municipality != "string"){
             return false;
         }
     
         //dateNumeric is a number
-        if(typeof CivilWarAndalusian.dateNumeric != "number"){
+        if(typeof civilWarAndalusian.dateNumeric != "number"){
             return false;
         }
     
         //Photo_PieFosa is a string
-       if(typeof CivilWarAndalusian.Photo_PieFosa != "string"){
+       if(typeof civilWarAndalusian.Photo_PieFosa != "string"){
             return false;
     
         }
         //victims is a number
-        if(typeof CivilWarAndalusian.victims != "number"){
+        if(typeof civilWarAndalusian.victims != "number"){
             return false;
     
         }
         //dates_act is a number
-        if(typeof CivilWarAndalusian.dates_act != "number"){
+        if(typeof civilWarAndalusian.dates_act != "number"){
             return false;
     
         }
@@ -343,11 +343,11 @@ app.put("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => {
         if(civilWarAndalusian == undefined){
             res.sendStatus(404);
     }
-    //check if registy_number is the same in object and url 
+    //check if dateNumeric is the same in object and url 
     if(req.params.dateNumeric != req.body.dateNumeric){
         res.sendStatus(400);
     }
-    //validate modify professionalOrganisation object with req params
+    //validate modify civilWarAndalusian object with req params
     if(!validate_civilWarAndalusian(req.body)){
         res.sendStatus(400);
     }
