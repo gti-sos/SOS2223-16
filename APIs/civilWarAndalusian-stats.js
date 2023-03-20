@@ -1,4 +1,12 @@
+const datastore = require('nedb')
+    , db = new datastore();
+const BASE_API_URL = "/api/v1"
 module.exports = function(app){
+    app.get("/api/v1/civilWarAndalusian-stats/docs", (req,res) => { 
+
+        res.redirect('https://documenter.getpostman.com/view');
+    
+    });
 
     const INITIAL_DATA=[
     
@@ -119,42 +127,127 @@ module.exports = function(app){
     let civilWarAndalusian_stats=[];
     
     app.get("/api/v1/civilWarAndalusian-stats/loadInitialData", (req,res) => { 
-        if(civilWarAndalusian_stats.length==0){
-            civilWarAndalusian_stats=INITIAL_DATA;
-            res.sendStatus(201);
-        }else{
-            res.status(400).send("Data is not empty")
-        }
-        
+        db.count({}, function (err, count) {
+            if(count==0){
+                db.insert(INITIAL_DATA);
+                res.sendStatus(201);
+            }else{
+                res.status(400).send("Data is not empty");
+            }
+        });
+    
     });
     
     
     
     app.get("/api/v1/civilWarAndalusian-stats", (req,res) => { 
-        res.send(civilWarAndalusian_stats); 
+
+        //paginating
+        let offset=0;
+        let limit=0;
+    
+        if(req.query.offset){
+            offset=parseInt(req.query.offset);
+        }
+        if(req.query.limit){
+            limit=parseInt(req.query.limit);
+        }
+    
+        //search
+        let query={};
+        if(req.query.Id){
+            query.Id=parseInt(req.query.Id);
+        }
+        if(req.query.title){
+            query.title=req.query.title;
+        }
+        if(req.query.character){
+            query.character=req.query.character;
+        }
+        if(req.query.province){
+            query.province=req.query.province;
+        }
+        if(req.query.municipality){
+            query.municipality=req.query.municipality;
+        }
+        if(req.query.dateNumeric){
+            query.dateNumeric=parseInt(req.query.dateNumeric);
+        }
+        if(req.query.Photo_PieFosa){
+            query.Photo_PieFosa=req.query.Photo_PieFosa;
+        }
+        if(req.query.victims){
+            query.victims=parseInt(req.query.victims);
+        }
+        if(req.query.dates_act){
+            query.dates_act=parseInt(req.query.dates_act);
+        }
+        //numeric search
+    
+        //Id
+        if(req.query.Id_over){
+            query.Id={ $gte: parseInt(req.query.Id_over) };
+        }
+        if(req.query.Id_below){
+            query.Id={ $lte: parseInt(req.query.Id_below) };
+        }
+    
+        //dateNumeric
+        if(req.query.dateNumeric_over){
+            query.dateNumeric={ $gte: parseInt(req.query.dateNumeric_over) };
+        }
+        if(req.query.dateNumeric_below){
+            query.dateNumeric={ $lte: parseInt(req.query.dateNumeric_below) };
+        }
+    
+        //victims
+        if(req.query.victims_over){
+            query.victims={ $gte: parseInt(req.query.victims_over) };
+        }
+        if(req.query.victims_below){
+            query.victims={ $lte: parseInt(req.query.victims_below) };
+        }
+        //dates_act
+        if(req.query.dates_act_over){
+            query.dates_act={ $gte: parseInt(req.query.dates_act_over) };
+        }
+        if(req.query.dates_act_below){
+            query.dates_act={ $lte: parseInt(req.query.dates_act_below) };
+        }
+    
+    
+        db.find(query).sort({ Id: req.body.Id }).skip(offset).limit(limit).exec(function (err, docs) {
+            res.send(docs); 
+        });
+    
     });
     
     
-    app.post("/api/v1/civilWarAndalusian-stats", (req,res) => { 
-       let newCivilWarAndalusian=req.body;
+    /** POST ALL */
+app.post("/api/v1/civilWarAndalusian-stats", (req,res) => { 
+    let newCivilWarAndalusian=req.body;
 
     //check if resource previusly exists.
-    let civilWarAndalusian = civilWarAndalusian_stats.find(x=> x.dateNumeric == req.body.dateNumeric);
-        if(civilWarAndalusian != undefined){
+    db.findOne({ Id: req.body.Id }, function (err, exisistingCivilWarAndalusiann) {
+        if(exisistingCivilWarAndalusiann != undefined){
             res.sendStatus(409);
+            return;
+        }; 
+        if(validate_civilWarAndalusian(newCivilWarAndalusian)){
+            db.insert(newCivilWarAndalusian);
+            res.sendStatus(201);
+    
+        }else{
+            res.sendStatus(400);
         }
-
-    if(validate_civilWarAndalusian(newCivilwarAndalusian)){
-        civilWarAndalusian_stats.push(newCivilwarAndalusian);
-        res.sendStatus(201);
-
-    }else{
-        res.sendStatus(400);
-    }
-
-
-
+        
     });
+
+
+
+
+});
+
     
     
         /** function to validate that the post method is correctly done */
@@ -218,8 +311,9 @@ module.exports = function(app){
     // delete all
 
     app.delete("/api/v1/civilWarAndalusian-stats", (req,res) => { 
-        civilWarAndalusian_stats = [];
-        res.sendStatus(200);
+        db.remove({}, { multi: true }, function (err, numRemoved) {
+            res.sendStatus(200);
+        });
     });
     
     /** PUT ALL */
@@ -231,12 +325,13 @@ app.put("/api/v1/civilWarAndalusian-stats", (req,res) => {
 /** GET by ID (ID) */
 app.get("/api/v1/civilWarAndalusian-stats/:dateNumeric", function(req, res) {
 
-    let civilWarAndalusian = civilWarAndalusian_stats.find(x=> x.dateNumeric == req.params.dateNumeric);
-    if(civilWarAndalusian == undefined){
-        res.sendStatus(404);
-    }else{
-        res.status(200).send(civilWarAndalusian);
-    }
+    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
+        if(civilWarAndalusian == undefined){
+            res.sendStatus(404);
+        }else{
+            res.status(200).send(civilWarAndalusian); 
+        }
+    });
 });
 
 //** PUT by ID */
@@ -244,46 +339,40 @@ app.get("/api/v1/civilWarAndalusian-stats/:dateNumeric", function(req, res) {
 
 app.put("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => { 
     //check if exist
-    let exist = civilWarAndalusian_stats.find(x=>x.dateNumeric == req.params.dateNumeric)
-    if(exist == undefined){
-        res.sendStatus(404);
+    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
+        if(civilWarAndalusian == undefined){
+            res.sendStatus(404);
     }
-    //check if Id is the same in object and url 
+    //check if registy_number is the same in object and url 
     if(req.params.dateNumeric != req.body.dateNumeric){
         res.sendStatus(400);
     }
-    //validate modify civilWarAndalusian object with req params
+    //validate modify professionalOrganisation object with req params
     if(!validate_civilWarAndalusian(req.body)){
         res.sendStatus(400);
     }
-    /** Update the data */
-    exist.Id=req.body.Id;
-    exist.title=req.body.title;
-    exist.character=req.body.character;
-    exist.province=req.body.province;
-    exist.municipality=req.body.municipality;
-   // exist.dateNumeric=req.body.dateNumeric;
-    exist.Photo_PieFosa=req.body.Photo_PieFosa;
-    exist.victims=req.body.victims;
-    exist.dates_act=req.body.dates_act;
-    res.sendStatus(200);
 
+
+    db.update({ dateNumeric: parseInt(req.params.dateNumeric)  }, { $set: req.body });
+    res.sendStatus(200);
+    });
 
 });
 
 
 /** DELETE by ID */
-app.delete("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
+app.delete("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => { 
 
     //check if exist
-    let exist = civilWarAndalusian_stats.find(x=>x.Id == req.params.Id)
-    if(exist == undefined){
-        res.sendStatus(404);
-    }else{
-        civilWarAndalusian_stats = civilWarAndalusian_stats.filter(x=> x.Id != req.params.Id);
-        res.sendStatus(200);
-    }
-
+    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
+        if(civilWarAndalusian == undefined){
+            res.sendStatus(404);
+        }else{
+            db.remove({dateNumeric: parseInt(req.params.dateNumeric)}, { multi: true }, function (err, numRemoved){
+                res.sendStatus(200);
+            });
+        }
+    });
 });
 
 /** POST by ID */
