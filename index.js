@@ -18,7 +18,7 @@ const PORT = 8080;
  */
 
 require('./APIs/professionalorganisations-stats')(app);
-require('./APIs/civilWarAndalusian-stats')(app);
+require('./APIs/civilwarandalusian-stats')(app);
 require('./APIs/cadiz-agroclimatic-informations-stats')(app);
 
 /**
