@@ -6,7 +6,7 @@ const datastore = require('nedb')
 module.exports = function (app) {
 
     app.get("/api/v1/cadiz-agroclimatic-informations-stats/docs", (req,res)=>{
-        res.redirect('https://documenter.getpostman.com/view/26036256/2s93JzMLb2');
+        res.redirect('https://documenter.getpostman.com/view/26036256/2s93K1oJuV');
     });
 
     
