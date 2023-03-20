@@ -2,7 +2,7 @@ const datastore = require('nedb')
     , db = new datastore();
 const BASE_API_URL = "/api/v1"
 module.exports = function(app){
-    app.get("/api/v1/civilWarAndalusian-stats/docs", (req,res) => { 
+    app.get("/api/v1/civilwarandalusian-stats/docs", (req,res) => { 
 
         res.redirect('https://documenter.getpostman.com/view/7223889/2s93K1oeYD');
     
@@ -126,7 +126,7 @@ module.exports = function(app){
     
     let civilWarAndalusian_stats=[];
     
-    app.get("/api/v1/civilWarAndalusian-stats/loadInitialData", (req,res) => { 
+    app.get("/api/v1/civilwarandalusian-stats/loadInitialData", (req,res) => { 
         db.count({}, function (err, count) {
             if(count==0){
                 db.insert(INITIAL_DATA);
@@ -140,7 +140,7 @@ module.exports = function(app){
     
     
     
-    app.get("/api/v1/civilWarAndalusian-stats", (req,res) => { 
+    app.get("/api/v1/civilwarandalusian-stats", (req,res) => { 
 
         //paginating
         let offset=0;
@@ -224,7 +224,7 @@ module.exports = function(app){
     
     
     /** POST ALL */
-app.post("/api/v1/civilWarAndalusian-stats", (req,res) => { 
+app.post("/api/v1/civilwarandalusian-stats", (req,res) => { 
     let newCivilWarAndalusian=req.body;
 
     //check if resource previusly exists.
@@ -310,20 +310,20 @@ app.post("/api/v1/civilWarAndalusian-stats", (req,res) => {
     }
     // delete all
 
-    app.delete("/api/v1/civilWarAndalusian-stats", (req,res) => { 
+    app.delete("/api/v1/civilwarandalusian-stats", (req,res) => { 
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
         });
     });
     
     /** PUT ALL */
-app.put("/api/v1/civilWarAndalusian-stats", (req,res) => { 
+app.put("/api/v1/civilwarandalusian-stats", (req,res) => { 
     res.sendStatus(405);
 });
 
 
 /** GET by ID (ID) */
-app.get("/api/v1/civilWarAndalusian-stats/:dateNumeric", function(req, res) {
+app.get("/api/v1/civilwarandalusian-stats/:dateNumeric", function(req, res) {
 
     db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
         if(civilWarAndalusian == undefined){
@@ -337,7 +337,7 @@ app.get("/api/v1/civilWarAndalusian-stats/:dateNumeric", function(req, res) {
 //** PUT by ID */
 
 
-app.put("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => { 
+app.put("/api/v1/civilwarandalusian-stats/:dateNumeric", (req,res) => { 
     //check if exist
     db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
         if(civilWarAndalusian == undefined){
@@ -361,7 +361,7 @@ app.put("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => {
 
 
 /** DELETE by ID */
-app.delete("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => { 
+app.delete("/api/v1/civilwarandalusian-stats/:dateNumeric", (req,res) => { 
 
     //check if exist
     db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
@@ -376,7 +376,7 @@ app.delete("/api/v1/civilWarAndalusian-stats/:dateNumeric", (req,res) => {
 });
 
 /** POST by ID */
-app.post("/api/v1/civilWarAndalusian-stats/:Id", (req,res) => { 
+app.post("/api/v1/civilwarandalusian-stats/:Id", (req,res) => { 
     res.sendStatus(405);
 });
 
