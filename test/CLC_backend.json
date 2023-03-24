@@ -1,0 +1,2570 @@
+{
+	"info": {
+		"_postman_id": "01a2c23a-135f-4b9f-ac11-bf78586e3c0f",
+		"name": "Google Cloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26036256"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:56:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Cargar Datos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Cargar Datos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"loadInitialData"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "7"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Created"
+				}
+			]
+		},
+		{
+			"name": "Get datos iniciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get datos iniciales",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1174"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"496-BpeNzT5fM6llVv0YkMq/czVbA04\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2000,\n        \"reg_num\": 34,\n        \"stations_id\": 1,\n        \"maxtemp\": 20.06,\n        \"mintemp\": 7.02,\n        \"averagetemp\": 13.29,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2008,\n        \"reg_num\": 22804,\n        \"stations_id\": 5,\n        \"maxtemp\": 25.45,\n        \"mintemp\": 9.62,\n        \"averagetemp\": 18.26,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2005,\n        \"reg_num\": 17104,\n        \"stations_id\": 4,\n        \"maxtemp\": 36.46,\n        \"mintemp\": 17.63,\n        \"averagetemp\": 27.24,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2008,\n        \"reg_num\": 22820,\n        \"stations_id\": 5,\n        \"maxtemp\": 21.09,\n        \"mintemp\": 14.62,\n        \"averagetemp\": 17.51,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2005,\n        \"reg_num\": 38295,\n        \"stations_id\": 9,\n        \"maxtemp\": 18.18,\n        \"mintemp\": 80.5,\n        \"averagetemp\": 12.61,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2004,\n        \"reg_num\": 37800,\n        \"stations_id\": 9,\n        \"maxtemp\": 30.46,\n        \"mintemp\": 15.85,\n        \"averagetemp\": 24.15,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2009,\n        \"reg_num\": 23390,\n        \"stations_id\": 5,\n        \"maxtemp\": 20.56,\n        \"mintemp\": 6.939,\n        \"averagetemp\": 14.34,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2004,\n        \"reg_num\": 30450,\n        \"stations_id\": 7,\n        \"maxtemp\": 19.29,\n        \"mintemp\": 6.648,\n        \"averagetemp\": 12.98,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2007,\n        \"reg_num\": 38830,\n        \"stations_id\": 9,\n        \"maxtemp\": 21.84,\n        \"mintemp\": 15.86,\n        \"averagetemp\": 18.86,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2004,\n        \"reg_num\": 30496,\n        \"stations_id\": 7,\n        \"maxtemp\": 14.54,\n        \"mintemp\": 9.66,\n        \"averagetemp\": 11.85,\n        \"location\": \"Cádiz\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "2ª Carga de datos (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "2ª Carga de datos (Error)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"loadInitialData"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11-ywbLo8AcljVTUdA2NnBanSaB8p0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Data is not empty"
+				}
+			]
+		},
+		{
+			"name": "Get by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Devuelve un objeto\",function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('object');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/37800",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"37800"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/37800",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"37800"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "117"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"75-IBuNhdsU8a/f3MjHUtBAwjDi9K8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"date\": 2004,\n    \"reg_num\": 37800,\n    \"stations_id\": 9,\n    \"maxtemp\": 30.46,\n    \"mintemp\": 15.85,\n    \"averagetemp\": 24.15,\n    \"location\": \"Cádiz\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get de datos entre 2 años",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Devuelve un array\",function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?from=2007&to=2008",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2007"
+						},
+						{
+							"key": "to",
+							"value": "2008"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get de datos entre 2 años",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?from=2007&to=2008",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2007"
+								},
+								{
+									"key": "to",
+									"value": "2008"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "354"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"162-nEVW4a8BuqkXpLhb+tedKGs6TEU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2008,\n        \"reg_num\": 22804,\n        \"stations_id\": 5,\n        \"maxtemp\": 25.45,\n        \"mintemp\": 9.62,\n        \"averagetemp\": 18.26,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2008,\n        \"reg_num\": 22820,\n        \"stations_id\": 5,\n        \"maxtemp\": 21.09,\n        \"mintemp\": 14.62,\n        \"averagetemp\": 17.51,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2007,\n        \"reg_num\": 38830,\n        \"stations_id\": 9,\n        \"maxtemp\": 21.84,\n        \"mintemp\": 15.86,\n        \"averagetemp\": 18.86,\n        \"location\": \"Cádiz\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get by ID erroneo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264234",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"2264234"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get by ID erroneo",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264234",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"2264234"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "9"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Not Found"
+				}
+			]
+		},
+		{
+			"name": "Paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Es igual al limit\", function(){\r",
+							"    pm.expect(pm.response.json().length).to.equal(3);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?limit=3&offset=0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Paginación",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?limit=3&offset=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "350"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15e-8LgkcggYDYZwWnVJmADuecsgGMk\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:57:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2000,\n        \"reg_num\": 34,\n        \"stations_id\": 1,\n        \"maxtemp\": 20.06,\n        \"mintemp\": 7.02,\n        \"averagetemp\": 13.29,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2008,\n        \"reg_num\": 22804,\n        \"stations_id\": 5,\n        \"maxtemp\": 25.45,\n        \"mintemp\": 9.62,\n        \"averagetemp\": 18.26,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2005,\n        \"reg_num\": 17104,\n        \"stations_id\": 4,\n        \"maxtemp\": 36.46,\n        \"mintemp\": 17.63,\n        \"averagetemp\": 27.24,\n        \"location\": \"Cádiz\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Busqueda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?stations_id=5",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					],
+					"query": [
+						{
+							"key": "stations_id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Busqueda",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?stations_id=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							],
+							"query": [
+								{
+									"key": "stations_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "354"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"162-yk6NJJf5HZM6SfpYmwYYJb5UAxw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:58:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2008,\n        \"reg_num\": 22804,\n        \"stations_id\": 5,\n        \"maxtemp\": 25.45,\n        \"mintemp\": 9.62,\n        \"averagetemp\": 18.26,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2008,\n        \"reg_num\": 22820,\n        \"stations_id\": 5,\n        \"maxtemp\": 21.09,\n        \"mintemp\": 14.62,\n        \"averagetemp\": 17.51,\n        \"location\": \"Cádiz\"\n    },\n    {\n        \"date\": 2009,\n        \"reg_num\": 23390,\n        \"stations_id\": 5,\n        \"maxtemp\": 20.56,\n        \"mintemp\": 6.939,\n        \"averagetemp\": 14.34,\n        \"location\": \"Cádiz\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "reg_num over",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?reg_num_over=38000",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					],
+					"query": [
+						{
+							"key": "reg_num_over",
+							"value": "38000"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "reg_num over",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?reg_num_over=38000",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							],
+							"query": [
+								{
+									"key": "reg_num_over",
+									"value": "38000"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11e-44LNL/VDWCQ+rYr82JQ/LjOwaPk\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "239e3b97c15e8bc51272442d46a4ce07;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Mar 2023 07:36:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "286"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2005,\n        \"reg_num\": 38295,\n        \"stations_id\": 9,\n        \"maxtemp\": 18.18,\n        \"mintemp\": 80.5,\n        \"averagetemp\": 12.61,\n        \"location\": \"Cádiz\",\n        \"_id\": \"W2kLf4vHhhTEutLA\"\n    },\n    {\n        \"date\": 2007,\n        \"reg_num\": 38830,\n        \"stations_id\": 9,\n        \"maxtemp\": 21.84,\n        \"mintemp\": 15.86,\n        \"averagetemp\": 18.86,\n        \"location\": \"Cádiz\",\n        \"_id\": \"omoDgxJSHGpPm5TU\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "date below",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?date_below=2004",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					],
+					"query": [
+						{
+							"key": "date_below",
+							"value": "2004"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "date below",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?date_below=2004",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							],
+							"query": [
+								{
+									"key": "date_below",
+									"value": "2004"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"238-AaQUGL4i1dtWkwwLy44q18zBzSQ\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "60f7958622055b0454acb86f6322ab7e;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Mar 2023 07:37:18 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "568"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2004,\n        \"reg_num\": 30450,\n        \"stations_id\": 7,\n        \"maxtemp\": 19.29,\n        \"mintemp\": 6.648,\n        \"averagetemp\": 12.98,\n        \"location\": \"Cádiz\",\n        \"_id\": \"NLlBmsD6D8hi9rn7\"\n    },\n    {\n        \"date\": 2004,\n        \"reg_num\": 37800,\n        \"stations_id\": 9,\n        \"maxtemp\": 30.46,\n        \"mintemp\": 15.85,\n        \"averagetemp\": 24.15,\n        \"location\": \"Cádiz\",\n        \"_id\": \"cQncCkYzV35WnlOd\"\n    },\n    {\n        \"date\": 2004,\n        \"reg_num\": 30496,\n        \"stations_id\": 7,\n        \"maxtemp\": 14.54,\n        \"mintemp\": 9.66,\n        \"averagetemp\": 11.85,\n        \"location\": \"Cádiz\",\n        \"_id\": \"dFh7br1QMpetq3lg\"\n    },\n    {\n        \"date\": 2000,\n        \"reg_num\": 34,\n        \"stations_id\": 1,\n        \"maxtemp\": 20.06,\n        \"mintemp\": 7.02,\n        \"averagetemp\": 13.29,\n        \"location\": \"Cádiz\",\n        \"_id\": \"fwVNeT4Wjnp8nsta\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete datos iniciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete datos iniciales",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"loadInitialData"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:58:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				}
+			]
+		},
+		{
+			"name": "Get con array vacia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get con array vacia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:58:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "7"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:58:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Created"
+				}
+			]
+		},
+		{
+			"name": "Get del post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get del post",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "118"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"76-iAMDTBZPWNUZDaeBoO86gIjJTRc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:58:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2008,\n        \"reg_num\": 2264,\n        \"stations_id\": 45,\n        \"maxtemp\": 25.45,\n        \"mintemp\": 9.62,\n        \"averagetemp\": 18.26,\n        \"location\": \"Cádiz\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Post existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post existente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8-OfewgPiFJ3o3XA5wgKRYk2ZHNlU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:59:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict"
+				}
+			]
+		},
+		{
+			"name": "Post campos inesperados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2345008,\r\n        \"reg_num\": 22645,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post campos inesperados",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2345008,\r\n        \"reg_num\": 22645,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:59:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Bad Request"
+				}
+			]
+		},
+		{
+			"name": "Post by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2345008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"2264"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post by ID",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2345008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"2264"
+							]
+						}
+					},
+					"status": "Method Not Allowed",
+					"code": 405,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12-UGJMK66P4abaBlq0vKHJaCKuGCA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:59:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Method Not Allowed"
+				}
+			]
+		},
+		{
+			"name": "Post by ID erroneo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2345008,\r\n        \"reg_num\": 2266541654,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post by ID erroneo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2345008,\r\n        \"reg_num\": 2266541654,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:59:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Bad Request"
+				}
+			]
+		},
+		{
+			"name": "Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "Method Not Allowed",
+					"code": 405,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12-UGJMK66P4abaBlq0vKHJaCKuGCA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 16:59:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Method Not Allowed"
+				}
+			]
+		},
+		{
+			"name": "Put by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2488,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 455415,\r\n        \"maxtemp\": 26455.541545,\r\n        \"mintemp\": 931.62,\r\n        \"averagetemp\": 11515.26,\r\n        \"location\": \"Sevilla\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"2264"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put by ID",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2488,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 455415,\r\n        \"maxtemp\": 26455.541545,\r\n        \"mintemp\": 931.62,\r\n        \"averagetemp\": 11515.26,\r\n        \"location\": \"Sevilla\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"2264"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 17:00:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				}
+			]
+		},
+		{
+			"name": "Get del Put by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('object');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"2264"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get del Put by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"2264"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "133"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"85-Ce72w2gxlJDDw0TUDKuWwAexbPw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 17:00:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"date\": 2488,\n    \"reg_num\": 2264,\n    \"stations_id\": 455415,\n    \"maxtemp\": 26455.541545,\n    \"mintemp\": 931.62,\n    \"averagetemp\": 11515.26,\n    \"location\": \"Sevilla\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Put by ID campos inesperados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 1000,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 400005,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"2264"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put by ID campos inesperados",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 1000,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 400005,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"2264"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 17:00:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Bad Request"
+				}
+			]
+		},
+		{
+			"name": "Put by ID erroneo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 1000,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 400005,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/1541",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"1541"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put by ID erroneo",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 1000,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 400005,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\",\r\n        \"country\": \"España\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/1541",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"1541"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "9"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 17:00:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Not Found"
+				}
+			]
+		},
+		{
+			"name": "Delete by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats",
+						"2264"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete by ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats",
+								"2264"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 17:00:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta es un array\", function(){\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cadiz-agroclimatic-informations-stats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cadiz-agroclimatic-informations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 17:01:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		}
+	]
+}
