@@ -5,11 +5,11 @@ const datastore = require('nedb')
 
 module.exports = function (app) {
 
-    app.get("/api/v1/cadiz-agroclimatic-informations-stats/docs", (req,res)=>{
+    app.get("/api/v1/cadiz-agroclimatic-informations-stats/docs", (req, res) => {
         res.redirect('https://documenter.getpostman.com/view/26036256/2s93K1oJuV');
     });
 
-    
+
     const INITIAL_DATA = [
         {
             "date": 2005,
@@ -118,12 +118,17 @@ module.exports = function (app) {
     app.get("/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData", (req, res) => {
         db.count({}, function (err, count) {
             if (count == 0) {
+                /*
+                INITIAL_DATA.forEach((c) => {
+                    delete c._id;
+                })
+                */
                 db.insert(INITIAL_DATA);
                 res.sendStatus(201);
-                console.log("Se insertan los datos iniciales")
+                console.log(`Se insertan los ${INITIAL_DATA.length} datos iniciales.`);
             } else {
                 res.status(400).send("Data is not empty");
-                console.log("Hay datos mostrándose");
+                console.log("Hay datos mostrándose.");
             }
         });
     });
@@ -141,7 +146,7 @@ module.exports = function (app) {
 
         let query = {};
         if (req.query.date) {
-            query.datastore = parseInt(req.query.date);
+            query.date = parseInt(req.query.date);
         }
 
         if (req.query.reg_num) {
@@ -153,20 +158,22 @@ module.exports = function (app) {
         }
 
         if (req.query.maxtemp) {
-            query.maxtemp = parseInt(req.query.maxtemp);
+            query.maxtemp = parseFloat(req.query.maxtemp);
         }
 
         if (req.query.mintemp) {
-            query.mintemp = parseInt(req.query.mintemp);
+            query.mintemp = parseFloat(req.query.mintemp);
         }
 
         if (req.query.averagetemp) {
-            query.averagetemp = parseInt(req.query.averagetemp);
+            query.averagetemp = parseFloat(req.query.averagetemp);
         }
 
         if (req.query.location) {
             query.location = req.query.location;
         }
+
+        // if (req.params[7])
 
         //dato
         if (req.query.date_over) {
@@ -175,6 +182,11 @@ module.exports = function (app) {
 
         if (req.query.date_below) {
             query.date = { $lte: parseInt(req.query.date_below) };
+        }
+
+        //datos entre fechas
+        if (req.query.from && req.query.to) {
+            query.date = { $gte: parseInt(req.query.from), $lte: parseInt(req.query.to) };
         }
 
         //reg num
@@ -223,13 +235,12 @@ module.exports = function (app) {
 
         db.find(query).sort({ reg_num: req.body.reg_num }).skip(offset)
             .limit(limit).exec(function (err, docs) {
-                /*
-                res.send(docs.map((c)=>{
+
+                res.send(docs.map((c) => {
                     delete c._id;
                     return c;
                 }));
-                */
-                res.send(docs);
+                console.log(`Se muestra un total de ${docs.length} datos.`);
             });
     });
 
@@ -241,13 +252,19 @@ module.exports = function (app) {
         db.findOne({ reg_num: req.body.reg_num }, function (err, existingcadizagroclimaticinformation) {
             if (existingcadizagroclimaticinformation != undefined) {
                 res.sendStatus(409);
+                console.log("No es único.");
                 return;
             }
             if (validate_cadizAgroclimaticInformations(newCadizAgroclimaticInformation)) {
+                delete newCadizAgroclimaticInformation._id;
                 db.insert(newCadizAgroclimaticInformation);
                 res.sendStatus(201);
+                console.log("Se ha creado correctamente.");
+                return;
             } else {
                 res.sendStatus(400);
+                console.log("se han introducido mal los datos.");
+                return;
             }
         });
     });
@@ -303,69 +320,170 @@ module.exports = function (app) {
     app.delete("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
+            console.log("Se han eliminado todos los datos.");
         });
     });
 
     /** PUT a todo */
     app.put("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
         res.sendStatus(405);
+        console.log("Método no permitido.");
     });
 
-    /** Get con un ID (reg_num) */
-    app.get("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
-        db.findOne({ reg_num: parseInt(req.params.reg_num) },
-            function (err, cadizAgroclimaticInformation) {
+
+    /** Get con un ID */
+    app.get("/api/v1/cadiz-agroclimatic-informations-stats/:location/:date?/:reg_num?/:station_id?/:maxtemp?/:mintemp?/:averagetemp?", function (req, res) {
+        const location = req.params.location;
+        const date = parseInt(req.params.date) || null;
+        const reg_num = parseInt(req.params.reg_num) || null;
+        const station_id = parseInt(req.params.station_id) || null;
+        const maxtemp = parseFloat(req.query.maxtemp) || null;
+        const mintemp = parseFloat(req.query.mintemp) || null;
+        const averagetemp = parseFloat(req.query.averagetemp) || null;
+        const from = parseInt(req.query.from) || null;
+        const to = parseInt(req.query.to) || null;
+
+        let busqueda = { location: location };
+        if (date) busqueda["date"] = date;
+        if (reg_num) busqueda["reg_num"] = reg_num;
+        if (station_id) busqueda["station_id"] = station_id;
+        if (maxtemp) busqueda["maxtemp"] = maxtemp;
+        if (mintemp) busqueda["mintemp"] = mintemp;
+        if (averagetemp) busqueda["averagetemp"] = averagetemp;
+
+        if (from && to) {
+            db.find({ location: location, date: { $gte: from, $lte: to } }, function (err, cadizAgroclimaticInformation) {
                 if (cadizAgroclimaticInformation == undefined) {
                     res.sendStatus(404);
+                    console.log("No se encontraron los datos buscados.");
+                    return;
+                
                 } else {
-                    res.status(200).send(cadizAgroclimaticInformation);
+                    console.log("Se han mostrado los datos pedidos.");
+                    res.status(200).send(cadizAgroclimaticInformation.map((c) =>{
+                        delete c._id;
+                        return c;
+                    }));                                
                 }
             });
+        } else {
+
+            db.findOne(busqueda, function (err, cadizAgroclimaticInformation) {
+                if (cadizAgroclimaticInformation == undefined) {
+                    res.sendStatus(404);
+                    console.log("No se encontró el dato buscado.");
+                    return;
+                } else {
+                    delete cadizAgroclimaticInformation._id;
+                    res.status(200).send(cadizAgroclimaticInformation);
+                    console.log("Se ha mostrado el dato pedido.");
+                }
+            });
+        }
     });
 
-    /** Delete con un ID (reg_num) */
+    /** Delete con un ID */
+    app.delete("/api/v1/cadiz-agroclimatic-informations-stats/:date/:location?/:reg_num?/:station_id?/:maxtemp?/:mintemp?/:averagetemp?", function (req, res) {
+        const date = parseInt(req.params.date);
+        const location = req.params.location || null;
+        const reg_num = parseInt(req.params.reg_num) || null;
+        const station_id = parseInt(req.params.station_id) || null;
+        const maxtemp = parseFloat(req.query.maxtemp) || null;
+        const mintemp = parseFloat(req.query.mintemp) || null;
+        const averagetemp = parseFloat(req.query.averagetemp) || null;
 
-    app.delete("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", (req, res) => {
-        console.log(`Se elimina el elemento ${req.params.reg_num}`);
-        db.findOne({ reg_num: parseInt(req.params.reg_num) }, function (err, cadizAgroclimaticInformation) {
+        let busqueda = { date: date };
+        if (location) busqueda["location"] = location;
+        if (reg_num) busqueda["reg_num"] = reg_num;
+        if (station_id) busqueda["station_id"] = station_id;
+        if (maxtemp) busqueda["maxtemp"] = maxtemp;
+        if (mintemp) busqueda["mintemp"] = mintemp;
+        if (averagetemp) busqueda["averagetemp"] = averagetemp;
+
+        db.findOne(busqueda, function (err, cadizAgroclimaticInformation) {
             if (cadizAgroclimaticInformation == undefined) {
                 res.sendStatus(404);
+                console.log("No está el dato buscado.");
+                return;
             } else {
-                db.remove({ reg_num: parseInt(req.params.reg_num) }, { multi: true },
+                db.remove(busqueda, { multi: true },
                     function (err, cadizAgroclimaticInformation) {
                         res.sendStatus(200);
+                        console.log("Dato borrado.");
                     });
             }
         });
-
     });
 
 
-
-
     /** Put con un ID (reg_num) */
-    app.put("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", (req, res) => {
-        db.findOne({ reg_num: parseInt(req.params.reg_num) }, function (err, cadizAgroclimaticInformation) {
+    app.put("/api/v1/cadiz-agroclimatic-informations-stats/:date/:location?/:reg_num?/:station_id?/:maxtemp?/:mintemp?/:averagetemp?", function (req, res) {
+        const date = parseInt(req.params.date);
+        const location = req.params.location || null;
+        const reg_num = parseInt(req.params.reg_num) || null;
+        const station_id = parseInt(req.params.station_id) || null;
+        const maxtemp = parseFloat(req.query.maxtemp) || null;
+        const mintemp = parseFloat(req.query.mintemp) || null;
+        const averagetemp = parseFloat(req.query.averagetemp) || null;
+
+        let busqueda = { date: date };
+        let numParams = 1; // Inicializar el contador a 1 para la fecha
+
+        if (location) {
+            busqueda["location"] = location;
+            numParams++;
+        }
+        if (reg_num) {
+            busqueda["reg_num"] = reg_num;
+            numParams++;
+        }
+        if (station_id) {
+            busqueda["station_id"] = station_id;
+            numParams++;
+        }
+        if (maxtemp) {
+            busqueda["maxtemp"] = maxtemp;
+            numParams++;
+        }
+        if (mintemp) {
+            busqueda["mintemp"] = mintemp;
+            numParams++;
+        }
+        if (averagetemp) {
+            busqueda["averagetemp"] = averagetemp;
+            numParams++;
+        }
+
+        if (numParams < 1 || numParams > 7) {
+            res.sendStatus(400);
+            console.log("Número de parámetros incorrecto.");
+            return;
+        }
+
+        db.findOne(busqueda, function (err, cadizAgroclimaticInformation) {
             if (cadizAgroclimaticInformation == undefined) {
                 res.sendStatus(404);
-                return;
-            }
-            else if (req.params.reg_num != req.body.reg_num) {
-                res.sendStatus(400);
-                return;
-            }
-            else if (!validate_cadizAgroclimaticInformations(req.body)) {
-                res.sendStatus(400);
+                console.log("Datos no encontrados.");
                 return;
             }
 
-            db.update({ reg_num: parseInt(req.params.reg_num) }, { $set: req.body });
+            if (!validate_cadizAgroclimaticInformations(req.body)) {
+                res.sendStatus(400);
+                console.log("Datos no válidos.");
+                return;
+            }
+
+            db.update(busqueda, { $set: req.body });
             res.sendStatus(200);
         });
     });
 
+
+
+
     /** Post con un ID (reg_num) */
     app.post("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", (req, res) => {
-        res.sendStatus(409);
+        res.sendStatus(405);
+        console.log("Método no disponible.");
     });
 }
