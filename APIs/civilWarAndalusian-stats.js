@@ -398,5 +398,18 @@ app.post("/api/v1/civilwarandalusian-stats/:Id", (req,res) => {
     res.sendStatus(405);
 });
 
+
+
+function remove_internal_id(element) {
+    if (Array.isArray(element)) {
+        return element.map(m => {
+            delete m._id;
+            return m;
+        });
+    } else {
+        delete element._id;
+        return element;
+    }
+}
     }
     
