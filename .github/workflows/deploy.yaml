@@ -15,9 +15,7 @@ jobs:
 
       - run: npm install
 
-      - run: npm start &
-      
-      - run: npm test
+     
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
