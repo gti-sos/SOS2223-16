@@ -179,12 +179,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}//api/v1/professionalorganisations-stats/loadInitialData",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/loadInitialData",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"",
 						"api",
 						"v1",
 						"professionalorganisations-stats",

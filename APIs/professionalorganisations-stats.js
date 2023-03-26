@@ -301,14 +301,17 @@ module.exports = function (app) {
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
             if (professionalorganisation == undefined) {
                 res.sendStatus(404);
+                return;
             }
             //check if registy_number is the same in object and url 
             if (req.params.registry_number != req.body.registry_number) {
                 res.sendStatus(400);
+                return;
             }
             //validate modify professionalOrganisation object with req params
             if (!validate_professionalorganisations(req.body)) {
                 res.sendStatus(400);
+                return;
             }
 
 
