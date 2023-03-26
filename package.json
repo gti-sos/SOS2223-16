@@ -7,6 +7,9 @@
     "start": "node index",
     "test-CLC_localhost": "npx newman run ./test/CLC_backend.json -e ./test/env/CLC_localhost.json",
     "test": "npm run test-CLC_localhost"
+    "test-professionalorganisations": "npx newman run ./test/backend-professionalorganisations.json",
+    "test-CLC_localhost": "npx newman run ./test/CLC_backend.json -e ./test/env/CLC_localhost.json",
+    "test": "npm run test-CLC_localhost && npm run test-professionalorganisations"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
     "body-parser": "^1.20.2",
     "cool-ascii-faces": "^1.3.4",
     "express": "^4.18.2",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "newman": "^5.3.2"
   }
 }
