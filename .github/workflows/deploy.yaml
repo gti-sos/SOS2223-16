@@ -7,18 +7,12 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Google Cloud Run
+    name: Deploy to Cloud Run
     runs-on: ubuntu-latest
     environment: production
     steps:
       - uses: actions/checkout@v2
       
-      - uses: npm install
-
-      - uses: npm start &
-
-      - uses: npm test
-
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
@@ -32,3 +26,4 @@ jobs:
     
       - name: Deploy
         run: gcloud app deploy
+
