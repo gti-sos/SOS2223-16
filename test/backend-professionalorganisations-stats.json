@@ -25,12 +25,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -182,14 +179,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/loadInitialData",
-					"protocol": "https",
+					"raw": "{{url}}//api/v1/professionalorganisations-stats/loadInitialData",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
+						"",
 						"api",
 						"v1",
 						"professionalorganisations-stats",
@@ -284,12 +279,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -441,12 +433,9 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/9",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/9",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -544,12 +533,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats?limit=5&offset=0",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats?limit=5&offset=0",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -665,12 +651,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats?location=Jerez de la Frontera (CÁDIZ)&postal_code=11402",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats?location=Jerez de la Frontera (CÁDIZ)&postal_code=11402",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -786,12 +769,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats?registry_number_over=50",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats?registry_number_over=50",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -899,12 +879,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats?date_below=2009",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats?date_below=2009",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1013,12 +990,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/14",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/14",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1112,12 +1086,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/88",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/88",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1220,12 +1191,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1335,12 +1303,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1459,12 +1424,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1565,12 +1527,9 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/31",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/31",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1664,12 +1623,9 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1770,12 +1726,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/14",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/14",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1887,12 +1840,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/14",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/14",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -1995,12 +1945,9 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-					"protocol": "https",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
-						"sos2223-16",
-						"appspot",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
