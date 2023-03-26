@@ -1,0 +1,14 @@
+{
+	"id": "b91ef86f-623e-4ed7-a475-faa671d878b5",
+	"name": "localhost",
+	"values": [
+		{
+			"key": "URLBASE",
+			"value": "localhost:8080",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-03-26T18:04:07.744Z",
+	"_postman_exported_using": "Postman/10.12.8-230325-0944"
+}
