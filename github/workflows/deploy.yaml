@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     name: Deploy to Cloud Run
-    runs-on: windows-latest
+    runs-on: windows
     environment: production
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
       - uses: npm install
 
       - uses: npm start
-      
+
       - uses: npm test
 
       - id: 'auth'
