@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test-CLC_localhost": "npx newman run ./test/CLC_backend.json -e ./test/env/CLC_localhost.json",
-    "test": "npm run test-CLC_localhost"
     "test-professionalorganisations": "npx newman run ./test/backend-professionalorganisations.json",
     "test-CLC_localhost": "npx newman run ./test/CLC_backend.json -e ./test/env/CLC_localhost.json",
     "test": "npm run test-CLC_localhost && npm run test-professionalorganisations"
