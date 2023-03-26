@@ -131,6 +131,7 @@ module.exports = function(app){
             if(count==0){
                 db.insert(INITIAL_DATA);
                 res.sendStatus(201);
+                console.log(`Se insertan los ${INITIAL_DATA.length} datos iniciales.`);
             }else{
                 res.status(400).send("Data is not empty");
             }
@@ -252,56 +253,56 @@ app.post("/api/v1/civilwarandalusian-stats", (req,res) => {
     
         /** function to validate that the post method is correctly done */
     
-    function validate_civilWarAndalusian(civilWarAndalusian){
+    function validate_civilWarAndalusian(civilwarandalusian){
     
     
         //Object length is 8
-        if(Object.keys(civilWarAndalusian).length!=9){
+        if(Object.keys(civilwarandalusian).length!=9){
             return false;
         }
     
         //id is a number
-        if(typeof civilWarAndalusian.Id != "number"){
+        if(typeof civilwarandalusian.Id != "number"){
             return false;
         }
     
         //title is a string
-        if(typeof civilWarAndalusian.title != "string"){
+        if(typeof civilwarandalusian.title != "string"){
             return false;
         }
     
         //character is a string
-        if(typeof civilWarAndalusian.character != "string"){
+        if(typeof civilwarandalusian.character != "string"){
             return false;
         }
     
         //province is a string
-        if(typeof civilWarAndalusian.province != "string"){
+        if(typeof civilwarandalusian.province != "string"){
             return false;
         }
     
         //municipality is a string
-        if(typeof civilWarAndalusian.municipality != "string"){
+        if(typeof civilwarandalusian.municipality != "string"){
             return false;
         }
     
         //dateNumeric is a number
-        if(typeof civilWarAndalusian.dateNumeric != "number"){
+        if(typeof civilwarandalusian.dateNumeric != "number"){
             return false;
         }
     
         //Photo_PieFosa is a string
-       if(typeof civilWarAndalusian.Photo_PieFosa != "string"){
+       if(typeof civilwarandalusian.Photo_PieFosa != "string"){
             return false;
     
         }
         //victims is a number
-        if(typeof civilWarAndalusian.victims != "number"){
+        if(typeof civilwarandalusian.victims != "number"){
             return false;
     
         }
         //dates_act is a number
-        if(typeof civilWarAndalusian.dates_act != "number"){
+        if(typeof civilwarandalusian.dates_act != "number"){
             return false;
     
         }
@@ -316,6 +317,23 @@ app.post("/api/v1/civilwarandalusian-stats", (req,res) => {
         });
     });
     
+    app.delete("/api/v1/civilwarandalusian-stats/loadInitialData", (req, res) => {
+        const ids = [135, 141, 134, 137, 139, 142, 143, 129, 131, 133];
+      
+        const searchXid = ids.map(Id => ({ Id: parseInt(Id) }));
+      
+        db.remove({ $or: searchXid }, { multi: true }, function (err, numRemoved) {
+      
+          if (numRemoved === 0) {
+            res.sendStatus(404);
+            console.log("No se encontraron datos para borrar.");
+          } else {
+            res.sendStatus(200);
+            console.log(`${numRemoved} datos borrados.`);
+          }
+        });
+      });
+    
     /** PUT ALL */
 app.put("/api/v1/civilwarandalusian-stats", (req,res) => { 
     res.sendStatus(405);
@@ -325,11 +343,11 @@ app.put("/api/v1/civilwarandalusian-stats", (req,res) => {
 /** GET by ID (ID) */
 app.get("/api/v1/civilwarandalusian-stats/:Id", function(req, res) {
 
-    db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilWarAndalusian) {
-        if(civilWarAndalusian == undefined){
+    db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
+        if(civilwarandalusian == undefined){
             res.sendStatus(404);
         }else{
-            res.status(200).send(civilWarAndalusian); 
+            res.status(200).send(civilwarandalusian); 
         }
     });
 });
@@ -339,8 +357,8 @@ app.get("/api/v1/civilwarandalusian-stats/:Id", function(req, res) {
 
 app.put("/api/v1/civilwarandalusian-stats/:dateNumeric", (req,res) => { 
     //check if exist
-    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
-        if(civilWarAndalusian == undefined){
+    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilwarandalusian) {
+        if(civilwarandalusian == undefined){
             res.sendStatus(404);
     }
     //check if dateNumeric is the same in object and url 

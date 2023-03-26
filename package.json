@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    
-    "test-CLC_localhost":"npx newman run ./test/CLC_backend.json -e ./test/env/CLC_localhost.json",
+    "test-CLC_localhost": "npx newman run ./test/CLC_backend.json -e ./test/env/CLC_localhost.json",
     "test": "npm run test-CLC_localhost"
   },
   "repository": {
@@ -26,5 +25,4 @@
     "express": "^4.18.2",
     "nedb": "^1.8.0"
   }
-  
 }
