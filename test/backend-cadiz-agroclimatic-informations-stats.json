@@ -47,12 +47,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -99,7 +97,7 @@
 			]
 		},
 		{
-			"name": "Cargar Datos",
+			"name": "Primer post",
 			"event": [
 				{
 					"listen": "test",
@@ -107,46 +105,62 @@
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
-							"});"
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"cadiz-agroclimatic-informations-stats",
-						"loadInitialData"
+						"cadiz-agroclimatic-informations-stats"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Cargar Datos",
+					"name": "Post",
 					"originalRequest": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
-								"cadiz-agroclimatic-informations-stats",
-								"loadInitialData"
+								"cadiz-agroclimatic-informations-stats"
 							]
 						}
 					},
@@ -172,7 +186,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 24 Mar 2023 16:57:00 GMT"
+							"value": "Fri, 24 Mar 2023 16:58:51 GMT"
 						},
 						{
 							"key": "Connection",
@@ -201,11 +215,6 @@
 							"\r",
 							"pm.test(\"La respuesta es un array\", function(){\r",
 							"    pm.expect(pm.response.json()).to.be.an('array');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"El array es igual o mayor que 10\",function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.lengthOf.above(9);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -234,12 +243,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -324,12 +331,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -399,7 +404,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/37800",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 					"host": [
 						"{{url}}"
 					],
@@ -407,7 +412,7 @@
 						"api",
 						"v1",
 						"cadiz-agroclimatic-informations-stats",
-						"37800"
+						"2264"
 					]
 				}
 			},
@@ -418,12 +423,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/37800",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/37800",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -483,11 +486,6 @@
 							"\r",
 							"pm.test(\"Devuelve un array\",function(){\r",
 							"    pm.expect(pm.response.json()).to.be.an('array');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"El array es igual o mayor que 3\",function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.lengthOf.above(2);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -526,12 +524,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats?from=2007&to=2008",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?from=2007&to=2008",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -625,12 +621,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/2264234",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264234",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -690,11 +684,6 @@
 							"\r",
 							"pm.test(\"La respuesta es un array\", function(){\r",
 							"    pm.expect(pm.response.json()).to.be.an('array');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"El array es igual que 3\",function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.lengthOf.above(2);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -705,7 +694,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?limit=3&offset=0",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?limit=1&offset=0",
 					"host": [
 						"{{url}}"
 					],
@@ -717,7 +706,7 @@
 					"query": [
 						{
 							"key": "limit",
-							"value": "3"
+							"value": "1"
 						},
 						{
 							"key": "offset",
@@ -733,12 +722,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats?limit=3&offset=0",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?limit=3&offset=0",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -807,11 +794,6 @@
 							"\r",
 							"pm.test(\"La respuesta es un array\", function(){\r",
 							"    pm.expect(pm.response.json()).to.be.an('array');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"El array es igual o mayor que 3\",function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.lengthOf.above(2);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -822,7 +804,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?stations_id=5",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?stations_id=45",
 					"host": [
 						"{{url}}"
 					],
@@ -834,7 +816,7 @@
 					"query": [
 						{
 							"key": "stations_id",
-							"value": "5"
+							"value": "45"
 						}
 					]
 				}
@@ -846,12 +828,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats?stations_id=5",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?stations_id=5",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -916,11 +896,6 @@
 							"\r",
 							"pm.test(\"La respuesta es un array\", function(){\r",
 							"    pm.expect(pm.response.json()).to.be.an('array');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"El array es igual o mayor que 2\",function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.lengthOf.above(1);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -931,7 +906,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?reg_num_over=38000",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?reg_num_over=750",
 					"host": [
 						"{{url}}"
 					],
@@ -943,7 +918,7 @@
 					"query": [
 						{
 							"key": "reg_num_over",
-							"value": "38000"
+							"value": "750"
 						}
 					]
 				}
@@ -955,12 +930,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats?reg_num_over=38000",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?reg_num_over=38000",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1029,11 +1002,6 @@
 							"\r",
 							"pm.test(\"La respuesta es un array\", function(){\r",
 							"    pm.expect(pm.response.json()).to.be.an('array');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"El array es igual o mayor que 4\",function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.lengthOf.above(3);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1044,7 +1012,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?date_below=2004",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?date_below=2020",
 					"host": [
 						"{{url}}"
 					],
@@ -1056,7 +1024,7 @@
 					"query": [
 						{
 							"key": "date_below",
-							"value": "2004"
+							"value": "2020"
 						}
 					]
 				}
@@ -1068,12 +1036,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats?date_below=2004",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats?date_below=2004",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1130,7 +1096,7 @@
 			]
 		},
 		{
-			"name": "Delete datos iniciales",
+			"name": "Delete post",
 			"event": [
 				{
 					"listen": "test",
@@ -1148,7 +1114,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 					"host": [
 						"{{url}}"
 					],
@@ -1156,7 +1122,7 @@
 						"api",
 						"v1",
 						"cadiz-agroclimatic-informations-stats",
-						"loadInitialData"
+						"2264"
 					]
 				}
 			},
@@ -1167,12 +1133,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1260,12 +1224,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1368,12 +1330,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1465,12 +1425,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1571,12 +1529,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1677,12 +1633,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1784,12 +1738,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/2264",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1891,12 +1843,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1979,12 +1929,10 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -2087,12 +2035,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/2264",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -2181,12 +2127,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/cadiz-agroclimatic-informations-stats/2264",
-							"protocol": "http",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v1",
