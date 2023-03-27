@@ -58,7 +58,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"Id\": 126444333,\r\n        \"title\": \"Fosa de La Campana. Sevilla\",\r\n        \"character\": \"Cementerio interior\",\r\n        \"province\": \"Sevilerreerla\",\r\n        \"municipality\": \"La Campana\",\r\n        \"dateNumeric\": 1936,\r\n        \"Photo_PieFosa\": \"http://www.juntadeandalucia.es/presidenciaadministracionlocalymemoriademocratica/mapadefosas/images/provincia_8/4102201_b.jpg\",\r\n        \"victims\": 2503344,\r\n        \"dates_act\": 203344405\r\n    }",
+					"raw": "{\r\n        \"Id\": 126,\r\n        \"title\": \"Fosa de La Campana. Sevilla\",\r\n        \"character\": \"Cementerio interior\",\r\n        \"province\": \"Sevilla\",\r\n        \"municipality\": \"La Campana\",\r\n        \"dateNumeric\": 1936,\r\n        \"Photo_PieFosa\": \"http://www.juntadeandalucia.es/presidenciaadministracionlocalymemoriademocratica/mapadefosas/images/provincia_8/4102201_b.jpg\",\r\n        \"victims\": 2503344,\r\n        \"dates_act\": 203344405\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -213,7 +213,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936",
+					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1938",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -221,7 +221,7 @@
 						"api",
 						"v1",
 						"civilwarandalusian-stats",
-						"1936"
+						"1938"
 					]
 				}
 			},
@@ -310,6 +310,48 @@
 			"response": []
 		},
 		{
+			"name": "put bad request 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"Id\": 126,\r\n        \"title\": \"Fosa de La Campana. Sevilla\",\r\n        \"character\": \"Cementerio interior\",\r\n        \"province\": \"Sevilla\",\r\n        \"municipality\": \"La Campana\",\r\n        \"dateNumeric\": 1936\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/126",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"civilwarandalusian-stats",
+						"126"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Not found by Id 404",
 			"event": [
 				{
@@ -361,7 +403,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats?limit=1&offset=1",
+					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats?limit=1&offset=0",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -377,7 +419,7 @@
 						},
 						{
 							"key": "offset",
-							"value": "1"
+							"value": "0"
 						}
 					]
 				}
@@ -403,7 +445,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats?Id=143&province=Sevilla",
+					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats?Id=126&province=Sevilla",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -415,7 +457,7 @@
 					"query": [
 						{
 							"key": "Id",
-							"value": "143"
+							"value": "126"
 						},
 						{
 							"key": "province",
@@ -445,7 +487,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilWarAndalusian-stats?dateNumeric_over=1937",
+					"raw": "{{URLBASE}}/api/v1/civilWarAndalusian-stats?dateNumeric_over=1935",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -457,7 +499,7 @@
 					"query": [
 						{
 							"key": "dateNumeric_over",
-							"value": "1937"
+							"value": "1935"
 						}
 					]
 				}

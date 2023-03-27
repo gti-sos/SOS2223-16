@@ -355,24 +355,28 @@ app.get("/api/v1/civilwarandalusian-stats/:Id", function(req, res) {
 //** PUT by ID */
 
 
-app.put("/api/v1/civilwarandalusian-stats/:dateNumeric", (req,res) => { 
+app.put("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
     //check if exist
-    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilwarandalusian) {
-        if(civilwarandalusian == undefined){
+    db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
+        if (civilwarandalusian == undefined) {
             res.sendStatus(404);
-    }
-    //check if dateNumeric is the same in object and url 
-    if(req.params.dateNumeric != req.body.dateNumeric){
-        res.sendStatus(400);
-    }
-    //validate modify civilWarAndalusian object with req params
-    if(!validate_civilWarAndalusian(req.body)){
-        res.sendStatus(400);
-    }
+            return;
+        }
+        //check if registy_number is the same in object and url 
+        if (req.params.civilwarandalusian != req.body.civilwarandalusian) {
+            res.sendStatus(400);
+            return;
+        }
+        //validate modify professionalOrganisation object with req params
+        if (!validate_civilWarAndalusian(req.body)) {
+            res.sendStatus(400);
+            return;
+        }
 
 
-    db.update({ dateNumeric: parseInt(req.params.dateNumeric)  }, { $set: req.body });
-    res.sendStatus(200);
+        db.update({ Id: parseInt(req.params.Id) }, { $set: req.body }, function (err, numReplaced) {
+            res.sendStatus(200);
+        });
     });
 
 });
