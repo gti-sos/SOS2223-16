@@ -161,6 +161,100 @@
 			]
 		},
 		{
+			"name": "DELETE ALL Initial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"professionalorganisations-stats"
+					]
+				},
+				"description": "A 200 (OK) code is returned that clears all data from the database."
+			},
+			"response": [
+				{
+					"name": "DELETE ALL",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
+							"protocol": "https",
+							"host": [
+								"sos2223-16",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"professionalorganisations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "566e6939b9026df0e304128cdc5226b1;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Mar 2023 22:24:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				}
+			]
+		},
+		{
 			"name": "Load Data",
 			"event": [
 				{
