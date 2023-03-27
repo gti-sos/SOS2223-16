@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test-professionalorganisations": "npx newman run ./test/backend-professionalorganisations-stats.json -e ./test/env/CBM_localhost.json",
+    "test-professionalorganisations": "npx newman run ./test/backend-professionalorganisations-stats.json -e ./test/env/CBM_gcloud.json",
     "test-cadiz-agroclimatic-informations": "npx newman run ./test/backend-cadiz-agroclimatic-informations-stats.json -e ./test/env/CLC_localhost.json",
     "test-civilwarandalusian": "npx newman run ./test/backend-civilwarandalusian-stats.json -e ./test/env/MMC_gcloud.json",
     "test": "npm run test-cadiz-agroclimatic-informations && npm run test-professionalorganisations && npm run test-civilwarandalusian"
