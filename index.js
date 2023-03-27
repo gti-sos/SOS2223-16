@@ -1,10 +1,10 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
 
 app.use("/", express.static("./public"));
 
 /** BODY PARSER */
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 /**
