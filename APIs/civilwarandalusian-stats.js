@@ -4,7 +4,7 @@ const BASE_API_URL = "/api/v1"
 module.exports = function(app){
     app.get("/api/v1/civilwarandalusian-stats/docs", (req,res) => { 
 
-        res.redirect('https://documenter.getpostman.com/view/7223889/2s93RNzFGY');
+        res.redirect('https://documenter.getpostman.com/view/7223889/2s93RQTZjp');
     
     });
 
