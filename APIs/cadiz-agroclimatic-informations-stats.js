@@ -389,14 +389,14 @@ module.exports = function (app) {
 
 
     /** Put con un ID (reg_num) */
-    app.put("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num?", function (req, res) {
+    app.put("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
         const reg_num = parseInt(req.params.reg_num);
 
         let busqueda = { reg_num: reg_num };
 
         db.findOne(busqueda, function (err, cadizAgroclimaticInformation) {
-            if (cadizAgroclimaticInformation == undefined) {
-                res.sendStatus(404);
+            if (cadizAgroclimaticInformation == 0) {
+                res.sendStatus(400);
                 console.log("Datos no encontrados.");
                 return;
             }

@@ -293,95 +293,6 @@
 			]
 		},
 		{
-			"name": "2ª Carga de datos (Error)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {\r",
-							"    pm.response.to.have.status(400);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"cadiz-agroclimatic-informations-stats",
-						"loadInitialData"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "2ª Carga de datos (Error)",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"cadiz-agroclimatic-informations-stats",
-								"loadInitialData"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "17"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"11-ywbLo8AcljVTUdA2NnBanSaB8p0\""
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 24 Mar 2023 16:57:17 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "Data is not empty"
-				}
-			]
-		},
-		{
 			"name": "Get by ID",
 			"event": [
 				{
@@ -1096,7 +1007,7 @@
 			]
 		},
 		{
-			"name": "Delete post",
+			"name": "Delete datos iniciales",
 			"event": [
 				{
 					"listen": "test",
@@ -1184,7 +1095,7 @@
 			]
 		},
 		{
-			"name": "Get con array vacia",
+			"name": "Get sin mis datos",
 			"event": [
 				{
 					"listen": "test",
@@ -2290,8 +2201,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"    pm.response.to.have.status(404);\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
 							"});"
 						],
 						"type": "text/javascript"

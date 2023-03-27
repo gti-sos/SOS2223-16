@@ -362,6 +362,10 @@
 							"pm.test(\"Professional organisations list must be 10\", function() {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData).to.have.a.lengthOf(10);\r",
+							"});\r",
+							"pm.test(\"Professional organisations must be an array\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.a('array');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -616,6 +620,10 @@
 							"pm.test(\"Professional organisations list must be greater than 0\", function() {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"pm.test(\"Professional organisations must be an array\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.a('array');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -734,6 +742,10 @@
 							"pm.test(\"Professional organisations list must be greater than 0\", function() {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"pm.test(\"Professional organisations must be an array\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.a('array');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -852,6 +864,10 @@
 							"pm.test(\"Professional organisations list must be greater than 0\", function() {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"pm.test(\"Professional organisations must be an array\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.a('array');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -962,6 +978,10 @@
 							"pm.test(\"Professional organisations list must be greater than 0\", function() {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"pm.test(\"Professional organisations must be an array\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.a('array');\r",
 							"});"
 						],
 						"type": "text/javascript"
