@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "fc790dd6-2df8-4558-a7d2-bd5d24586cd7",
 		"name": "L08",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "7223889"
 	},
 	"item": [
@@ -24,17 +24,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats"
 			},
 			"response": []
 		},
@@ -65,17 +55,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats"
 			},
 			"response": []
 		},
@@ -106,17 +86,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats"
 			},
 			"response": []
 		},
@@ -138,17 +108,7 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats"
 			},
 			"response": []
 		},
@@ -179,18 +139,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats",
-						"1936"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/126"
 			},
 			"response": []
 		},
@@ -212,18 +161,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1938",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats",
-						"1938"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936"
 			},
 			"response": []
 		},
@@ -254,17 +192,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats"
 			},
 			"response": []
 		},
@@ -295,17 +223,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats"
 			},
 			"response": []
 		},
@@ -336,18 +254,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/126",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats",
-						"126"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/126"
 			},
 			"response": []
 		},
@@ -369,18 +276,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/194",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats",
-						"194"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/194"
 			},
 			"response": []
 		},
@@ -562,18 +458,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"civilwarandalusian-stats",
-						"1936"
-					]
-				}
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936"
 			},
 			"response": []
 		}
