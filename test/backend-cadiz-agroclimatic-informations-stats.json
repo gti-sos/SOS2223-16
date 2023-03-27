@@ -97,7 +97,7 @@
 			]
 		},
 		{
-			"name": "Cargar datos",
+			"name": "Primer post",
 			"event": [
 				{
 					"listen": "test",
@@ -106,6 +106,7 @@
 							"pm.test(\"Status code is 201\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
 							"});\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript"
@@ -113,43 +114,59 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"cadiz-agroclimatic-informations-stats",
-						"loadInitialData"
+						"cadiz-agroclimatic-informations-stats"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "2ª Carga de datos (Error)",
+					"name": "Post",
 					"originalRequest": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"date\": 2008,\r\n        \"reg_num\": 2264,\r\n        \"stations_id\": 45,\r\n        \"maxtemp\": 25.45,\r\n        \"mintemp\": 9.62,\r\n        \"averagetemp\": 18.26,\r\n        \"location\": \"Cádiz\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"cadiz-agroclimatic-informations-stats",
-								"loadInitialData"
+								"cadiz-agroclimatic-informations-stats"
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "html",
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
 					"header": [
 						{
 							"key": "X-Powered-By",
@@ -157,19 +174,19 @@
 						},
 						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "text/plain; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "17"
+							"value": "7"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"11-ywbLo8AcljVTUdA2NnBanSaB8p0\""
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 24 Mar 2023 16:57:17 GMT"
+							"value": "Fri, 24 Mar 2023 16:58:51 GMT"
 						},
 						{
 							"key": "Connection",
@@ -181,7 +198,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "Data is not empty"
+					"body": "Created"
 				}
 			]
 		},
@@ -276,95 +293,6 @@
 			]
 		},
 		{
-			"name": "2ª Carga de datos (Error)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {\r",
-							"    pm.response.to.have.status(400);\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"cadiz-agroclimatic-informations-stats",
-						"loadInitialData"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "2ª Carga de datos (Error)",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"cadiz-agroclimatic-informations-stats",
-								"loadInitialData"
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "17"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"11-ywbLo8AcljVTUdA2NnBanSaB8p0\""
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 24 Mar 2023 16:57:17 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "Data is not empty"
-				}
-			]
-		},
-		{
 			"name": "Get by ID",
 			"event": [
 				{
@@ -387,7 +315,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/17104",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 					"host": [
 						"{{url}}"
 					],
@@ -395,7 +323,7 @@
 						"api",
 						"v1",
 						"cadiz-agroclimatic-informations-stats",
-						"17104"
+						"2264"
 					]
 				}
 			},
@@ -1097,7 +1025,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData",
+					"raw": "{{url}}/api/v1/cadiz-agroclimatic-informations-stats/2264",
 					"host": [
 						"{{url}}"
 					],
@@ -1105,7 +1033,7 @@
 						"api",
 						"v1",
 						"cadiz-agroclimatic-informations-stats",
-						"loadInitialData"
+						"2264"
 					]
 				}
 			},
@@ -1167,7 +1095,7 @@
 			]
 		},
 		{
-			"name": "Get con array vacia",
+			"name": "Get sin mis datos",
 			"event": [
 				{
 					"listen": "test",
