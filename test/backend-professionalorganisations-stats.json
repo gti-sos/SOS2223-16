@@ -7,349 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "GET ALL (empty db)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"professionalorganisations-stats"
-					]
-				},
-				"description": "Example created when the initial data is already loaded, if the database is empty, the result of performing this GET method would be an empty array."
-			},
-			"response": [
-				{
-					"name": "GET ALL",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-							"protocol": "https",
-							"host": [
-								"sos2223-16",
-								"appspot",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"professionalorganisations-stats"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"800-yID97ujWlM282XTlzXx7ZBkaXA8\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "4fc08328e112f8eb3c5f5464515eb93e"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 18 Mar 2023 23:08:19 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Content-Length",
-							"value": "2048"
-						},
-						{
-							"key": "Alt-Svc",
-							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"date\": 2007,\n        \"registry_number\": 14,\n        \"professional_org\": \"FARMACÉUTICOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 212 277\",\n        \"postal_code\": 11004,\n        \"adress\": \"C/ ISABEL LA CATÓLICA, 22\"\n    },\n    {\n        \"date\": 2011,\n        \"registry_number\": 119,\n        \"professional_org\": \"ABOGADOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 28 76 11\",\n        \"postal_code\": 11007,\n        \"adress\": \"TAMARINDOS, 17 Y 19\"\n    },\n    {\n        \"date\": 2008,\n        \"registry_number\": 44,\n        \"professional_org\": \"AGENTES COMERCIALES DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 25 50 11\",\n        \"postal_code\": 11004,\n        \"adress\": \"C/ SANTA ELENA, 2-2º B\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 90,\n        \"professional_org\": \"APAREJADORES Y ARQUITECTOS TÉCNICOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 27 25 66\",\n        \"postal_code\": 11009,\n        \"adress\": \"ANA DE VIYA, 5-3º . EDIFICIO NEREIDA\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 106,\n        \"professional_org\": \"DENTISTAS DE CÁDIZ\",\n        \"location\": \"La línea de la Concepción (CÁDIZ)\",\n        \"phone_number\": \"956 17 09 50\",\n        \"postal_code\": 11300,\n        \"adress\": \"C/ ISABEL LA CATÓLICA, 22\"\n    },\n    {\n        \"date\": 2008,\n        \"registry_number\": 41,\n        \"professional_org\": \"AGENTES DE LA PROPIEDAD INMOBILIARIA DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 21 23 38\",\n        \"postal_code\": 11004,\n        \"adress\": \"C/ COLUMELA, 33 1º\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 84,\n        \"professional_org\": \"ABOGADOS DE JEREZ DE LA FRONTERA\",\n        \"location\": \"Jerez de la Frontera (CÁDIZ)\",\n        \"phone_number\": \"956 32 87 93\",\n        \"postal_code\": 11402,\n        \"adress\": \"SEVILLA, 37\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 69,\n        \"professional_org\": \"AGENTES COMERCIALES DE JEREZ DE LA FRONTERA\",\n        \"location\": \"Jerez de la Frontera (CÁDIZ)\",\n        \"phone_number\": \"956 34 17 34\",\n        \"postal_code\": 11401,\n        \"adress\": \"CARTUJA, 6 1º A\"\n    },\n    {\n        \"date\": 2008,\n        \"registry_number\": 25,\n        \"professional_org\": \"ARQUITECTOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 80 70 52\",\n        \"postal_code\": 11404,\n        \"adress\": \"PLAZA DE LA MINA, 16\"\n    },\n    {\n        \"date\": 2007,\n        \"registry_number\": 9,\n        \"professional_org\": \"DIPLOMADOS EN TRABAJO SOCIAL Y ASISTENTES SOCIALES DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 27 56 01\",\n        \"postal_code\": 11007,\n        \"adress\": \"C/ SANTA CRUZ DE TENERIFE, 5- 2º - OFICINA 22\"\n    }\n]"
-				},
-				{
-					"name": "GET ALL",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-							"protocol": "https",
-							"host": [
-								"sos2223-16",
-								"appspot",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"professionalorganisations-stats"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "995b0aaaa6030560ce5a3480ff2ff225;o=1"
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 19 Mar 2023 22:25:03 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Content-Length",
-							"value": "2"
-						},
-						{
-							"key": "Alt-Svc",
-							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
-						}
-					],
-					"cookie": [],
-					"body": "[]"
-				}
-			]
-		},
-		{
-			"name": "DELETE ALL Initial",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"professionalorganisations-stats"
-					]
-				},
-				"description": "A 200 (OK) code is returned that clears all data from the database."
-			},
-			"response": [
-				{
-					"name": "DELETE ALL",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-							"protocol": "https",
-							"host": [
-								"sos2223-16",
-								"appspot",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"professionalorganisations-stats"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "566e6939b9026df0e304128cdc5226b1;o=1"
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 19 Mar 2023 22:24:53 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Content-Length",
-							"value": "2"
-						},
-						{
-							"key": "Alt-Svc",
-							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
-						}
-					],
-					"cookie": [],
-					"body": "OK"
-				}
-			]
-		},
-		{
-			"name": "Load Data",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function() {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/loadInitialData",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"professionalorganisations-stats",
-						"loadInitialData"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Load Data",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/loadInitialData",
-							"protocol": "https",
-							"host": [
-								"sos2223-16",
-								"appspot",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"professionalorganisations-stats",
-								"loadInitialData"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "6b6504d9305230a12e055c562e99af3c"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 18 Mar 2023 23:15:04 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Content-Length",
-							"value": "7"
-						},
-						{
-							"key": "Alt-Svc",
-							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
-						}
-					],
-					"cookie": [],
-					"body": "Created"
-				}
-			]
-		},
-		{
 			"name": "GET ALL",
 			"event": [
 				{
@@ -358,10 +15,6 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function() {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Professional organisations list must be 10\", function() {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData).to.have.a.lengthOf(10);\r",
 							"});\r",
 							"pm.test(\"Professional organisations must be an array\", function() {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -512,14 +165,14 @@
 			]
 		},
 		{
-			"name": "DELETE by ID",
+			"name": "POST to /professionalorganisations-stats",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function() {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -527,30 +180,47 @@
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"date\": 2005,\r\n        \"registry_number\": 99,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"Jerez de la Frontera (CÁDIZ)\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/9",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"professionalorganisations-stats",
-						"9"
+						"professionalorganisations-stats"
 					]
 				},
-				"description": "StartFragment\n\nReturns an 200 (OK) and removes the professional association whose ID matches the one requested in the URL.\n\nEndFragment"
+				"description": "StartFragment\n\nA 201 (created) code is returned and add a new professional association to the database."
 			},
 			"response": [
 				{
-					"name": "DELETE by ID",
+					"name": "POST to /professionalorganisations-stats",
 					"originalRequest": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"date\": 2005,\r\n        \"registry_number\": 99,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"CÁDIZ\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/14",
+							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
 							"protocol": "https",
 							"host": [
 								"sos2223-16",
@@ -560,13 +230,12 @@
 							"path": [
 								"api",
 								"v1",
-								"professionalorganisations-stats",
-								"14"
+								"professionalorganisations-stats"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Created",
+					"code": 201,
 					"_postman_previewlanguage": "plain",
 					"header": [
 						{
@@ -579,15 +248,177 @@
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
 						},
 						{
 							"key": "X-Cloud-Trace-Context",
-							"value": "d3a2e0fc69e65e64837150ce29152132"
+							"value": "3be92cb12983c5107c2d2148f84bf62c"
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 19 Mar 2023 22:27:17 GMT"
+							"value": "Sun, 19 Mar 2023 22:25:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "7"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+						}
+					],
+					"cookie": [],
+					"body": "Created"
+				}
+			]
+		},
+		{
+			"name": "GET ALL (with the new data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Professional organisations list must be at least 1\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"pm.test(\"Professional organisations must be an array\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.a('array');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"professionalorganisations-stats"
+					]
+				},
+				"description": "Example created when the initial data is already loaded, if the database is empty, the result of performing this GET method would be an empty array."
+			},
+			"response": [
+				{
+					"name": "GET ALL",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
+							"protocol": "https",
+							"host": [
+								"sos2223-16",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"professionalorganisations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"800-yID97ujWlM282XTlzXx7ZBkaXA8\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "4fc08328e112f8eb3c5f5464515eb93e"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Mar 2023 23:08:19 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2048"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"date\": 2007,\n        \"registry_number\": 14,\n        \"professional_org\": \"FARMACÉUTICOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 212 277\",\n        \"postal_code\": 11004,\n        \"adress\": \"C/ ISABEL LA CATÓLICA, 22\"\n    },\n    {\n        \"date\": 2011,\n        \"registry_number\": 119,\n        \"professional_org\": \"ABOGADOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 28 76 11\",\n        \"postal_code\": 11007,\n        \"adress\": \"TAMARINDOS, 17 Y 19\"\n    },\n    {\n        \"date\": 2008,\n        \"registry_number\": 44,\n        \"professional_org\": \"AGENTES COMERCIALES DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 25 50 11\",\n        \"postal_code\": 11004,\n        \"adress\": \"C/ SANTA ELENA, 2-2º B\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 90,\n        \"professional_org\": \"APAREJADORES Y ARQUITECTOS TÉCNICOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 27 25 66\",\n        \"postal_code\": 11009,\n        \"adress\": \"ANA DE VIYA, 5-3º . EDIFICIO NEREIDA\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 106,\n        \"professional_org\": \"DENTISTAS DE CÁDIZ\",\n        \"location\": \"La línea de la Concepción (CÁDIZ)\",\n        \"phone_number\": \"956 17 09 50\",\n        \"postal_code\": 11300,\n        \"adress\": \"C/ ISABEL LA CATÓLICA, 22\"\n    },\n    {\n        \"date\": 2008,\n        \"registry_number\": 41,\n        \"professional_org\": \"AGENTES DE LA PROPIEDAD INMOBILIARIA DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 21 23 38\",\n        \"postal_code\": 11004,\n        \"adress\": \"C/ COLUMELA, 33 1º\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 84,\n        \"professional_org\": \"ABOGADOS DE JEREZ DE LA FRONTERA\",\n        \"location\": \"Jerez de la Frontera (CÁDIZ)\",\n        \"phone_number\": \"956 32 87 93\",\n        \"postal_code\": 11402,\n        \"adress\": \"SEVILLA, 37\"\n    },\n    {\n        \"date\": 2009,\n        \"registry_number\": 69,\n        \"professional_org\": \"AGENTES COMERCIALES DE JEREZ DE LA FRONTERA\",\n        \"location\": \"Jerez de la Frontera (CÁDIZ)\",\n        \"phone_number\": \"956 34 17 34\",\n        \"postal_code\": 11401,\n        \"adress\": \"CARTUJA, 6 1º A\"\n    },\n    {\n        \"date\": 2008,\n        \"registry_number\": 25,\n        \"professional_org\": \"ARQUITECTOS DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 80 70 52\",\n        \"postal_code\": 11404,\n        \"adress\": \"PLAZA DE LA MINA, 16\"\n    },\n    {\n        \"date\": 2007,\n        \"registry_number\": 9,\n        \"professional_org\": \"DIPLOMADOS EN TRABAJO SOCIAL Y ASISTENTES SOCIALES DE CÁDIZ\",\n        \"location\": \"CÁDIZ\",\n        \"phone_number\": \"956 27 56 01\",\n        \"postal_code\": 11007,\n        \"adress\": \"C/ SANTA CRUZ DE TENERIFE, 5- 2º - OFICINA 22\"\n    }\n]"
+				},
+				{
+					"name": "GET ALL",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
+							"protocol": "https",
+							"host": [
+								"sos2223-16",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"professionalorganisations-stats"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "995b0aaaa6030560ce5a3480ff2ff225;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Mar 2023 22:25:03 GMT"
 						},
 						{
 							"key": "Server",
@@ -603,7 +434,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "OK"
+					"body": "[]"
 				}
 			]
 		},
@@ -756,7 +587,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats?location=Jerez de la Frontera (CÁDIZ)&postal_code=11402",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats?location=Jerez de la Frontera (CÁDIZ)&postal_code=11007",
 					"host": [
 						"{{url}}"
 					],
@@ -772,7 +603,7 @@
 						},
 						{
 							"key": "postal_code",
-							"value": "11402"
+							"value": "11007"
 						}
 					]
 				},
@@ -878,7 +709,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats?registry_number_over=50",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats?registry_number_over=99",
 					"host": [
 						"{{url}}"
 					],
@@ -890,7 +721,7 @@
 					"query": [
 						{
 							"key": "registry_number_over",
-							"value": "50"
+							"value": "99"
 						}
 					]
 				},
@@ -1103,7 +934,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/14",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
@@ -1111,7 +942,7 @@
 						"api",
 						"v1",
 						"professionalorganisations-stats",
-						"14"
+						"99"
 					]
 				},
 				"description": "Since our data is repeatable in all cases except the registration number (example: there may be more than one professional association created in 2009 in the province of Cádiz) our ID will be this mentioned field."
@@ -1277,118 +1108,6 @@
 			]
 		},
 		{
-			"name": "POST to /professionalorganisations-stats",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function() {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": " {\r\n        \"date\": 2005,\r\n        \"registry_number\": 99,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"CÁDIZ\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"professionalorganisations-stats"
-					]
-				},
-				"description": "StartFragment\n\nA 201 (created) code is returned and add a new professional association to the database."
-			},
-			"response": [
-				{
-					"name": "POST to /professionalorganisations-stats",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\r\n        \"date\": 2005,\r\n        \"registry_number\": 99,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"CÁDIZ\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
-							"protocol": "https",
-							"host": [
-								"sos2223-16",
-								"appspot",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"professionalorganisations-stats"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "3be92cb12983c5107c2d2148f84bf62c"
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 19 Mar 2023 22:25:47 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Content-Length",
-							"value": "7"
-						},
-						{
-							"key": "Alt-Svc",
-							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
-						}
-					],
-					"cookie": [],
-					"body": "Created"
-				}
-			]
-		},
-		{
 			"name": "POST data that already exists",
 			"event": [
 				{
@@ -1408,7 +1127,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "   {\r\n        \"date\": 2011,\r\n        \"registry_number\": 69,\r\n        \"professional_org\": \"ABOGADOS DE CÁDIZ\",\r\n        \"location\": \"CÁDIZ\",\r\n        \"phone_number\": \"956 28 76 11\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"TAMARINDOS, 17 Y 19\"\r\n    }",
+					"raw": " {\r\n        \"date\": 2005,\r\n        \"registry_number\": 99,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"Jerez de la Frontera (CÁDIZ)\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1831,7 +1550,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"date\": 2007,\r\n        \"registry_number\": 14,\r\n        \"professional_org\": \"FARMACÉUTICOS DE Cuenca\",\r\n        \"location\": \"Cuenca\",\r\n        \"phone_number\": \"956 212 277\",\r\n        \"postal_code\": 11004,\r\n        \"adress\": \"C/ ISABEL LA CATÓLICA, 22\"\r\n    }",
+					"raw": " {\r\n        \"date\": 2005,\r\n        \"registry_number\": 99,\r\n        \"professional_org\": \"FARMACÉUTICOS DE Cuenca\",\r\n        \"location\": \"Cuenca\",\r\n        \"phone_number\": \"956 212 277\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C/ ISABEL LA CATÓLICA, 22\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1839,7 +1558,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/14",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
@@ -1847,7 +1566,7 @@
 						"api",
 						"v1",
 						"professionalorganisations-stats",
-						"14"
+						"99"
 					]
 				},
 				"description": "StartFragment\n\nReturns an 200 (OK) and modifies the database with the requested information.\n\nEndFragment"
@@ -1953,7 +1672,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/14",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
@@ -1961,7 +1680,7 @@
 						"api",
 						"v1",
 						"professionalorganisations-stats",
-						"14"
+						"99"
 					]
 				},
 				"description": "If the id does not match the request in the url, send error code 400 (Bad Request)."
@@ -2040,7 +1759,7 @@
 			]
 		},
 		{
-			"name": "DELETE ALL",
+			"name": "DELETE by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -2058,26 +1777,27 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"professionalorganisations-stats"
+						"professionalorganisations-stats",
+						"99"
 					]
 				},
-				"description": "A 200 (OK) code is returned that clears all data from the database."
+				"description": "StartFragment\n\nReturns an 200 (OK) and removes the professional association whose ID matches the one requested in the URL.\n\nEndFragment"
 			},
 			"response": [
 				{
-					"name": "DELETE ALL",
+					"name": "DELETE by ID",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats",
+							"raw": "https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/14",
 							"protocol": "https",
 							"host": [
 								"sos2223-16",
@@ -2087,7 +1807,8 @@
 							"path": [
 								"api",
 								"v1",
-								"professionalorganisations-stats"
+								"professionalorganisations-stats",
+								"14"
 							]
 						}
 					},
@@ -2109,11 +1830,11 @@
 						},
 						{
 							"key": "X-Cloud-Trace-Context",
-							"value": "566e6939b9026df0e304128cdc5226b1;o=1"
+							"value": "d3a2e0fc69e65e64837150ce29152132"
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 19 Mar 2023 22:24:53 GMT"
+							"value": "Sun, 19 Mar 2023 22:27:17 GMT"
 						},
 						{
 							"key": "Server",
