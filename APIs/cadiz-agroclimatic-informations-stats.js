@@ -1,9 +1,7 @@
-const datastore = require('nedb')
-    , db = new datastore();
+import Datastore from 'nedb';
+const db = new Datastore();
 
-
-
-module.exports = function (app) {
+function loadBackend_agroclimatic(app) {
 
     app.get("/api/v1/cadiz-agroclimatic-informations-stats/docs", (req, res) => {
         res.redirect('https://documenter.getpostman.com/view/26036256/2s93K1oJuV');
@@ -420,4 +418,6 @@ module.exports = function (app) {
         res.sendStatus(405);
         console.log("Método no disponible.");
     });
-}
+};
+
+export {loadBackend_agroclimatic};

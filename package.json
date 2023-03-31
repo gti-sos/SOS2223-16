@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "-Team.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index",
     "test-professionalorganisations-stats": "npx newman run ./test/backend-professionalorganisations-stats.json -e ./test/env/CBM_gcloud.json",
