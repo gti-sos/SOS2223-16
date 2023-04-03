@@ -113,6 +113,7 @@ function loadBackend_agroclimatic(app) {
     let cadizAgroclimaticInformations_stats = [];
 
     /*----------------------- GET -----------------------*/
+    /*
     app.get("/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData", (req, res) => {
         db.count({}, function (err, count) {
             if (count == 0) {
@@ -121,6 +122,7 @@ function loadBackend_agroclimatic(app) {
                     delete c._id;
                 })
                 */
+               /*
                 db.insert(INITIAL_DATA);
                 res.sendStatus(201);
                 console.log(`Se insertan los ${INITIAL_DATA.length} datos iniciales.`);
@@ -130,6 +132,8 @@ function loadBackend_agroclimatic(app) {
             }
         });
     });
+    */
+   db.insert(INITIAL_DATA);
 
     app.get("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
         // Paginación
