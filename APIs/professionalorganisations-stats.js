@@ -197,34 +197,29 @@ function loadBackend_professionalorganisations(app) {
     /** POST ALL */
     app.post(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         let newProfessionalOrganisation = req.body;
+        if (validate_professionalorganisations(newProfessionalOrganisation)) {
+            //check if resource previusly exists.
+            db.findOne({ registry_number: req.body.registry_number }, function (err, exisistingProfessionalOrganisation) {
+                if (exisistingProfessionalOrganisation != undefined) {
+                    res.sendStatus(409);
+                    return;
+                };
 
-        //check if resource previusly exists.
-        db.findOne({ registry_number: req.body.registry_number }, function (err, exisistingProfessionalOrganisation) {
-            if (exisistingProfessionalOrganisation != undefined) {
-                res.sendStatus(409);
-                return;
-            };
-            if (validate_professionalorganisations(newProfessionalOrganisation)) {
                 db.insert(newProfessionalOrganisation, function (err, newDoc) {
                     res.sendStatus(201);
                 });
 
-            } else {
-                res.sendStatus(400);
-            }
-
-        });
 
 
-
-
+            })
+        } else {
+            res.sendStatus(400);
+        };
     });
-
 
     /** function to validate that the post method is correctly done */
 
     function validate_professionalorganisations(professionalorganisation) {
-
 
         //Object length is 7
         if (Object.keys(professionalorganisation).length != 7) {
@@ -232,37 +227,43 @@ function loadBackend_professionalorganisations(app) {
         }
 
         //date is a number
-        if (typeof professionalorganisation.date != "number") {
+        if (!Number.isInteger(Number(professionalorganisation.date)) || professionalorganisation.date.length == 0 || professionalorganisation.date.length == undefined) {
             return false;
+        } else {
+            professionalorganisation.date = Number(professionalorganisation.date)
         }
 
         //registry_number is a number
-        if (typeof professionalorganisation.registry_number != "number") {
+        if (!Number.isInteger(Number(professionalorganisation.registry_number)) || professionalorganisation.registry_number.length == 0 || professionalorganisation.registry_number.length == undefined) {
             return false;
+        } else {
+            professionalorganisation.registry_number = Number(professionalorganisation.registry_number)
         }
 
         //rofessional_org is a string
-        if (typeof professionalorganisation.professional_org != "string") {
+        if (typeof professionalorganisation.professional_org != "string" || professionalorganisation.professional_org.trim().length == 0) {
             return false;
         }
 
         //location is a string
-        if (typeof professionalorganisation.location != "string") {
+        if (typeof professionalorganisation.location != "string" || professionalorganisation.location.trim().length == 0) {
             return false;
         }
 
         //phone_number is a string
-        if (typeof professionalorganisation.phone_number != "string") {
+        if (typeof professionalorganisation.phone_number != "string" || professionalorganisation.phone_number.trim().length == 0) {
             return false;
         }
 
         //postal_code is a number
-        if (typeof professionalorganisation.postal_code != "number") {
+        if (!Number.isInteger(Number(professionalorganisation.postal_code)) || professionalorganisation.postal_code.length == 0 || professionalorganisation.postal_code.length == undefined) {
             return false;
+        } else {
+            professionalorganisation.postal_code = Number(professionalorganisation.postal_code)
         }
 
         //adress is a string
-        if (typeof professionalorganisation.adress != "string") {
+        if (typeof professionalorganisation.adress != "string" || professionalorganisation.adress.trim().length == 0) {
             return false;
         }
         return true;
@@ -294,8 +295,6 @@ function loadBackend_professionalorganisations(app) {
     });
 
     //** PUT by ID */
-
-
     app.put(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
         //check if exist
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {

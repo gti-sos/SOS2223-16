@@ -1248,7 +1248,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"date\": \"2005\",\r\n        \"registry_number\": 959,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"CÁDIZ\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
+					"raw": " {\r\n        \"date\": \"error\",\r\n        \"registry_number\": 959,\r\n        \"professional_org\": \"Ejemplo POST\",\r\n        \"location\": \"CÁDIZ\",\r\n        \"phone_number\": \"956275601\",\r\n        \"postal_code\": 11007,\r\n        \"adress\": \"C\\/ Ejemplo POST\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
