@@ -208,9 +208,6 @@ function loadBackend_professionalorganisations(app) {
                 db.insert(newProfessionalOrganisation, function (err, newDoc) {
                     res.sendStatus(201);
                 });
-
-
-
             })
         } else {
             res.sendStatus(400);
@@ -227,14 +224,14 @@ function loadBackend_professionalorganisations(app) {
         }
 
         //date is a number
-        if (!Number.isInteger(Number(professionalorganisation.date)) || professionalorganisation.date.length == 0 || professionalorganisation.date.length == undefined) {
+        if (!Number.isInteger(Number(professionalorganisation.date)) || professionalorganisation.date.length == 0) {
             return false;
         } else {
             professionalorganisation.date = Number(professionalorganisation.date)
         }
 
         //registry_number is a number
-        if (!Number.isInteger(Number(professionalorganisation.registry_number)) || professionalorganisation.registry_number.length == 0 || professionalorganisation.registry_number.length == undefined) {
+        if (!Number.isInteger(Number(professionalorganisation.registry_number)) || professionalorganisation.registry_number.length == 0) {
             return false;
         } else {
             professionalorganisation.registry_number = Number(professionalorganisation.registry_number)
@@ -256,7 +253,7 @@ function loadBackend_professionalorganisations(app) {
         }
 
         //postal_code is a number
-        if (!Number.isInteger(Number(professionalorganisation.postal_code)) || professionalorganisation.postal_code.length == 0 || professionalorganisation.postal_code.length == undefined) {
+        if (!Number.isInteger(Number(professionalorganisation.postal_code)) || professionalorganisation.postal_code.length == 0) {
             return false;
         } else {
             professionalorganisation.postal_code = Number(professionalorganisation.postal_code)
