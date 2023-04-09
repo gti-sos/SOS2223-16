@@ -1,10 +1,10 @@
-const datastore = require('nedb')
-    , db = new datastore();
+import datastore from 'nedb';
+const db = new datastore();
 const BASE_API_URL = "/api/v1"
 
-module.exports = function (app) {
+function loadBackend_professionalorganisations(app) {
 
-    app.get("/api/v1/professionalorganisations-stats/docs", (req, res) => {
+    app.get(BASE_API_URL + "/professionalorganisations-stats/docs", (req, res) => {
 
         res.redirect('https://documenter.getpostman.com/view/26011834/2s93JzM1BX');
 
@@ -109,7 +109,7 @@ module.exports = function (app) {
 
 
     /** GET ALL */
-    app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req, res) => {
+    app.get(BASE_API_URL + "/professionalorganisations-stats/loadInitialData", (req, res) => {
 
         db.count({}, function (err, count) {
             if (count == 0) {
@@ -123,7 +123,7 @@ module.exports = function (app) {
 
     });
 
-    app.get("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.get(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
 
         //paginating
         let offset = 0;
@@ -195,7 +195,7 @@ module.exports = function (app) {
 
 
     /** POST ALL */
-    app.post("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.post(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         let newProfessionalOrganisation = req.body;
 
         //check if resource previusly exists.
@@ -270,20 +270,20 @@ module.exports = function (app) {
     }
 
     /** DELETE ALL */
-    app.delete("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.delete(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
         });
     });
 
     /** PUT ALL */
-    app.put("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.put(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         res.sendStatus(405);
     });
 
 
     /** GET by ID (Registry number) */
-    app.get("/api/v1/professionalorganisations-stats/:registry_number", function (req, res) {
+    app.get(BASE_API_URL + "/professionalorganisations-stats/:registry_number", function (req, res) {
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
             if (professionalorganisation == undefined) {
                 res.sendStatus(404);
@@ -296,7 +296,7 @@ module.exports = function (app) {
     //** PUT by ID */
 
 
-    app.put("/api/v1/professionalorganisations-stats/:registry_number", (req, res) => {
+    app.put(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
         //check if exist
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
             if (professionalorganisation == undefined) {
@@ -324,7 +324,7 @@ module.exports = function (app) {
 
 
     /** DELETE by ID */
-    app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req, res) => {
+    app.delete(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
 
         //check if exist
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
@@ -339,7 +339,7 @@ module.exports = function (app) {
     });
 
     /** POST by ID */
-    app.post("/api/v1/professionalorganisations-stats/:registry_number", (req, res) => {
+    app.post(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
         res.sendStatus(405);
     });
 
@@ -357,3 +357,5 @@ module.exports = function (app) {
         }
     }
 }
+
+export { loadBackend_professionalorganisations };

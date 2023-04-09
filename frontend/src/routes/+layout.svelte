@@ -4,7 +4,7 @@
 
 <main>
     <Header/>
-    <hr />
-    <slot />
-    <hr />
+    <hr>
+    <slot/>
+    <hr/>
 </main>
