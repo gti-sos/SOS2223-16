@@ -222,19 +222,19 @@ if(status == 200) {
         <th>fecha actualizacion</th>
         <th>Editar</th>
     </tr>
-    {#each fosas as fosa}
+    {#each organisations as organisation}
     <tr>
-        <td>{fosa.tittle}</td>
-        <td>{fosa.id}</td>
-        <td>{fosa.character}</td>
-        <td>{fosa.province}</td>
-        <td>{fosa.municipality}</td>
-        <td>{fosa.dateNumeric}</td>
-        <td>{fosa.Photo_PieFosa}</td>
-        <td>{fosa.victims}</td>
-        <td>{fosa.dates_act}</td>
-        <td><button type="button" on:click={() => deleteOrg(fosa.id)}>Borrar</button></td>
-        <td><button type="button" on:click={() => editOrg(fosa)}>Editar</button></td>
+        <td>{organisation.tittle}</td>
+        <td>{organisation.id}</td>
+        <td>{organisation.character}</td>
+        <td>{organisation.province}</td>
+        <td>{organisation.municipality}</td>
+        <td>{organisation.dateNumeric}</td>
+        <td>{organisation.Photo_PieFosa}</td>
+        <td>{organisation.victims}</td>
+        <td>{organisation.dates_act}</td>
+        <td><button type="button" on:click={() => deleteOrg(organisation.id)}>Borrar</button></td>
+        <td><button type="button" on:click={() => editOrg(organisation)}>Editar</button></td>
     </tr>
     {/each}
     
