@@ -1,8 +1,10 @@
 const datastore = require('nedb')
     , db = new datastore();
 const BASE_API_URL = "/api/v1"
-module.exports = function(app){
-    app.get("/api/v1/civilwarandalusian-stats/docs", (req,res) => { 
+
+function loadBackend_civilwarandalusian(app) {
+
+    app.get("BASE_API_URL + civilwarandalusian-stats/docs", (req,res) => { 
 
         res.redirect('https://documenter.getpostman.com/view/7223889/2s93RQTZjp');
     
@@ -417,3 +419,4 @@ function remove_internal_id(element) {
 }
 }
     
+export { loadBackend_civilwarandalusian };
