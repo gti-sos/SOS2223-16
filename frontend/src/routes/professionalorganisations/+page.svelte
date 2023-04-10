@@ -3,7 +3,7 @@
     import { onMount } from 'svelte';
     import { dev } from "$app/environment";
 
-    const BASE_API_URL = "/api/v1"
+    const BASE_API_URL = "/api/v2"
     let API = BASE_API_URL + "/professionalorganisations-stats";
     if (dev) API = "http://localhost:8080" + API;
 

@@ -1,11 +1,10 @@
 import datastore from 'nedb';
 const db = new datastore();
-const BASE_API_URL = "/api/v1"
+const BASE_API_URL = "/api/v2"
 
 function loadBackend_professionalorganisations(app) {
 
-
-    app.get("/api/v1/professionalorganisations-stats/docs", (req, res) => {
+    app.get(BASE_API_URL + "/professionalorganisations-stats/docs", (req, res) => {
 
         res.redirect('https://documenter.getpostman.com/view/26011834/2s93JzM1BX');
 
@@ -110,7 +109,7 @@ function loadBackend_professionalorganisations(app) {
 
 
     /** GET ALL */
-    app.get("/api/v1/professionalorganisations-stats/loadInitialData", (req, res) => {
+    app.get(BASE_API_URL + "/professionalorganisations-stats/loadInitialData", (req, res) => {
 
         db.count({}, function (err, count) {
             if (count == 0) {
@@ -124,7 +123,7 @@ function loadBackend_professionalorganisations(app) {
 
     });
 
-    app.get("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.get(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
 
         //paginating
         let offset = 0;
@@ -196,36 +195,28 @@ function loadBackend_professionalorganisations(app) {
 
 
     /** POST ALL */
-    app.post("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.post(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         let newProfessionalOrganisation = req.body;
+        if (validate_professionalorganisations(newProfessionalOrganisation)) {
+            //check if resource previusly exists.
+            db.findOne({ registry_number: req.body.registry_number }, function (err, exisistingProfessionalOrganisation) {
+                if (exisistingProfessionalOrganisation != undefined) {
+                    res.sendStatus(409);
+                    return;
+                };
 
-        //check if resource previusly exists.
-        db.findOne({ registry_number: req.body.registry_number }, function (err, exisistingProfessionalOrganisation) {
-            if (exisistingProfessionalOrganisation != undefined) {
-                res.sendStatus(409);
-                return;
-            };
-            if (validate_professionalorganisations(newProfessionalOrganisation)) {
                 db.insert(newProfessionalOrganisation, function (err, newDoc) {
                     res.sendStatus(201);
                 });
-
-            } else {
-                res.sendStatus(400);
-            }
-
-        });
-
-
-
-
+            })
+        } else {
+            res.sendStatus(400);
+        };
     });
-
 
     /** function to validate that the post method is correctly done */
 
     function validate_professionalorganisations(professionalorganisation) {
-
 
         //Object length is 7
         if (Object.keys(professionalorganisation).length != 7) {
@@ -233,37 +224,43 @@ function loadBackend_professionalorganisations(app) {
         }
 
         //date is a number
-        if (typeof professionalorganisation.date != "number") {
+        if (!Number.isInteger(Number(professionalorganisation.date)) || professionalorganisation.date.length == 0) {
             return false;
+        } else {
+            professionalorganisation.date = Number(professionalorganisation.date)
         }
 
         //registry_number is a number
-        if (typeof professionalorganisation.registry_number != "number") {
+        if (!Number.isInteger(Number(professionalorganisation.registry_number)) || professionalorganisation.registry_number.length == 0) {
             return false;
+        } else {
+            professionalorganisation.registry_number = Number(professionalorganisation.registry_number)
         }
 
         //rofessional_org is a string
-        if (typeof professionalorganisation.professional_org != "string") {
+        if (typeof professionalorganisation.professional_org != "string" || professionalorganisation.professional_org.trim().length == 0) {
             return false;
         }
 
         //location is a string
-        if (typeof professionalorganisation.location != "string") {
+        if (typeof professionalorganisation.location != "string" || professionalorganisation.location.trim().length == 0) {
             return false;
         }
 
         //phone_number is a string
-        if (typeof professionalorganisation.phone_number != "string") {
+        if (typeof professionalorganisation.phone_number != "string" || professionalorganisation.phone_number.trim().length == 0) {
             return false;
         }
 
         //postal_code is a number
-        if (typeof professionalorganisation.postal_code != "number") {
+        if (!Number.isInteger(Number(professionalorganisation.postal_code)) || professionalorganisation.postal_code.length == 0) {
             return false;
+        } else {
+            professionalorganisation.postal_code = Number(professionalorganisation.postal_code)
         }
 
         //adress is a string
-        if (typeof professionalorganisation.adress != "string") {
+        if (typeof professionalorganisation.adress != "string" || professionalorganisation.adress.trim().length == 0) {
             return false;
         }
         return true;
@@ -271,20 +268,20 @@ function loadBackend_professionalorganisations(app) {
     }
 
     /** DELETE ALL */
-    app.delete("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.delete(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
         });
     });
 
     /** PUT ALL */
-    app.put("/api/v1/professionalorganisations-stats", (req, res) => {
+    app.put(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
         res.sendStatus(405);
     });
 
 
     /** GET by ID (Registry number) */
-    app.get("/api/v1/professionalorganisations-stats/:registry_number", function (req, res) {
+    app.get(BASE_API_URL + "/professionalorganisations-stats/:registry_number", function (req, res) {
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
             if (professionalorganisation == undefined) {
                 res.sendStatus(404);
@@ -295,9 +292,7 @@ function loadBackend_professionalorganisations(app) {
     });
 
     //** PUT by ID */
-
-
-    app.put("/api/v1/professionalorganisations-stats/:registry_number", (req, res) => {
+    app.put(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
         //check if exist
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
             if (professionalorganisation == undefined) {
@@ -325,7 +320,7 @@ function loadBackend_professionalorganisations(app) {
 
 
     /** DELETE by ID */
-    app.delete("/api/v1/professionalorganisations-stats/:registry_number", (req, res) => {
+    app.delete(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
 
         //check if exist
         db.findOne({ registry_number: parseInt(req.params.registry_number) }, function (err, professionalorganisation) {
@@ -340,7 +335,7 @@ function loadBackend_professionalorganisations(app) {
     });
 
     /** POST by ID */
-    app.post("/api/v1/professionalorganisations-stats/:registry_number", (req, res) => {
+    app.post(BASE_API_URL + "/professionalorganisations-stats/:registry_number", (req, res) => {
         res.sendStatus(405);
     });
 
