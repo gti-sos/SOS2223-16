@@ -349,7 +349,7 @@ function loadBackend_civilwarandalusian(app) {
             if (civilwarandalusian == undefined) {
                 res.sendStatus(404);
             } else {
-                res.status(200).send(civilwarandalusian);
+                res.status(200).send(remove_internal_id(civilwarandalusian));
             }
         });
     });
