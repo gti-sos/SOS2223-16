@@ -8,8 +8,8 @@
     "start": "node index",
     "test-professionalorganisations-stats": "npx newman run ./test/backend-professionalorganisations-stats.json -e ./test/env/CBM_localhost.json",
     "test-cadiz-agroclimatic-informations": "npx newman run ./test/backend-cadiz-agroclimatic-informations-stats.json -e ./test/env/CLC_localhost.json",
-    "test-civilwarandalusian": "npx newman run ./test/backend-civilwarandalusian-stats.json -e ./test/env/MMC_gcloud.json",
-    "test": "npm run test-professionalorganisations-stats  && npm run test-cadiz-agroclimatic-informations"
+    "test-civilwarandalusian": "npx newman run ./test/backend-civilwarandalusian-stats.json -e ./test/env/MMC_localhost.json",
+    "test": "npm run test-professionalorganisations-stats && npm run test-cadiz-agroclimatic-informations && npm run test-civilwarandalusian"
   },
   "repository": {
     "type": "git",

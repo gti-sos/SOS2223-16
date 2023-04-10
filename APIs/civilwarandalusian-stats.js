@@ -1,17 +1,17 @@
-const datastore = require('nedb')
-    , db = new datastore();
+import datastore from 'nedb';
+const db = new datastore();
 const BASE_API_URL = "/api/v1"
 
 function loadBackend_civilwarandalusian(app) {
 
-    app.get("BASE_API_URL + civilwarandalusian-stats/docs", (req,res) => { 
+    app.get(BASE_API_URL + "civilwarandalusian-stats/docs", (req, res) => {
 
         res.redirect('https://documenter.getpostman.com/view/7223889/2s93RQTZjp');
-    
+
     });
 
-    const INITIAL_DATA=[
-    
+    const INITIAL_DATA = [
+
         {
             "Id": 135,
             "title": "Fosa de Trebujena. Cádiz",
@@ -22,8 +22,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103701.jpg",
             "victims": 1,
             "dates_act": 1970
-           },
-           {
+        },
+        {
             "Id": 141,
             "title": "Fosa de Torre Alháquime. Cádiz",
             "character": "Zona edificada",
@@ -33,8 +33,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103601.jpg",
             "victims": 1,
             "dates_act": 2000
-           },
-           {
+        },
+        {
             "Id": 134,
             "title": "Fosa de Trebujena. Cádiz",
             "character": "Cementerio interior",
@@ -44,8 +44,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103702.jpg",
             "victims": 24,
             "dates_act": 2005
-           },
-           {
+        },
+        {
             "Id": 137,
             "title": "Fosa de Torre Alháquime. Cádiz",
             "character": "Otros",
@@ -55,8 +55,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103606_b.jpg",
             "victims": 1,
             "dates_act": 2002
-           },
-           {
+        },
+        {
             "Id": 139,
             "title": "Fosa de Torre Alháquime. Cádiz",
             "character": "Otros",
@@ -66,8 +66,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103604_b.jpg",
             "victims": 10,
             "dates_act": 1988,
-           },
-           {
+        },
+        {
             "Id": 142,
             "title": "Fosa de Tarifa. Cádiz",
             "character": "Cementerio interior",
@@ -77,8 +77,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103505_b.jpg",
             "victims": 5,
             "dates_act": 1995,
-             },
-           {
+        },
+        {
             "Id": 143,
             "title": "Fosa de La Campana. Sevilla",
             "character": "Cementerio interior",
@@ -88,8 +88,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_8\/4102201_b.jpg",
             "victims": 250,
             "dates_act": 2005,
-            },
-           {
+        },
+        {
             "Id": 129,
             "title": "Fosa de Villaluenga del Rosario. Cádiz",
             "character": "Cementerio interior",
@@ -99,8 +99,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1104002_b.jpg",
             "victims": 14,
             "dates_act": 1990,
-             },
-           {
+        },
+        {
             "Id": 131,
             "title": "Fosa de Ubrique. Cádiz",
             "character": "Cementerio interior",
@@ -110,8 +110,8 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_2\/1103802_b.jpg",
             "victims": 19,
             "dates_act": 1990,
-            },
-           {
+        },
+        {
             "Id": 133,
             "title": "Fosa de San Silvestre de Guzmán. Huelva",
             "character": "Cementerio interior",
@@ -121,302 +121,302 @@ function loadBackend_civilwarandalusian(app) {
             "Photo_PieFosa": "http:\/\/www.juntadeandalucia.es\/presidenciaadministracionlocalymemoriademocratica\/mapadefosas\/images\/provincia_5\/2106601_b.jpg",
             "victims": 8,
             "dates_act": 2005,
-         }
-    
+        }
+
     ];
-    
-    
-    let civilWarAndalusian_stats=[];
-    
-    app.get("/api/v1/civilwarandalusian-stats/loadInitialData", (req,res) => { 
+
+
+    let civilWarAndalusian_stats = [];
+
+    app.get("/api/v1/civilwarandalusian-stats/loadInitialData", (req, res) => {
         db.count({}, function (err, count) {
-            if(count==0){
+            if (count == 0) {
                 db.insert(INITIAL_DATA);
                 res.sendStatus(201);
                 console.log(`Se insertan los ${INITIAL_DATA.length} datos iniciales.`);
-            }else{
+            } else {
                 res.status(400).send("Data is not empty");
             }
         });
-    
+
     });
-    
-    
-    
-    app.get("/api/v1/civilwarandalusian-stats", (req,res) => { 
+
+
+
+    app.get("/api/v1/civilwarandalusian-stats", (req, res) => {
 
         //paginating
-        let offset=0;
-        let limit=0;
-    
-        if(req.query.offset){
-            offset=parseInt(req.query.offset);
+        let offset = 0;
+        let limit = 0;
+
+        if (req.query.offset) {
+            offset = parseInt(req.query.offset);
         }
-        if(req.query.limit){
-            limit=parseInt(req.query.limit);
+        if (req.query.limit) {
+            limit = parseInt(req.query.limit);
         }
-    
+
         //search
-        let query={};
-        if(req.query.Id){
-            query.Id=parseInt(req.query.Id);
+        let query = {};
+        if (req.query.Id) {
+            query.Id = parseInt(req.query.Id);
         }
-        if(req.query.title){
-            query.title=req.query.title;
+        if (req.query.title) {
+            query.title = req.query.title;
         }
-        if(req.query.character){
-            query.character=req.query.character;
+        if (req.query.character) {
+            query.character = req.query.character;
         }
-        if(req.query.province){
-            query.province=req.query.province;
+        if (req.query.province) {
+            query.province = req.query.province;
         }
-        if(req.query.municipality){
-            query.municipality=req.query.municipality;
+        if (req.query.municipality) {
+            query.municipality = req.query.municipality;
         }
-        if(req.query.dateNumeric){
-            query.dateNumeric=parseInt(req.query.dateNumeric);
+        if (req.query.dateNumeric) {
+            query.dateNumeric = parseInt(req.query.dateNumeric);
         }
-        if(req.query.Photo_PieFosa){
-            query.Photo_PieFosa=req.query.Photo_PieFosa;
+        if (req.query.Photo_PieFosa) {
+            query.Photo_PieFosa = req.query.Photo_PieFosa;
         }
-        if(req.query.victims){
-            query.victims=parseInt(req.query.victims);
+        if (req.query.victims) {
+            query.victims = parseInt(req.query.victims);
         }
-        if(req.query.dates_act){
-            query.dates_act=parseInt(req.query.dates_act);
+        if (req.query.dates_act) {
+            query.dates_act = parseInt(req.query.dates_act);
         }
         //numeric search
-    
+
         //Id
-        if(req.query.Id_over){
-            query.Id={ $gte: parseInt(req.query.Id_over) };
+        if (req.query.Id_over) {
+            query.Id = { $gte: parseInt(req.query.Id_over) };
         }
-        if(req.query.Id_below){
-            query.Id={ $lte: parseInt(req.query.Id_below) };
+        if (req.query.Id_below) {
+            query.Id = { $lte: parseInt(req.query.Id_below) };
         }
-    
+
         //dateNumeric
-        if(req.query.dateNumeric_over){
-            query.dateNumeric={ $gte: parseInt(req.query.dateNumeric_over) };
+        if (req.query.dateNumeric_over) {
+            query.dateNumeric = { $gte: parseInt(req.query.dateNumeric_over) };
         }
-        if(req.query.dateNumeric_below){
-            query.dateNumeric={ $lte: parseInt(req.query.dateNumeric_below) };
+        if (req.query.dateNumeric_below) {
+            query.dateNumeric = { $lte: parseInt(req.query.dateNumeric_below) };
         }
-    
+
         //victims
-        if(req.query.victims_over){
-            query.victims={ $gte: parseInt(req.query.victims_over) };
+        if (req.query.victims_over) {
+            query.victims = { $gte: parseInt(req.query.victims_over) };
         }
-        if(req.query.victims_below){
-            query.victims={ $lte: parseInt(req.query.victims_below) };
+        if (req.query.victims_below) {
+            query.victims = { $lte: parseInt(req.query.victims_below) };
         }
         //dates_act
-        if(req.query.dates_act_over){
-            query.dates_act={ $gte: parseInt(req.query.dates_act_over) };
+        if (req.query.dates_act_over) {
+            query.dates_act = { $gte: parseInt(req.query.dates_act_over) };
         }
-        if(req.query.dates_act_below){
-            query.dates_act={ $lte: parseInt(req.query.dates_act_below) };
+        if (req.query.dates_act_below) {
+            query.dates_act = { $lte: parseInt(req.query.dates_act_below) };
         }
-    
-    
+
+
         db.find(query).sort({ Id: req.body.Id }).skip(offset).limit(limit).exec(function (err, docs) {
-            res.send(docs); 
+            res.send(docs);
         });
-    
+
     });
-    
-    
+
+
     /** POST ALL */
-app.post("/api/v1/civilwarandalusian-stats", (req,res) => { 
-    let newCivilWarAndalusian=req.body;
+    app.post("/api/v1/civilwarandalusian-stats", (req, res) => {
+        let newCivilWarAndalusian = req.body;
 
-    //check if resource previusly exists.
-    db.findOne({ Id: req.body.Id }, function (err, exisistingCivilWarAndalusiann) {
-        if(exisistingCivilWarAndalusiann != undefined){
-            res.sendStatus(409);
-            return;
-        }; 
-        if(validate_civilWarAndalusian(newCivilWarAndalusian)){
-            db.insert(newCivilWarAndalusian);
-            res.sendStatus(201);
-    
-        }else{
-            res.sendStatus(400);
-        }
-        
+        //check if resource previusly exists.
+        db.findOne({ Id: req.body.Id }, function (err, exisistingCivilWarAndalusiann) {
+            if (exisistingCivilWarAndalusiann != undefined) {
+                res.sendStatus(409);
+                return;
+            };
+            if (validate_civilWarAndalusian(newCivilWarAndalusian)) {
+                db.insert(newCivilWarAndalusian);
+                res.sendStatus(201);
+
+            } else {
+                res.sendStatus(400);
+            }
+
+        });
+
+
+
+
     });
 
 
 
+    /** function to validate that the post method is correctly done */
 
-});
+    function validate_civilWarAndalusian(civilwarandalusian) {
 
-    
-    
-        /** function to validate that the post method is correctly done */
-    
-    function validate_civilWarAndalusian(civilwarandalusian){
-    
-    
+
         //Object length is 8
-        if(Object.keys(civilwarandalusian).length!=9){
+        if (Object.keys(civilwarandalusian).length != 9) {
             return false;
         }
-    
+
         //id is a number
-        if(typeof civilwarandalusian.Id != "number"){
+        if (typeof civilwarandalusian.Id != "number") {
             return false;
         }
-    
+
         //title is a string
-        if(typeof civilwarandalusian.title != "string"){
+        if (typeof civilwarandalusian.title != "string") {
             return false;
         }
-    
+
         //character is a string
-        if(typeof civilwarandalusian.character != "string"){
+        if (typeof civilwarandalusian.character != "string") {
             return false;
         }
-    
+
         //province is a string
-        if(typeof civilwarandalusian.province != "string"){
+        if (typeof civilwarandalusian.province != "string") {
             return false;
         }
-    
+
         //municipality is a string
-        if(typeof civilwarandalusian.municipality != "string"){
+        if (typeof civilwarandalusian.municipality != "string") {
             return false;
         }
-    
+
         //dateNumeric is a number
-        if(typeof civilwarandalusian.dateNumeric != "number"){
+        if (typeof civilwarandalusian.dateNumeric != "number") {
             return false;
         }
-    
+
         //Photo_PieFosa is a string
-       if(typeof civilwarandalusian.Photo_PieFosa != "string"){
+        if (typeof civilwarandalusian.Photo_PieFosa != "string") {
             return false;
-    
+
         }
         //victims is a number
-        if(typeof civilwarandalusian.victims != "number"){
+        if (typeof civilwarandalusian.victims != "number") {
             return false;
-    
+
         }
         //dates_act is a number
-        if(typeof civilwarandalusian.dates_act != "number"){
+        if (typeof civilwarandalusian.dates_act != "number") {
             return false;
-    
+
         }
         return true;
-    
+
     }
     // delete all
 
-    app.delete("/api/v1/civilwarandalusian-stats", (req,res) => { 
+    app.delete("/api/v1/civilwarandalusian-stats", (req, res) => {
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
         });
     });
-    
+
     app.delete("/api/v1/civilwarandalusian-stats/loadInitialData", (req, res) => {
         const ids = [135, 141, 134, 137, 139, 142, 143, 129, 131, 133];
-      
+
         const searchXid = ids.map(Id => ({ Id: parseInt(Id) }));
-      
+
         db.remove({ $or: searchXid }, { multi: true }, function (err, numRemoved) {
-      
-          if (numRemoved === 0) {
-            res.sendStatus(404);
-            console.log("No se encontraron datos para borrar.");
-          } else {
-            res.sendStatus(200);
-            console.log(`${numRemoved} datos borrados.`);
-          }
+
+            if (numRemoved === 0) {
+                res.sendStatus(404);
+                console.log("No se encontraron datos para borrar.");
+            } else {
+                res.sendStatus(200);
+                console.log(`${numRemoved} datos borrados.`);
+            }
         });
-      });
-    
+    });
+
     /** PUT ALL */
-app.put("/api/v1/civilwarandalusian-stats", (req,res) => { 
-    res.sendStatus(405);
-});
-
-
-/** GET by ID (ID) */
-app.get("/api/v1/civilwarandalusian-stats/:Id", function(req, res) {
-
-    db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
-        if(civilwarandalusian == undefined){
-            res.sendStatus(404);
-        }else{
-            res.status(200).send(civilwarandalusian); 
-        }
+    app.put("/api/v1/civilwarandalusian-stats", (req, res) => {
+        res.sendStatus(405);
     });
-});
-
-//** PUT by ID */
 
 
-app.put("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
-    //check if exist
-    db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
-        if (civilwarandalusian == undefined) {
-            res.sendStatus(404);
-            return;
-        }
-        //check if registy_number is the same in object and url 
-        if (req.params.civilwarandalusian != req.body.civilwarandalusian) {
-            res.sendStatus(400);
-            return;
-        }
-        //validate modify professionalOrganisation object with req params
-        if (!validate_civilWarAndalusian(req.body)) {
-            res.sendStatus(400);
-            return;
-        }
+    /** GET by ID (ID) */
+    app.get("/api/v1/civilwarandalusian-stats/:Id", function (req, res) {
 
-
-        db.update({ Id: parseInt(req.params.Id) }, { $set: req.body }, function (err, numReplaced) {
-            res.sendStatus(200);
+        db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
+            if (civilwarandalusian == undefined) {
+                res.sendStatus(404);
+            } else {
+                res.status(200).send(civilwarandalusian);
+            }
         });
     });
 
-});
+    //** PUT by ID */
 
 
-/** DELETE by ID */
-app.delete("/api/v1/civilwarandalusian-stats/:dateNumeric", (req,res) => { 
+    app.put("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
+        //check if exist
+        db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
+            if (civilwarandalusian == undefined) {
+                res.sendStatus(404);
+                return;
+            }
+            //check if registy_number is the same in object and url 
+            if (req.params.civilwarandalusian != req.body.civilwarandalusian) {
+                res.sendStatus(400);
+                return;
+            }
+            //validate modify professionalOrganisation object with req params
+            if (!validate_civilWarAndalusian(req.body)) {
+                res.sendStatus(400);
+                return;
+            }
 
-    //check if exist
-    db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
-        if(civilWarAndalusian == undefined){
-            res.sendStatus(404);
-        }else{
-            db.remove({dateNumeric: parseInt(req.params.dateNumeric)}, { multi: true }, function (err, numRemoved){
+
+            db.update({ Id: parseInt(req.params.Id) }, { $set: req.body }, function (err, numReplaced) {
                 res.sendStatus(200);
             });
-        }
-    });
-});
-
-/** POST by ID */
-app.post("/api/v1/civilwarandalusian-stats/:Id", (req,res) => { 
-    res.sendStatus(405);
-});
-
-
-
-function remove_internal_id(element) {
-    if (Array.isArray(element)) {
-        return element.map(m => {
-            delete m._id;
-            return m;
         });
-    } else {
-        delete element._id;
-        return element;
+
+    });
+
+
+    /** DELETE by ID */
+    app.delete("/api/v1/civilwarandalusian-stats/:dateNumeric", (req, res) => {
+
+        //check if exist
+        db.findOne({ dateNumeric: parseInt(req.params.dateNumeric) }, function (err, civilWarAndalusian) {
+            if (civilWarAndalusian == undefined) {
+                res.sendStatus(404);
+            } else {
+                db.remove({ dateNumeric: parseInt(req.params.dateNumeric) }, { multi: true }, function (err, numRemoved) {
+                    res.sendStatus(200);
+                });
+            }
+        });
+    });
+
+    /** POST by ID */
+    app.post("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
+        res.sendStatus(405);
+    });
+
+
+
+    function remove_internal_id(element) {
+        if (Array.isArray(element)) {
+            return element.map(m => {
+                delete m._id;
+                return m;
+            });
+        } else {
+            delete element._id;
+            return element;
+        }
     }
 }
-}
-    
+
 export { loadBackend_civilwarandalusian };
