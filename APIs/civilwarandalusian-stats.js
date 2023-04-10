@@ -220,7 +220,7 @@ function loadBackend_civilwarandalusian(app) {
 
 
         db.find(query).sort({ Id: req.body.Id }).skip(offset).limit(limit).exec(function (err, docs) {
-            res.send(docs);
+            res.send(remove_internal_id(docs));
         });
 
     });

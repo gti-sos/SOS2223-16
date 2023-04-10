@@ -210,7 +210,6 @@ if(status == 200) {
 </ul>
 <table id="table">
     <tr>
-        <th>Fosa comun</th>
         <th>Id</th>
         <th>titulo</th>
         <th>Caracter</th>
@@ -252,7 +251,7 @@ if(status == 200) {
 <div id="form">
     <form on:submit={submitNew}>
         <label for="date">Id:</label>
-        <input type="number" id="date" name="id"><br><br>
+        <input type="number" id="id" name="id"><br><br>
 
         <label for="tittle">Titulo:</label>
         <input type="text" id="tittle" name="tittle"><br><br>
@@ -264,7 +263,7 @@ if(status == 200) {
         <input type="text" id="province" name="province"><br><br>
 
         <label for="municipality">municipio:</label>
-        <input type="text" id="phone_number" name="phone_number"><br><br>
+        <input type="text" id="municipality" name="municipality"><br><br>
 
         <label for="dateNumeric">Fecha:</label>
         <input type="number" id="dateNumeric" name="dateNumeric"><br><br>
@@ -276,7 +275,7 @@ if(status == 200) {
         <input type="number" id="victims" name="victims"><br><br>
 
         <label for="dates_act">actualizacion de datos:</label>
-        <input type="text" id="dates_act" name="dates_act"><br><br>
+        <input type="number" id="dates_act" name="dates_act"><br><br>
 
         <input type="submit" value="Crear">
     </form><br>
@@ -291,7 +290,7 @@ if(status == 200) {
         <label for="dateEdit">Id:</label>
         <input type="number" id="id" name="id" value = "{orgEdited.id}"><br><br>
 
-        <input type="hidden" id="IdTitulo" name="registry_number" value = "{orgEdited.registry_number}">
+        <input type="hidden" id="IdTitulo" name="id" value = "{orgEdited.registry_number}">
 
         <label for="tittleEdit">Titulo:</label>
         <input type="text" id="tittleEdit" name="tittle" value = "{orgEdited.tittle}"><br><br>
