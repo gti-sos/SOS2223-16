@@ -21,7 +21,6 @@
     let updateMintemp = "mintemp";
     let updateAveragetemp = "averagetemp";
     let updateLocation = "location";
-    let message = "";
 
     let result = "";
     let resultStatus = "";
@@ -36,10 +35,10 @@
             result = JSON.stringify(data, null, 2);
             updateReg_num = data.reg_num;
             updateDate = data.date;
-            updateStations_id = data.Stations_id;
+            updateStations_id = data.stations_id;
             updateMaxtemp = data.maxtemp;
             updateMintemp=data.mintemp;
-            updateAveragetemp=data.averaetemp;
+            updateAveragetemp=data.averagetemp;
             updateLocation=data.location;
 
         } catch (error) {
@@ -70,19 +69,19 @@
         resultStatus = status;
         if (status == 200) {
             getDato();
-            message = "Se ha cambiado el dato correctamente";
+            alert("Se ha cambiado el dato correctamente");
         }
         if (status == 409){
-            message = "El dato no es único, revise que el registro del número no coincida con el resto";
+            alert("El dato no es único, revise que el registro del número no coincida con el resto");
         }
         if (status == 400){
-            message = "Los datos se han introducido mal, reviselos y vuelva a introducirlos";
+            alert("Los datos se han introducido mal, reviselos y vuelva a introducirlos");
         }
     }
 </script>
 
-<h1>Contact Details</h1>
-
+<h1>Información del dato</h1>
+<br>
 <Table>
     <thead>
         <tr>
@@ -108,7 +107,3 @@
         </tr>
     </tbody>
 </Table>
-
-{#if message != ""}
-    <h5>{message}</h5>
-{/if}
