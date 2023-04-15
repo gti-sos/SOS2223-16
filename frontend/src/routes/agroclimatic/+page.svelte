@@ -9,18 +9,18 @@
         getDatos();
     });
 
-    let API = "/api/v1/cadiz-agroclimatic-informations-stats";
+    let API = "/api/v2/cadiz-agroclimatic-informations-stats";
 
     if (dev) API = "http://localhost:8080" + API;
 
     let datos = [];
-    let newDate = 'date';
-    let newReg_num = "reg_num";
-    let newStations_id = "stations_id";
-    let newMaxtemp = "maxtemp";
-    let newMintemp = "mintemp";
-    let newAveragetemp = "averagetemp";
-    let newLocation = "location";
+    let newDate = 'Año';
+    let newReg_num = "Número de registro";
+    let newStations_id = "Id";
+    let newMaxtemp = "Temp max";
+    let newMintemp = "Temp min";
+    let newAveragetemp = "Temp media";
+    let newLocation = "Localidad";
     let message = "";
 
     let result = "";
@@ -49,9 +49,8 @@
             });
             const status = await res.status;
             if(status == 201){
-                getOrganisations();
+                getDatos();
                 alert("Datos añadidos con éxito");
-
             }else{
                 alert("La base de datos ya contiene datos");
             }
@@ -96,7 +95,7 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 200) {
-            //getDatos();
+            getDatos();
             alert('Se ha eliminado el dato');
         }
         if (status == 404) {
