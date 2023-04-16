@@ -1,8 +1,8 @@
 import datastore from 'nedb';
 const db = new datastore();
-const BASE_API_URL = "/api/v1"
+const BASE_API_URL = "/api/v2"
 
-function loadBackend_civilwarandalusian(app) {
+function loadBackend_civilwarandalusianV2(app) {
 
     app.get(BASE_API_URL + "civilwarandalusian-stats/docs", (req, res) => {
 
@@ -128,7 +128,7 @@ function loadBackend_civilwarandalusian(app) {
 
     let civilWarAndalusian_stats = [];
 
-    app.get("/api/v1/civilwarandalusian-stats/loadInitialData", (req, res) => {
+    app.get("/api/v2/civilwarandalusian-stats/loadInitialData", (req, res) => {
         db.count({}, function (err, count) {
             if (count == 0) {
                 db.insert(INITIAL_DATA);
@@ -142,7 +142,7 @@ function loadBackend_civilwarandalusian(app) {
     });
 
 
-    app.get("/api/v1/civilwarandalusian-stats", (req, res) => {
+    app.get("/api/v2/civilwarandalusian-stats", (req, res) => {
 
         //paginating
         let offset = 0;
@@ -226,7 +226,7 @@ function loadBackend_civilwarandalusian(app) {
 
 
     /** POST ALL */
-    app.post("/api/v1/civilwarandalusian-stats", (req, res) => {
+    app.post("/api/v2/civilwarandalusian-stats", (req, res) => {
         let newCivilWarAndalusian = req.body;
 
         //check if resource previusly exists.
@@ -313,13 +313,13 @@ function loadBackend_civilwarandalusian(app) {
 }
     // delete all
 
-    app.delete("/api/v1/civilwarandalusian-stats", (req, res) => {
+    app.delete("/api/v2/civilwarandalusian-stats", (req, res) => {
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
         });
     });
 
-    app.delete("/api/v1/civilwarandalusian-stats/loadInitialData", (req, res) => {
+    app.delete("/api/v2/civilwarandalusian-stats/loadInitialData", (req, res) => {
         const ids = [135, 141, 134, 137, 139, 142, 143, 129, 131, 133];
 
         const searchXid = ids.map(Id => ({ Id: parseInt(Id) }));
@@ -337,7 +337,7 @@ function loadBackend_civilwarandalusian(app) {
     });
 
     /** PUT ALL */
-    app.put("/api/v1/civilwarandalusian-stats", (req, res) => {
+    app.put("/api/v2/civilwarandalusian-stats", (req, res) => {
         res.sendStatus(405);
     });
 
@@ -355,7 +355,7 @@ function loadBackend_civilwarandalusian(app) {
     //});
     
     /** Get con un ID */
-    app.get("/api/v1/civilwarandalusian-stats/:Id", function (req, res) {
+    app.get("/api/v2/civilwarandalusian-stats/:Id", function (req, res) {
         const Id = parseInt(req.params.Id);
         let busqueda = { Id: Id };
         db.findOne(busqueda, function (err, civilwarandalusian) {
@@ -374,7 +374,7 @@ function loadBackend_civilwarandalusian(app) {
     //** PUT by ID */
 
 
-    app.put("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
+    app.put("/api/v2/civilwarandalusian-stats/:Id", (req, res) => {
         //check if exist
         db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilwarandalusian) {
             if (civilwarandalusian == undefined) {
@@ -402,7 +402,7 @@ function loadBackend_civilwarandalusian(app) {
 
 
     /** DELETE by ID */
-    app.delete("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
+    app.delete("/api/v2/civilwarandalusian-stats/:Id", (req, res) => {
 
         //check if exist
         db.findOne({ Id: parseInt(req.params.Id) }, function (err, civilWarAndalusian) {
@@ -417,7 +417,7 @@ function loadBackend_civilwarandalusian(app) {
     });
 
     /** POST by ID */
-    app.post("/api/v1/civilwarandalusian-stats/:Id", (req, res) => {
+    app.post("/api/v2/civilwarandalusian-stats/:Id", (req, res) => {
         res.sendStatus(405);
     });
 
@@ -436,4 +436,4 @@ function loadBackend_civilwarandalusian(app) {
     }
 }
 
-export { loadBackend_civilwarandalusian };
+export { loadBackend_civilwarandalusianV2 };

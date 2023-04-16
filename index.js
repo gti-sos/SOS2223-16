@@ -4,6 +4,8 @@ import { loadBackend_agroclimatic } from "./APIs/cadiz-agroclimatic-informations
 import { loadBackend_agroclimaticV2 } from "./APIs/v2/cadiz-agroclimatic-informations-stats.js";
 import { loadBackend_professionalorganisations } from "./APIs/professionalorganisations-stats.js";
 import { loadBackend_civilwarandalusian } from "./APIs/civilwarandalusian-stats.js";
+import { loadBackend_civilwarandalusianV2 } from "./APIs/v2/civilwarandalusian-stats.js";
+
 import { handler } from "./frontend/build/handler.js";
 const app = express();
 app.use(cors());
@@ -22,7 +24,9 @@ const PORT = 8080;
 loadBackend_agroclimatic(app);
 loadBackend_agroclimaticV2(app);
 loadBackend_professionalorganisations(app);
+loadBackend_civilwarandalusianV2(app);
 loadBackend_civilwarandalusian(app);
+
 app.use(handler);
 
 /**
