@@ -1,0 +1,1 @@
+<h1>No existe esta página, por favor valla al menú principal</h1>

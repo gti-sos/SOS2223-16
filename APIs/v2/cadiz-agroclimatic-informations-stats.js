@@ -1,10 +1,10 @@
 import Datastore from 'nedb';
 const db = new Datastore();
 
-function loadBackend_agroclimatic(app) {
+function loadBackend_agroclimaticV2(app) {
 
-    app.get("/api/v1/cadiz-agroclimatic-informations-stats/docs", (req, res) => {
-        res.redirect('https://documenter.getpostman.com/view/26036256/2s93Xwy47C');
+    app.get("/api/v2/cadiz-agroclimatic-informations-stats/docs", (req, res) => {
+        res.redirect('https://documenter.getpostman.com/view/26036256/2s93Xwy47A');
     });
 
 
@@ -113,7 +113,7 @@ function loadBackend_agroclimatic(app) {
     let cadizAgroclimaticInformations_stats = [];
 
     /*----------------------- GET -----------------------*/
-    app.get("/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData", (req, res) => {
+    app.get("/api/v2/cadiz-agroclimatic-informations-stats/loadInitialData", (req, res) => {
         db.count({}, function (err, count) {
             if (count == 0) {
                 db.insert(INITIAL_DATA);
@@ -127,7 +127,7 @@ function loadBackend_agroclimatic(app) {
     });
 
 
-    app.get("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
+    app.get("/api/v2/cadiz-agroclimatic-informations-stats", (req, res) => {
         // Paginación
         let limit = 0;
         let offset = 0;
@@ -239,66 +239,95 @@ function loadBackend_agroclimatic(app) {
     });
 
     /*----------------------- POST -----------------------*/
-    app.post("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
+    app.post("/api/v2/cadiz-agroclimatic-informations-stats", (req, res) => {
         let newCadizAgroclimaticInformation = req.body;
-        db.findOne({ reg_num: req.body.reg_num }, function (err, existingcadizagroclimaticinformation) {
-            if (existingcadizagroclimaticinformation != undefined) {
-                res.sendStatus(409);
-                console.log("No es único.");
-                return;
-            }
-            if (validate_cadizAgroclimaticInformations(newCadizAgroclimaticInformation)) {
-                delete newCadizAgroclimaticInformation._id;
-                db.insert(newCadizAgroclimaticInformation);
-                res.sendStatus(201);
-                console.log("Se ha creado correctamente.");
-                return;
-            } else {
-                res.sendStatus(400);
-                console.log("se han introducido mal los datos.");
-                return;
-            }
-        });
+        if (validate_cadizAgroclimaticInformations(newCadizAgroclimaticInformation)) {
+            //check if resource previusly exists.
+            db.findOne({ reg_num: req.body.reg_num }, function (err, existingcadizagroclimaticinformation) {
+                if (existingcadizagroclimaticinformation != undefined) {
+                    res.sendStatus(409);
+                    return;
+                };
+
+                db.insert(newCadizAgroclimaticInformation, function (err, newDoc) {
+                    res.sendStatus(201);
+                });
+            })
+        } else {
+            res.sendStatus(400);
+        };
     });
+
     /** funciones para validar que el post esta hecho correctamente */
+
     function validate_cadizAgroclimaticInformations(cadizAgroclimaticInformation) {
         /** debe medir 7 */
         if (Object.keys(cadizAgroclimaticInformation).length != 7) {
+            console.log("Hay 7 líneas");
             return false;
+
         }
+
         /** date es numérico */
-        if (typeof cadizAgroclimaticInformation.date != "number") {
+        if (!Number.isInteger(Number(cadizAgroclimaticInformation.date)) || cadizAgroclimaticInformation.date.length == 0) {
             return false;
+        } else {
+            cadizAgroclimaticInformation.date = Number(cadizAgroclimaticInformation.date)
         }
+
+
         /** reg_num es numérico */
-        if (typeof cadizAgroclimaticInformation.reg_num != "number") {
+        if (!Number.isInteger(Number(cadizAgroclimaticInformation.reg_num)) || cadizAgroclimaticInformation.reg_num.length == 0) {
             return false;
+        } else {
+            cadizAgroclimaticInformation.reg_num = Number(cadizAgroclimaticInformation.reg_num)
         }
+
         /** stations_id es numérico */
-        if (typeof cadizAgroclimaticInformation.stations_id != "number") {
+        if (!Number.isInteger(Number(cadizAgroclimaticInformation.stations_id)) || cadizAgroclimaticInformation.stations_id.length == 0) {
+            return false;
+        } else {
+            cadizAgroclimaticInformation.stations_id = Number(cadizAgroclimaticInformation.stations_id)
+        }
+
+        /** maxtemp es numérico */
+        if (Number.isNaN(cadizAgroclimaticInformation.maxtemp) ||
+            Number.isInteger(cadizAgroclimaticInformation.maxtemp)
+        ) {
             return false;
         }
-        /** maxtemp es numérico */
-        if (typeof cadizAgroclimaticInformation.maxtemp != "number") {
-            return false
-        }
+
+
+
+        // if (typeof cadizAgroclimaticInformation.maxtemp != "number" || isNaN(parseFloat(cadizAgroclimaticInformation.maxtemp))) {
+        //     console.log("m es float");
+        //     return false;
+        // }
+
         /** mintemp es numérico */
-        if (typeof cadizAgroclimaticInformation.mintemp != "number") {
-            return false
+        if (Number.isNaN(cadizAgroclimaticInformation.mintemp) ||
+            Number.isInteger(cadizAgroclimaticInformation.mintemp)
+        ) {
+            return false;
         }
+
         /** averagetemp es numérico */
-        if (typeof cadizAgroclimaticInformation.averagetemp != "number") {
-            return false
+        if (Number.isNaN(cadizAgroclimaticInformation.averagetemp) ||
+            Number.isInteger(cadizAgroclimaticInformation.averagetemp)
+        ) {
+            return false;
         }
+
         /** stations_id es un string */
         if (typeof cadizAgroclimaticInformation.location != "string") {
-            return false
+            return false;
         }
+
         return true;
     };
 
     /*** Eliminar los datos de INITIAL_DATA */
-    app.delete("/api/v1/cadiz-agroclimatic-informations-stats/loadInitialData", (req, res) => {
+    app.delete("/api/v2/cadiz-agroclimatic-informations-stats/loadInitialData", (req, res) => {
         const regNums = [17104, 34, 22804, 37800, 30496, 22820, 23390, 30450, 38295, 38830];
 
         const searchCriteria = regNums.map(regNum => ({ reg_num: parseInt(regNum) }));
@@ -316,7 +345,7 @@ function loadBackend_agroclimatic(app) {
     });
 
     /** Eliminar todo */
-    app.delete("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
+    app.delete("/api/v2/cadiz-agroclimatic-informations-stats", (req, res) => {
         db.remove({}, { multi: true }, function (err, numRemoved) {
             res.sendStatus(200);
             console.log("Se han eliminado todos los datos.");
@@ -324,14 +353,14 @@ function loadBackend_agroclimatic(app) {
     });
 
     /** PUT a todo */
-    app.put("/api/v1/cadiz-agroclimatic-informations-stats", (req, res) => {
+    app.put("/api/v2/cadiz-agroclimatic-informations-stats", (req, res) => {
         res.sendStatus(405);
         console.log("Método no permitido.");
     });
 
 
     /** Get con un ID */
-    app.get("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
+    app.get("/api/v2/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
         const reg_num = parseInt(req.params.reg_num);
         let busqueda = { reg_num: reg_num };
         db.findOne(busqueda, function (err, cadizAgroclimaticInformation) {
@@ -349,7 +378,7 @@ function loadBackend_agroclimatic(app) {
     });
 
     /** Delete con un ID */
-    app.delete("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
+    app.delete("/api/v2/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
 
         const reg_num = parseInt(req.params.reg_num);
 
@@ -372,7 +401,7 @@ function loadBackend_agroclimatic(app) {
 
 
     /** Put con un ID (reg_num) */
-    app.put("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
+    app.put("/api/v2/cadiz-agroclimatic-informations-stats/:reg_num", function (req, res) {
         const reg_num = parseInt(req.params.reg_num);
 
         let busqueda = { reg_num: reg_num };
@@ -399,10 +428,10 @@ function loadBackend_agroclimatic(app) {
 
 
     /** Post con un ID (reg_num) */
-    app.post("/api/v1/cadiz-agroclimatic-informations-stats/:reg_num", (req, res) => {
+    app.post("/api/v2/cadiz-agroclimatic-informations-stats/:reg_num", (req, res) => {
         res.sendStatus(405);
         console.log("Método no disponible.");
     });
 };
 
-export { loadBackend_agroclimatic };
+export { loadBackend_agroclimaticV2 };

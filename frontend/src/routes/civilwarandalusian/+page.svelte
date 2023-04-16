@@ -2,12 +2,21 @@
     // @ts-nocheck
     import { onMount } from 'svelte';
     import { dev } from "$app/environment";
-
-    const BASE_API_URL = "/api/v1"
+    import { Button, Table } from "sveltestrap";
+    const BASE_API_URL = "/api/v2"
     let API = BASE_API_URL + "/civilwarandalusian-stats";
     if (dev) API = "http://localhost:8080" + API;
 
-    let organisations = [];
+    let wars = [];
+    let newId = 'Id';
+    let newTitle = "title";
+    let newCharacter = "character";
+    let newProvince = "province";
+    let newMunicipality = "municipality";
+    let newDateNumeric = "dateNumeric";
+    let newPhoto_PieFosa = "Photo_PieFosa";
+    let newVictims = "victims";
+    let newDates_act = "dates_act";
     let result = "";
     let resultStatus = "";
 
@@ -42,7 +51,7 @@ async function initialData() {
             try {
                 const data = await res.json();
                 result = JSON.stringify(data,null,2);
-                organisations = data;
+                wars = data;
             } catch (error) {
                 console.log(error)
             }
@@ -76,10 +85,12 @@ async function initialData() {
             }
         }
 
+
 /**
  * Delete one organisation
 */
-    async function deleteOrg(org) {
+/**
+        async function deleteOrg(org) {
             resultStatus = result = "";
             const res = await fetch(API+"/"+org, {  
                 method: 'DELETE',
@@ -90,7 +101,23 @@ async function initialData() {
                 alert("Borrado con éxito");
 
             }
-        } 
+        }  
+*/
+        async function deleteDato(Id) {
+        resultStatus = result = "";
+        const res = await fetch(API + "/" + Id, {
+            method: "DELETE",
+        });
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            getOrganisations();
+            alert('Se ha eliminado el dato');
+        }
+        if (status == 404) {
+            alert("No está el dato buscado");
+        }
+    }
 
 /**
  * Edit one organisation
@@ -110,33 +137,36 @@ function editOrg(org) {
 /**
  * Submit new organisation
 */
-    const submitNew = async event =>{
-
-        //formdata to json
-        const formData = new FormData(event.target)
-        var object = {};
-        formData.forEach(function(value, key){
-            object[key] = value;
-        });
-        var json = JSON.stringify(object);
-
-
-        console.log(json)
-        const res = await fetch(API, {  
-                method: 'POST',
-                body   : json,
-                headers: {
+    async function createDato() {
+        resultStatus = result = "";
+        const res = await fetch(API, {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json",
-                },
-            });
+            },
+            body: JSON.stringify({
+                Id:newId,
+                title: newTitle,
+                character: newCharacter,
+                province: newProvince,
+                municipality: newMunicipality,
+                dateNumeric: newDateNumeric,  
+                Photo_PieFosa: newPhoto_PieFosa,
+                victims: newVictims,
+                dates_act: newDates_act,               
+            }),
+        });
         const status = await res.status;
-        if(status == 201) {
+        resultStatus = status;
+        if (status == 201) {
+            alert("Dato creado, mire la tabla");
             getOrganisations();
-            alert("nuevo registro creado");
-        }else if(status == 409){
-            alert("El nuevo registro ya existe");
-        }else{
-            alert("Error en los datos introducidos");
+        }
+        if (status == 409){
+            alert("El dato no es único, revise que el registro del número no coincida con el resto");
+        }
+        if (status == 400){
+            alert("Los datos se han introducido mal, reviselos y vuelva a introducirlos");
         }
     }
 
@@ -155,7 +185,7 @@ var json = JSON.stringify(object);
 
 
 console.log(object)
-const res = await fetch(API+"/"+object.id, {  
+const res = await fetch(API+"/"+object.Id, {  
         method: 'PUT',
         body   : json,
         headers: {
@@ -174,6 +204,7 @@ if(status == 200) {
 }
 
 </script>
+<!--
 <style>
 #table {
     font-family: Arial, Helvetica, sans-serif;
@@ -204,93 +235,72 @@ if(status == 200) {
 
 }
 </style>
+-->
 <h1>Fosas Comunes</h1>
+<br>
+<!-- svelte-ignore missing-declaration -->
+<Table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>titulo</th>
+            <th>Caracter</th>
+            <th>Provincia</th>
+            <th>municipio</th>
+            <th>fecha</th>
+            <th>Foto fosa </th>
+            <th>victima </th>
+            <th>fecha actualizacion</th>
+            <th>acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        
 
-<ul>
-</ul>
-<table id="table">
-    <tr>
-        <th>Id</th>
-        <th>titulo</th>
-        <th>Caracter</th>
-        <th>Provincia</th>
-        <th>municipio</th>
-        <th>fecha</th>
-        <th>Foto fosa </th>
-        <th>victima </th>
-        <th>fecha actualizacion</th>
-        <th>Editar</th>
-    </tr>
-    {#each organisations as organisation}
-    <tr>
-        <td>{organisation.tittle}</td>
-        <td>{organisation.id}</td>
-        <td>{organisation.character}</td>
-        <td>{organisation.province}</td>
-        <td>{organisation.municipality}</td>
-        <td>{organisation.dateNumeric}</td>
-        <td>{organisation.Photo_PieFosa}</td>
-        <td>{organisation.victims}</td>
-        <td>{organisation.dates_act}</td>
-        <td><button type="button" on:click={() => deleteOrg(organisation.id)}>Borrar</button></td>
-        <td><button type="button" on:click={() => editOrg(organisation)}>Editar</button></td>
-    </tr>
-    {/each}
-    
-</table>
-
+        {#each wars as war}
+        <tr>
+            <td><a href="/civilwarandalusian/{war.Id}">{war.Id}</a></td>
+            <td>{war.title}</td>
+            <td>{war.character}</td>
+            <td>{war.province}</td>
+            <td>{war.municipality}</td>
+            <td>{war.dateNumeric}</td>
+            <td>{war.Photo_PieFosa}</td>
+            <td>{war.victims}</td>
+            <td>{war.dates_act}</td>
+            <td><Button on:click={deleteDato(war.Id)}>Borrar</Button></td>
+            <td><Button on:click={deleteOrg(war.Id)}>editar</Button></td>
+          <!--  <td><button type="button" on:click={() => deleteOrg(war.Id)}>Borrar</button></td>
+            <td><button type="button" on:click={() => editOrg(war)}>Editar</button></td>-->
+        </tr>
+        {/each}
+        <tr> 
+            <td><input bind:value={newId} /></td>
+            <td><input bind:value={newTitle} /></td>
+            <td><input bind:value={newCharacter} /></td>
+            <td><input bind:value={newProvince} /></td>
+            <td><input bind:value={newMunicipality} /></td>
+            <td><input bind:value={newDateNumeric} /></td>
+            <td><input bind:value={newPhoto_PieFosa} /></td>
+            <td><input bind:value={newVictims} /></td>
+            <td><input bind:value={newDates_act} /></td>
+            <td><Button on:click={createDato}>Crear</Button></td>
+        </tr>
+    </tbody>
+</Table>
+<br>
 <div style="text-align:center;">
-<button type="button" on:click={initialData}>Insertar datos de prueba</button>
-<button type="button" on:click={deleteAllOrgs}>Borrar todos los Registros</button>
-{#if !form}
-    <button type="button" on:click={openForm}>Crear un nuevo Registro</button>
-{/if}
+    <button type="button" on:click={initialData}>Insertar datos de prueba</button>
+    <button type="button" on:click={deleteAllOrgs}>Borrar todos los Registros</button>
+<br>
 </div>
-
-{#if form}
-<div id="form">
-    <form on:submit={submitNew}>
-        <label for="date">Id:</label>
-        <input type="number" id="id" name="id"><br><br>
-
-        <label for="tittle">Titulo:</label>
-        <input type="text" id="tittle" name="tittle"><br><br>
-
-        <label for="character">character:</label>
-        <input type="text" id="character" name="character"><br><br>
-
-        <label for="province">provincia:</label>
-        <input type="text" id="province" name="province"><br><br>
-
-        <label for="municipality">municipio:</label>
-        <input type="text" id="municipality" name="municipality"><br><br>
-
-        <label for="dateNumeric">Fecha:</label>
-        <input type="number" id="dateNumeric" name="dateNumeric"><br><br>
-
-        <label for="Photo_PieFosa">foto fosa:</label>
-        <input type="text" id="Photo_PieFosa" name="Photo_PieFosa"><br><br>
-
-        <label for="victims">Victimas:</label>
-        <input type="number" id="victims" name="victims"><br><br>
-
-        <label for="dates_act">actualizacion de datos:</label>
-        <input type="number" id="dates_act" name="dates_act"><br><br>
-
-        <input type="submit" value="Crear">
-    </form><br>
-    <button type="button" on:click={openForm}>Cancelar</button>
-</div>
-{/if}
-
+<!-- 
 {#if editForm}
 <div id="form">
     <form on:submit={submitEdit}>
 
         <label for="dateEdit">Id:</label>
-        <input type="number" id="id" name="id" value = "{orgEdited.id}"><br><br>
-
-        <input type="hidden" id="IdTitulo" name="id" value = "{orgEdited.registry_number}">
+        <input type="number" id="id" name="id" value = "{orgEdited.Id}"><br><br>
 
         <label for="tittleEdit">Titulo:</label>
         <input type="text" id="tittleEdit" name="tittle" value = "{orgEdited.tittle}"><br><br>
@@ -302,7 +312,7 @@ if(status == 200) {
         <input type="text" id="provinceEdit" name="province" value = "{orgEdited.province}"><br><br>
 
         <label for="municipalityEdit">municipality:</label>
-        <input type="number" id="municipalityEdit" name="municipality" value = "{orgEdited.municipality}"><br><br>
+        <input type="text" id="municipalityEdit" name="municipality" value = "{orgEdited.municipality}"><br><br>
 
         <label for="Photo_PieFosaEdit">Dirección:</label>
         <input type="text" id="Photo_PieFosaEdit" name="Photo_PieFosa" value = "{orgEdited.Photo_PieFosa}"><br><br>
@@ -318,3 +328,4 @@ if(status == 200) {
     <button type="button" on:click={editForm}>Cancelar</button>
 </div>
 {/if}
+ -->
