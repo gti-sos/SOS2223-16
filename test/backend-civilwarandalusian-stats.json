@@ -132,7 +132,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"Id\": 125,\r\n        \"title\": \"Fosa de Trebujena. Cádiz\",\r\n        \"character\": \"Carretera/Camino\",\r\n        \"province\": \"Cádiz\",\r\n        \"municipality\": \"Trebujena\",\r\n        \"dateNumeric\": 1936,\r\n        \"Photo_PieFosa\": \"http://www.juntadeandalucia.es/presidenciaadministracionlocalymemoriademocratica/mapadefosas/images/provincia_2/1103701.jpg\",\r\n        \"victims\": 1,\r\n        \"dates_act\": 1970\r\n    }",
+					"raw": "{\r\n        \"Id\": 126,\r\n        \"title\": \"Fosa de La Campana. Sevilla\",\r\n        \"character\": \"Cementerio interior\",\r\n        \"province\": \"Sevilla\",\r\n        \"municipality\": \"La Campana\",\r\n        \"dateNumeric\": 1936,\r\n        \"Photo_PieFosa\": \"http://www.juntadeandalucia.es/presidenciaadministracionlocalymemoriademocratica/mapadefosas/images/provincia_8/4102201_b.jpg\",\r\n        \"victims\": 2503344,\r\n        \"dates_act\": 888\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -144,7 +144,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete by date numeric",
+			"name": "Delete by Id",
 			"event": [
 				{
 					"listen": "test",
@@ -161,7 +161,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936"
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/126"
 			},
 			"response": []
 		},
@@ -441,7 +441,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete by date numeric Copy",
+			"name": "Delete by ID",
 			"event": [
 				{
 					"listen": "test",
@@ -458,7 +458,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/1936"
+				"url": "{{URLBASE}}/api/v1/civilwarandalusian-stats/126"
 			},
 			"response": []
 		}
