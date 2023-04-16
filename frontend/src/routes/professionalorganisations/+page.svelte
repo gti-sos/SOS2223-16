@@ -11,8 +11,14 @@
     let result = "";
     let resultStatus = "";
 
+    let currentPage=0;
+    let numberOfPages=0;
+    let numElements=0;
+    let filterString = "";
 
-
+    let message=null;
+    let timeoutId=null;
+    let messageColor="green";
 /**
  * Load Initial Data
 */
@@ -24,10 +30,10 @@ async function initialData() {
             const status = await res.status;
             if(status == 201){
                 getOrganisations();
-                alert("Datos añadidos con éxito");
+                showMessage("Datos añadidos con éxito", true);
 
             }else{
-                alert("La base de datos ya contiene datos");
+                showMessage("La base de datos ya contiene datos", false);
             }
 }
 
@@ -36,15 +42,31 @@ async function initialData() {
 */
     async function getOrganisations() {
             resultStatus = result = "";
-            const res = await fetch(API, {
+            const numElementsApi = await fetch(API + "/count-professional-organisations?"+filterString.substring(1) , {
                 method: 'GET',
             });
             try {
+                const resCount= await numElementsApi.json();
+                numElements=resCount.count;
+                numberOfPages = Math.ceil(numElements/10);
+            } catch (error) {
+                console.log(error);
+            }
+
+            if(currentPage>numberOfPages-1){
+                currentPage=0;
+            }
+            //pagination
+            const res = await fetch(API+"?limit=10&offset="+currentPage*10+filterString, {
+                method: 'GET',
+            });
+
+            try {
                 const data = await res.json();
-                result = JSON.stringify(data,null,2);
+                
                 organisations = data;
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
             const status = await res.status;
             resultStatus = status;
@@ -71,7 +93,7 @@ async function initialData() {
             const status = await res.status;
             if(status == 200) {
                 getOrganisations();
-                alert("Borrado con éxito");
+                showMessage("Borrado con éxito", true);
 
             }
         }
@@ -87,7 +109,7 @@ async function initialData() {
             const status = await res.status;
             if(status == 200) {
                 getOrganisations();
-                alert("Borrado con éxito");
+                showMessage("Borrado con éxito", true);
 
             }
         } 
@@ -121,7 +143,6 @@ function editOrg(org) {
         var json = JSON.stringify(object);
 
 
-        console.log(json)
         const res = await fetch(API, {  
                 method: 'POST',
                 body   : json,
@@ -132,11 +153,11 @@ function editOrg(org) {
         const status = await res.status;
         if(status == 201) {
             getOrganisations();
-            alert("Colegio profesional creado con éxito");
+            showMessage("Colegio profesional creado con éxito", true);
         }else if(status == 409){
-            alert("El colegio profesional ya existe");
+            showMessage("El colegio profesional ya existe", false);
         }else{
-            alert("Error en los datos introducidos");
+            showMessage("Error en los datos introducidos", false);
         }
     }
 
@@ -154,7 +175,6 @@ formData.forEach(function(value, key){
 var json = JSON.stringify(object);
 
 
-console.log(object)
 const res = await fetch(API+"/"+object.registry_number, {  
         method: 'PUT',
         body   : json,
@@ -165,16 +185,95 @@ const res = await fetch(API+"/"+object.registry_number, {
 const status = await res.status;
 if(status == 200) {
     getOrganisations();
-    alert("Colegio profesional editado con éxito");
+    showMessage("Colegio profesional editado con éxito", true);
 }else if(status == 404){
-    alert("El colegio profesional no existe");
+    showMessage("El colegio profesional no existe", false);
 }else{
-    alert("Error en los datos introducidos");
+    showMessage("Error en los datos introducidos", false);
 }
 }
 
+/**
+ * Next Page
+*/
+function nextPage(){
+        currentPage++;
+        getOrganisations();
+}
+
+/**
+ * Previous Page
+*/
+function previousPage(){
+    currentPage--;
+    getOrganisations();
+}
+
+/**
+ * Show message
+*/
+async function showMessage(msg, success){
+    if(timeoutId != null){
+        clearTimeout(timeoutId);
+    }
+    if(success){
+        messageColor="green";
+    }else{
+        messageColor="red";
+    } 
+    message = msg;
+    
+    timeoutId= setTimeout(function(){ message = null; }, 3000);
+}
+
+
+/**
+ * Filter organisations
+*/
+const filter = async event =>{
+ //formdata to json
+    const formData = new FormData(event.target)
+            var object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+    filterString="";
+    if(object.regNum != "" && object.regNum != undefined){
+        filterString += "&registry_number="+object.regNum;
+    }if(object.overRegNum != "" && object.overRegNum != undefined){
+        filterString += "&registry_number_over="+object.overRegNum;
+    }if(object.belowRegNum != "" && object.belowRegNum != undefined){
+        filterString += "&registry_number_below="+object.belowRegNum;  
+    }if(object.year != "" && object.year != undefined){
+        filterString += "&date="+object.year;
+    }if(object.overYear != "" && object.overYear != undefined){
+        filterString += "&date_over="+object.overYear;
+    }if(object.belowYear != "" && object.belowYear != undefined){
+        filterString += "&date_below="+object.belowYear;
+    }if(object.name != "" && object.name != undefined){
+        filterString += "&professional_org="+object.name
+    }if(object.location != "" && object.location != undefined){
+        filterString += "&location="+object.location;
+    }if(object.phoneNumber != "" && object.phoneNumber != undefined){
+        filterString += "&phone_number="+object.phoneNumber;
+    }if(object.postalCode != "" && object.postalCode != undefined){
+        filterString += "&postal_code="+object.postalCode;
+    }if(object.overPostalCode != "" && object.overPostalCode != undefined){
+        filterString += "&postal_code_over="+object.overPostalCode;
+    }if(object.belowPostalCode != "" && object.belowPostalCode != undefined){
+        filterString += "&postal_code_below="+object.belowPostalCode;
+    }if(object.adress != "" && object.adress != undefined){
+        filterString += "&adress="+object.adress;
+    }
+    getOrganisations();
+    }
+
 </script>
+
 <style>
+
+
+
 #table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -203,11 +302,79 @@ if(status == 200) {
     border: #2395c5;
 
 }
+
+.inputFilter{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+
+.messageGreen{
+    text-align: center;
+    background-color: #29d407 !important;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 5%;
+}
+
+.messageRed{
+    text-align: center;
+    background-color: #d64242 !important;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 5%;
+}
+
 </style>
 <h1>Colegios Porfesionales</h1>
 
-<ul>
-</ul>
+
+<!--Table to filter organisations-->
+    <form  on:submit={filter}>
+        <table id="table">
+            <tr>
+            <th>Nombre Colegio Profesional</th>
+            <th>Localización</th>
+            <th>Numero Teléfono</th>
+
+            <th>Dirección</th>
+            <th></th>
+            </tr>
+            <tr >
+                <td><input class="inputFilter" type="text" id="name" name="name" placeholder="filtrar por nombre..."></td>
+                <td><input class="inputFilter" type="text" id="location" name="location" placeholder="filtrar por localización..."></td>
+                <td><input class="inputFilter" type="text" id="phoneNumber" name="phoneNumber" placeholder="filtrar por número de teléfono..."></td>
+                <td><input class="inputFilter" type="text" id="adress" name="adress" placeholder="filtrar por dirección..."></td>
+                <td rowspan="0"><input class="inputFilter" type="submit" value="Filtrar"></td>
+            </tr>
+            <tr>
+                <th style="text-align: center;">Numero Registro</th>
+                <td><input class="inputFilter" type="text" id="regNum" name="regNum" placeholder="Número exacto"></td>
+                <td><input class="inputFilter" type="text" id="overRegNum" name="overRegNum" placeholder="Desde"></td>
+                <td><input class="inputFilter" type="text" id="belowRegNum" name="belowRegNum" placeholder="Hasta"></td>
+                </tr>
+            <tr>
+                <th style="text-align: center;">Año</th>
+                <td><input class="inputFilter" type="text" id="year" name="year" placeholder="Año exacto"></td>
+                <td><input class="inputFilter" type="text" id="overYear" name="overYear" placeholder="Desde"></td>
+                <td><input class="inputFilter" type="text" id="belowYear" name="belowYear" placeholder="Hasta"></td>
+            </tr>
+            <tr>
+                <th style="text-align: center;">Código Postal</th>
+                <td><input class="inputFilter" type="text" id="postalCode" name="postalCode" placeholder="Cp exacto"></td>
+                <td><input class="inputFilter" type="text" id="overPostalCode" name="overPostalCode" placeholder="Desde"></td>
+                <td><input class="inputFilter" type="text" id="belowPostalCode" name="belowPostalCode" placeholder="Hasta"></td>
+            </tr>
+        </table>
+
+    </form>
+
+<!--Table to show organisations-->
 <table id="table">
     <tr>
         <th>Colegio Profesional</th>
@@ -220,6 +387,20 @@ if(status == 200) {
         <th>Borrar</th>
         <th>Editar</th>
     </tr>
+
+    {#if message != null}
+        {#if messageColor == "green"}
+            <tr id="message" class="messageGreen">
+                <td colspan="9">{message}</td>
+            </tr>
+        {/if}
+        {#if messageColor == "red"}
+            <tr id="message" class="messageRed">
+                <td colspan="9">{message}</td>
+            </tr>
+        {/if}
+    {/if}
+
     {#each organisations as organisation}
     <tr>
         <td>{organisation.professional_org}</td>
@@ -233,17 +414,38 @@ if(status == 200) {
         <td><button type="button" on:click={() => editOrg(organisation)}>Editar</button></td>
     </tr>
     {/each}
+
+    {#if organisations.length == 0}
+    <tr>
+        <td colspan="9">No se han encontrado registros</td>
+    </tr>
+    {/if}
+    
+    
     
 </table>
 
+<!--Buttons that allow you to go to another page-->
+<div style="text-align:center;">
+    {#if currentPage>0}
+    <button type="button" on:click={previousPage}>Página Anterior</button><br><br>
+    {/if}
+
+    {#if currentPage<numberOfPages-1}
+    <button type="button" on:click={nextPage}>Página siguiente</button><br><br>
+    {/if}
+</div>
+
+<!--Buttons to insert test data, delete all data and create a new data-->
 <div style="text-align:center;">
 <button type="button" on:click={initialData}>Insertar datos de prueba</button>
 <button type="button" on:click={deleteAllOrgs}>Borrar todos los Colegios Profesionales</button>
 {#if !form}
-    <button type="button" on:click={openForm}>Crear un nuevo Colegio Profesional</button>
+    <button type="button" on:click={openForm}>Crear un nuevo Colegio Profesional</button><br><br>
 {/if}
 </div>
 
+<!--Form to create a new organisation-->
 {#if form}
 <div id="form">
     <form on:submit={submitNew}>
@@ -274,6 +476,7 @@ if(status == 200) {
 </div>
 {/if}
 
+<!--Form to edit an organisation-->
 {#if editForm}
 <div id="form">
     <form on:submit={submitEdit}>
@@ -303,3 +506,14 @@ if(status == 200) {
     <button type="button" on:click={editForm}>Cancelar</button>
 </div>
 {/if}
+
+<!--Pagination info-->
+<div> Mostrando {organisations.length} de {numElements}  / Pagina {currentPage+1} de  
+    {#if numberOfPages==0}
+    1
+    {/if}
+    {#if numberOfPages!=0}
+    {numberOfPages} 
+    {/if}
+</div>
+

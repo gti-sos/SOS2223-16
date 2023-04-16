@@ -29,13 +29,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					]
 				},
@@ -192,13 +192,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					]
 				},
@@ -303,13 +303,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					]
 				},
@@ -465,13 +465,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats?limit=5&offset=0",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats?limit=5&offset=0",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					],
 					"query": [
@@ -587,13 +587,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats?location=Jerez de la Frontera (CÁDIZ)&postal_code=11007",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats?location=Jerez de la Frontera (CÁDIZ)&postal_code=11007",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					],
 					"query": [
@@ -709,13 +709,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats?registry_number_over=99",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats?registry_number_over=99",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					],
 					"query": [
@@ -823,13 +823,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats?date_below=2009",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats?date_below=2009",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					],
 					"query": [
@@ -934,13 +934,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats",
 						"99"
 					]
@@ -1030,13 +1030,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/88",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats/88",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats",
 						"88"
 					]
@@ -1135,13 +1135,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					]
 				},
@@ -1256,13 +1256,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					]
 				},
@@ -1359,13 +1359,13 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/31",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats/31",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats",
 						"31"
 					]
@@ -1455,13 +1455,13 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats"
 					]
 				},
@@ -1558,13 +1558,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats",
 						"99"
 					]
@@ -1672,13 +1672,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats",
 						"99"
 					]
@@ -1777,13 +1777,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/v1/professionalorganisations-stats/99",
+					"raw": "{{url}}/api/v2/professionalorganisations-stats/99",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"professionalorganisations-stats",
 						"99"
 					]

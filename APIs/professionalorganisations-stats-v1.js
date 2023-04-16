@@ -1,13 +1,12 @@
 import datastore from 'nedb';
 const db = new datastore();
-const BASE_API_URL = "/api/v1"
 
-function loadBackend_professionalorganisations(app) {
+function loadBackend_professionalorganisations_v1(app) {
 
 
     app.get("/api/v1/professionalorganisations-stats/docs", (req, res) => {
 
-        res.redirect('https://documenter.getpostman.com/view/26011834/2s93JzM1BX');
+        res.redirect('https://documenter.getpostman.com/view/26011834/2s93XtzjTE');
 
     });
 
@@ -359,4 +358,4 @@ function loadBackend_professionalorganisations(app) {
     }
 }
 
-export { loadBackend_professionalorganisations };
+export { loadBackend_professionalorganisations_v1 };

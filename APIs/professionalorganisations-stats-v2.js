@@ -2,7 +2,7 @@ import datastore from 'nedb';
 const db = new datastore();
 const BASE_API_URL = "/api/v2"
 
-function loadBackend_professionalorganisations(app) {
+function loadBackend_professionalorganisations_v2(app) {
 
     app.get(BASE_API_URL + "/professionalorganisations-stats/docs", (req, res) => {
 
@@ -17,7 +17,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 14,
             "professional_org": "FARMACÉUTICOS DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 212 277",
+            "phone_number": "956212277",
             "postal_code": 11004,
             "adress": "C\/ ISABEL LA CATÓLICA, 22"
         },
@@ -26,7 +26,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 119,
             "professional_org": "ABOGADOS DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 28 76 11",
+            "phone_number": "956287611",
             "postal_code": 11007,
             "adress": "TAMARINDOS, 17 Y 19"
         },
@@ -35,7 +35,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 44,
             "professional_org": "AGENTES COMERCIALES DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 25 50 11",
+            "phone_number": "956255011",
             "postal_code": 11004,
             "adress": "C\/ SANTA ELENA, 2-2º B"
         },
@@ -44,7 +44,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 90,
             "professional_org": "APAREJADORES Y ARQUITECTOS TÉCNICOS DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 27 25 66",
+            "phone_number": "956272566",
             "postal_code": 11009,
             "adress": "ANA DE VIYA, 5-3º . EDIFICIO NEREIDA"
         },
@@ -53,7 +53,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 106,
             "professional_org": "DENTISTAS DE CÁDIZ",
             "location": "La línea de la Concepción (CÁDIZ)",
-            "phone_number": "956 17 09 50",
+            "phone_number": "956170950",
             "postal_code": 11300,
             "adress": "C\/ ISABEL LA CATÓLICA, 22"
         },
@@ -62,7 +62,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 41,
             "professional_org": "AGENTES DE LA PROPIEDAD INMOBILIARIA DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 21 23 38",
+            "phone_number": "956212338",
             "postal_code": 11004,
             "adress": "C\/ COLUMELA, 33 1º"
         },
@@ -71,7 +71,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 84,
             "professional_org": "ABOGADOS DE JEREZ DE LA FRONTERA",
             "location": "Jerez de la Frontera (CÁDIZ)",
-            "phone_number": "956 32 87 93",
+            "phone_number": "956328793",
             "postal_code": 11402,
             "adress": "SEVILLA, 37"
         },
@@ -80,7 +80,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 69,
             "professional_org": "AGENTES COMERCIALES DE JEREZ DE LA FRONTERA",
             "location": "Jerez de la Frontera (CÁDIZ)",
-            "phone_number": "956 34 17 34",
+            "phone_number": "956341734",
             "postal_code": 11401,
             "adress": "CARTUJA, 6 1º A"
         },
@@ -89,7 +89,7 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 25,
             "professional_org": "ARQUITECTOS DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 80 70 52",
+            "phone_number": "956807052",
             "postal_code": 11404,
             "adress": "PLAZA DE LA MINA, 16"
         },
@@ -98,15 +98,12 @@ function loadBackend_professionalorganisations(app) {
             "registry_number": 9,
             "professional_org": "DIPLOMADOS EN TRABAJO SOCIAL Y ASISTENTES SOCIALES DE CÁDIZ",
             "location": "CÁDIZ",
-            "phone_number": "956 27 56 01",
+            "phone_number": "956275601",
             "postal_code": 11007,
             "adress": "C\/ SANTA CRUZ DE TENERIFE, 5- 2º - OFICINA 22"
         }
 
     ];
-
-
-
 
     /** GET ALL */
     app.get(BASE_API_URL + "/professionalorganisations-stats/loadInitialData", (req, res) => {
@@ -123,6 +120,77 @@ function loadBackend_professionalorganisations(app) {
 
     });
 
+    /** Count the number of Professional Organisations */
+    app.get(BASE_API_URL + "/professionalorganisations-stats/count-professional-organisations", function (req, res) {
+        //search
+        let query = {};
+
+        if (req.query.professional_org) {
+            query.professional_org = req.query.professional_org;
+        }
+        if (req.query.location) {
+            query.location = req.query.location;
+        }
+        if (req.query.phone_number) {
+            query.phone_number = req.query.phone_number;
+        }
+        if (req.query.adress) {
+            query.adress = req.query.adress;
+        }
+
+        //numerics search
+
+        //registry_number
+        if (req.query.registry_number_over) {
+            query.registry_number = { $gte: parseInt(req.query.registry_number_over) };
+        }
+        if (req.query.registry_number_below) {
+            if (query.registry_number != undefined) {
+                Object.assign(query.registry_number, { $lte: parseInt(req.query.registry_number_below) });
+            } else {
+                query.registry_number = { $lte: parseInt(req.query.registry_number_below) };
+            }
+        }
+        if (req.query.registry_number) {
+            query.registry_number = parseInt(req.query.registry_number);
+        }
+
+        //date
+        if (req.query.date_over) {
+            query.date = { $gte: parseInt(req.query.date_over) };
+        }
+        if (req.query.date_below) {
+            if (query.date != undefined) {
+                Object.assign(query.date, { $lte: parseInt(req.query.date_below) });
+            } else {
+                query.date = { $lte: parseInt(req.query.date_below) };
+            }
+        }
+        if (req.query.date) {
+            query.date = parseInt(req.query.date);
+        }
+
+        //postal_code
+        if (req.query.postal_code_over) {
+            query.postal_code = { $gte: parseInt(req.query.postal_code_over) };
+        }
+        if (req.query.postal_code_below) {
+            if (query.postal_code != undefined) {
+                Object.assign(query.postal_code, { $lte: parseInt(req.query.postal_code_below) });
+            } else {
+                query.date = { $lte: parseInt(req.query.postal_code_below) };
+            }
+        }
+        if (req.query.postal_code) {
+            query.postal_code = parseInt(req.query.postal_code);
+        }
+
+        db.count(query, function (err, count) {
+            res.status(200).send({ "count": count });
+        });
+    });
+
+
     app.get(BASE_API_URL + "/professionalorganisations-stats", (req, res) => {
 
         //paginating
@@ -138,12 +206,7 @@ function loadBackend_professionalorganisations(app) {
 
         //search
         let query = {};
-        if (req.query.date) {
-            query.date = parseInt(req.query.date);
-        }
-        if (req.query.registry_number) {
-            query.registry_number = parseInt(req.query.registry_number);
-        }
+
         if (req.query.professional_org) {
             query.professional_org = req.query.professional_org;
         }
@@ -152,9 +215,6 @@ function loadBackend_professionalorganisations(app) {
         }
         if (req.query.phone_number) {
             query.phone_number = req.query.phone_number;
-        }
-        if (req.query.postal_code) {
-            query.postal_code = parseInt(req.query.postal_code);
         }
         if (req.query.adress) {
             query.adress = req.query.adress;
@@ -167,7 +227,14 @@ function loadBackend_professionalorganisations(app) {
             query.registry_number = { $gte: parseInt(req.query.registry_number_over) };
         }
         if (req.query.registry_number_below) {
-            query.registry_number = { $lte: parseInt(req.query.registry_number_below) };
+            if (query.registry_number != undefined) {
+                Object.assign(query.registry_number, { $lte: parseInt(req.query.registry_number_below) });
+            } else {
+                query.registry_number = { $lte: parseInt(req.query.registry_number_below) };
+            }
+        }
+        if (req.query.registry_number) {
+            query.registry_number = parseInt(req.query.registry_number);
         }
 
         //date
@@ -175,7 +242,14 @@ function loadBackend_professionalorganisations(app) {
             query.date = { $gte: parseInt(req.query.date_over) };
         }
         if (req.query.date_below) {
-            query.date = { $lte: parseInt(req.query.date_below) };
+            if (query.date != undefined) {
+                Object.assign(query.date, { $lte: parseInt(req.query.date_below) });
+            } else {
+                query.date = { $lte: parseInt(req.query.date_below) };
+            }
+        }
+        if (req.query.date) {
+            query.date = parseInt(req.query.date);
         }
 
         //postal_code
@@ -183,9 +257,15 @@ function loadBackend_professionalorganisations(app) {
             query.postal_code = { $gte: parseInt(req.query.postal_code_over) };
         }
         if (req.query.postal_code_below) {
-            query.postal_code = { $lte: parseInt(req.query.postal_code_below) };
+            if (query.postal_code != undefined) {
+                Object.assign(query.postal_code, { $lte: parseInt(req.query.postal_code_below) });
+            } else {
+                query.date = { $lte: parseInt(req.query.postal_code_below) };
+            }
         }
-
+        if (req.query.postal_code) {
+            query.postal_code = parseInt(req.query.postal_code);
+        }
 
         db.find(query).sort({ registry_number: req.body.registry_number }).skip(offset).limit(limit).exec(function (err, docs) {
             res.send(remove_internal_id(docs));
@@ -352,6 +432,7 @@ function loadBackend_professionalorganisations(app) {
             return element;
         }
     }
+
 }
 
-export { loadBackend_professionalorganisations };
+export { loadBackend_professionalorganisations_v2 };
