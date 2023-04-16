@@ -22,49 +22,30 @@
     let newAveragetemp = "Temp media";
     let newLocation = "Localidad";
 
-
     let result = "";
     let resultStatus = "";
+    let mensaje = "";
 
     let desde = "";
     let hasta = "";
-    let limit = "";
-    let offset = "";
-
+    let offset = 0;
+    let limit = 10;
+    let maxtempInt;
+    let avertempInt;
 
     async function dosAños() {
         resultStatus = result = "";
         const params = new URLSearchParams();
         if (desde) params.append("from", desde);
         if (hasta) params.append("to", hasta);
-        if(hasta<desde){
+        if (hasta < desde) {
             alert("El año final es menor que el año inicial");
             status == 404;
         }
 
-        const res = await fetch(`${API}?${params.toString()}`, { method: "GET" });
-        try {
-            const data = await res.json();
-            result = JSON.stringify(data, null, 2);
-            datos = data;
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-        const status = await res.status;
-        resultStatus = status;
-    }
-
-    async function offLim() {
-        resultStatus = result = "";
-        const params = new URLSearchParams();
-        if (off) params.append("from", off);
-        if (limit) params.append("to", lim);
-        if(hasta<desde){
-            alert("El año final es menor que el año inicial");
-            status == 404;
-        }
-
-        const res = await fetch(`${API}?${params.toString()}`, { method: "GET" });
+        const res = await fetch(`${API}?${params.toString()}`, {
+            method: "GET",
+        });
         try {
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
@@ -78,13 +59,27 @@
 
     async function getDatos() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const params = new URLSearchParams();
+        if (desde) params.append("from", desde);
+        if (hasta) params.append("to", hasta);
+        if (maxtempInt) params.append("maxtemp_over", maxtempInt)
+        if (avertempInt) params.append("averagetemp_below", avertempInt);
+        if (hasta < desde) {
+            alert("El año final es menor que el año inicial");
+            resultStatus = 404;
+            return;
+        }
+        params.append("offset", offset);
+        params.append("limit", limit);
+
+        const res = await fetch(API + "?" + params.toString(), {
             method: "GET",
         });
         try {
-            const data = await res.json();
+            const data = await res.json();            
             result = JSON.stringify(data, null, 2);
             datos = data;
+            
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
@@ -171,57 +166,58 @@
     }
 
     async function prevPage() {
-        if (offset >= 10) {
-            offset = offset - limit;
+        if (offset >= limit) {
+            offset -= limit;
         }
         getDatos();
     }
 
     async function nextPage() {
-        if (offset + limit > datos.length) {
-        } else {
-            offset = offset + limit;
-            getDatos();
+        if (offset + limit < datos.length) {
+            offset += limit;
         }
-        console.log(offset);
-        console.log(limit);
-        console.log(datos.length);
+        getDatos();
     }
 </script>
 
 {#if resultStatus === 404}
     <h1>Página no disponible, acceda al Menu principal</h1>
 {/if}
+
+{#if mensaje === 40}
+<h1> No hay ningún dato que coincida</h1>
+{/if}
 <h1>Estadísticas agroclimáticas de Cádiz</h1>
 
 <br />
-<Table>
+
+<Table striped bordered hover>
     <thead>
         <tr>
-            <th>Año</th>
-            <th>Nº del registro</th>
-            <th>ID</th>
-            <th>Temperatura máxima</th>
-            <th>Temperatura mínima</th>
-            <th>Temperatura media</th>
-            <th>Localidad</th>
+            <th>{newDate}</th>
+            <th>{newReg_num}</th>
+            <th>{newStations_id}</th>
+            <th>{newMaxtemp}</th>
+            <th>{newMintemp}</th>
+            <th>{newAveragetemp}</th>
+            <th>{newLocation}</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         {#each datos as dato}
             <tr>
                 <td>{dato.date}</td>
-                <td
-                    ><a href="/agroclimatic/{dato.reg_num}">{dato.reg_num}</a
-                    ></td
-                >
+                <td>{dato.reg_num}</td>
                 <td>{dato.stations_id}</td>
                 <td>{dato.maxtemp}</td>
                 <td>{dato.mintemp}</td>
                 <td>{dato.averagetemp}</td>
                 <td>{dato.location}</td>
                 <td
-                    ><Button on:click={deleteDato(dato.reg_num)}
+                    ><Button
+                        color="danger"
+                        on:click={() => deleteDato(dato.reg_num)}
                         >Eliminar</Button
                     ></td
                 >
@@ -241,8 +237,8 @@
 </Table>
 <br />
 <p>
-    La tabla solo muestra un total de 10 datos, para ver otros datos pulse el
-    botón "siguiente" o "Anterior"
+    La tabla solo muestra un total de 10 datos como máximo, para ver otros datos
+    pulse el botón "siguiente" o "Anterior"
 </p>
 <button type="button" on:click={initialData}>Insertar datos de prueba</button>
 <button type="button" on:click={deleteTodo}>Eliminar todo</button>
@@ -254,43 +250,41 @@
 <h2>Buscar Estadísticas Agroclimáticas</h2>
 
 <form on:submit|preventDefault={dosAños}>
+    <p>Buscar por año:</p>
     <label>
-        Buscar por año:
-        <input type="number" bind:value={desde} min="1900" max="2023" />
-        a
-        <input type="number" bind:value={hasta} min="1900" max="2023" />
+        Desde
+        <input type="number" bind:value={desde} />
+        Hasta
+        <input type="number" bind:value={hasta} />
     </label>
     <button type="submit">Buscar</button>
 </form>
-{#if dosAños.length > 0}
-    <Table>
-        <thead>
-            <tr>
-                <th>Año</th>
-                <th>Nº del registro</th>
-                <th>ID</th>
-                <th>Temperatura máxima</th>
-                <th>Temperatura mínima</th>
-                <th>Temperatura media</th>
-                <th>Localidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each dosAños as dato}
-                <tr>
-                    <td>{dato.date}</td>
-                    <td
-                        ><a href="/agroclimatic/{dato.reg_num}"
-                            >{dato.reg_num}</a
-                        ></td
-                    >
-                    <td>{dato.stations_id}</td>
-                    <td>{dato.maxtemp}</td>
-                    <td>{dato.mintemp}</td>
-                    <td>{dato.averagetemp}</td>
-                    <td>{dato.location}</td>                    
-                </tr>
-            {/each}
-        </tbody>
-    </Table>
-{/if}
+<br />
+<br />
+<form on:submit|preventDefault={getDatos}>
+    <label>
+        Desplazamiento:
+        <input type="number" bind:value={offset} />
+        Límite:
+        <input type="number" bind:value={limit} />
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getDatos}>
+    <label>
+        Temperatura máxima establecida como mínima:
+        <input type="number" bind:value={maxtempInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getDatos}>
+    <label>
+        Temperatura média establecida como máxima:
+        <input type="number" bind:value={avertempInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
