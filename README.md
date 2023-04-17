@@ -8,6 +8,7 @@
 - **URL**: [https://sos2223-16.appspot.com](https://sos2223-16.ew.r.appspot.com/)
 - **APIs**:
   - [https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/docs](https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats/docs) (developed by Carolina Bernal Marchena)
+   - [https://sos2223-16.appspot.com/api/v2/professionalorganisations-stats/docs](https://sos2223-16.appspot.com/api/v2/professionalorganisations-stats/docs) (developed by Carolina Bernal Marchena)
   - [https://sos2223-16.ew.r.appspot.com/api/v1/civilwarandalusian-stats/docs](https://sos2223-16.ew.r.appspot.com/api/v1/civilWarAndalusian-stats/docs) (developed by Marcos Morales Campos)
   - [https://documenter.getpostman.com/view/26036256/2s93Xwy47C](https://sos2223-16.ew.r.appspot.com/api/v1/cadiz-agroclimatic-informations-stats/docs) (developed by Carlos López Cárdenas)
   - [https://documenter.getpostman.com/view/26036256/2s93Xwy47A](https://sos2223-16.ew.r.appspot.com/api/v2/cadiz-agroclimatic-informations-stats/docs) (developed by Carlos López Cárdenas)
