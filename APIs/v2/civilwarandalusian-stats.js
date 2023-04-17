@@ -6,7 +6,7 @@ function loadBackend_civilwarandalusianV2(app) {
 
     app.get(BASE_API_URL + "civilwarandalusian-stats/docs", (req, res) => {
 
-        res.redirect('https://documenter.getpostman.com/view/7223889/2s93RQTZjp');
+        res.redirect('https://documenter.getpostman.com/view/7223889/2s93XyVii9');
 
     });
 
