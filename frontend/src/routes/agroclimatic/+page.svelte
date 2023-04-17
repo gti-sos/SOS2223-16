@@ -22,6 +22,7 @@
     let newAveragetemp = "Temp media";
     let newLocation = "Localidad";
 
+
     let result = "";
     let resultStatus = "";
     let mensaje = "";
@@ -202,17 +203,13 @@
         }
     }
 
-    function prevPage() {
-        if (offset >= limit) {
-            offset -= limit;
-        }
+    async function prevPage() {
+        offset = offset-10;
         getDatos();
     }
 
-    function nextPage() {
-        if (offset + limit < datos.length) {
-            offset += limit;
-        }
+    async function nextPage() {
+        offset = offset+10;
         getDatos();
     }
 </script>
@@ -243,9 +240,9 @@
     </thead>
     <tbody>
         {#each datos as dato}
-            <tr>
+            <tr>                
                 <td>{dato.date}</td>
-                <td>{dato.reg_num}</td>
+                <td><a href="/agroclimatic/{dato.reg_num}">{dato.reg_num}</a></td>
                 <td>{dato.stations_id}</td>
                 <td>{dato.maxtemp}</td>
                 <td>{dato.mintemp}</td>
@@ -279,8 +276,12 @@
 </p>
 <button type="button" on:click={initialData}>Insertar datos de prueba</button>
 <button type="button" on:click={deleteTodo}>Eliminar todo</button>
+{#if offset > 0}
 <button type="button" on:click={prevPage}>Anterior</button>
+{/if}
+{#if (offset+10) <= datos.length}
 <button type="button" on:click={nextPage}>Siguiente</button>
+{/if}
 <br />
 <br />
 
@@ -296,7 +297,7 @@
     </label>
     <button type="submit">Buscar</button>
 </form>
-<br />
+<!-- <br />
 <br />
 <form on:submit|preventDefault={getDatos}>
     <label>
@@ -306,7 +307,7 @@
         <input type="number" bind:value={limit} />
     </label>
     <button type="submit">Buscar</button>
-</form>
+</form> -->
 <br />
 <br />
 <form on:submit|preventDefault={getDatos}>
@@ -368,3 +369,5 @@
         <br /><button type="submit">Buscar</button>
     </label>
 </form>
+
+
