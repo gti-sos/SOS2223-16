@@ -24,6 +24,15 @@
     let hasta = "";
     let offset = 0;
     let limit = 10;
+
+    let id0;
+    let title0;
+    let dates_actInt0;
+    let characterInt0;
+    let provinceInt0;
+    let municipalityInt0;
+    let Photo_PieFosa0;
+
     let idInt;
     let dateNumInt;
     let dates_actInt;
@@ -88,6 +97,13 @@ async function getOrganisations() {
         const params = new URLSearchParams();
         if (desde) params.append("from", desde);
         if (hasta) params.append("to", hasta);
+        if (id0) params.append("Id", id0);
+        if (title0) params.append("tittle", title0);
+        if (dates_actInt0) params.append("dates_act", dates_actInt0);
+        if (characterInt0) params.append("character", characterInt0);
+        if (provinceInt0) params.append("province", provinceInt0);
+        if (municipalityInt0) params.append("municipality", municipalityInt0);
+        if (Photo_PieFosa0) params.append("Photo_PieFosa", Photo_PieFosa0);
         if (dateNumInt) params.append("dateNumeric_over", dateNumInt)
         if (dates_actInt) params.append("dates_act_below", dates_actInt)
         if (victimsInt) params.append("victims_over", victimsInt)
@@ -417,6 +433,14 @@ async function prevPage() {
     <label>
         Año actualizacion establecida como máximo:
         <input type="number" bind:value={dates_actInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por provincia:
+        <input type="text" bind:value={provinceInt0} />        
     </label>
     <button type="submit">Buscar</button>
 </form>
