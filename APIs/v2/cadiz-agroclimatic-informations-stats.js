@@ -126,6 +126,97 @@ function loadBackend_agroclimaticV2(app) {
         });
     });
 
+    app.get("/api/v2/cadiz-agroclimatic-informations-stats/count-agroclimatic", function (req, res) {
+        let query ={};
+        if(req.query.location){
+            query.location=req.query.location;
+        }
+        if(req.query.reg_num_over){
+            query.reg_num = {$gte: parseInt(req.query.reg_num_over)};
+        }if(req.query.reg_num_below){
+            if(query.reg_num != undefined){
+                Object.assign(query.reg_num, {$lte:parseInt(req.query.reg_num_below)});
+            }else{
+                query.reg_num={lte: parseInt(req.query.reg_num_below)};
+            }
+        }
+        if(req.query.reg_num){
+            query.reg_num=parseInt(req.query.reg_num);
+        }
+
+
+        if(req.query.date_over){
+            query.date = {$gte: parseInt(req.query.date_over)};
+        }if(req.query.date_below){
+            if(query.date != undefined){
+                Object.assign(query.date, {$lte:parseInt(req.query.date_below)});
+            }else{
+                query.date={lte: parseInt(req.query.date_below)};
+            }
+        }
+        if(req.query.date){
+            query.date=parseInt(req.query.date);
+        }
+
+
+        if(req.query.stations_id_over){
+            query.stations_id = {$gte: parseInt(req.query.stations_id_over)};
+        }if(req.query.stations_id_below){
+            if(query.stations_id != undefined){
+                Object.assign(query.stations_id, {$lte:parseInt(req.query.stations_id_below)});
+            }else{
+                query.stations_id={lte: parseInt(req.query.stations_id_below)};
+            }
+        }
+        if(req.query.stations_id){
+            query.stations_id=parseInt(req.query.stations_id);
+        }
+
+
+        if(req.query.maxtemp_over){
+            query.maxtemp = {$gte: parseInt(req.query.maxtemp_over)};
+        }if(req.query.maxtemp_below){
+            if(query.maxtemp != undefined){
+                Object.assign(query.maxtemp, {$lte:parseInt(req.query.maxtemp_below)});
+            }else{
+                query.maxtemp={lte: parseInt(req.query.maxtemp_below)};
+            }
+        }
+        if(req.query.maxtemp){
+            query.maxtemp=parseInt(req.query.maxtemp);
+        }
+
+        if(req.query.mintemp_over){
+            query.mintemp = {$gte: parseInt(req.query.mintemp_over)};
+        }if(req.query.mintemp_below){
+            if(query.mintemp != undefined){
+                Object.assign(query.mintemp, {$lte:parseInt(req.query.mintemp_below)});
+            }else{
+                query.mintemp={lte: parseInt(req.query.mintemp_below)};
+            }
+        }
+        if(req.query.mintemp){
+            query.mintemp=parseInt(req.query.mintemp);
+        }
+
+        if(req.query.averagetemp_over){
+            query.averagetemp = {$gte: parseInt(req.query.averagetemp_over)};
+        }if(req.query.averagetemp_below){
+            if(query.averagetemp != undefined){
+                Object.assign(query.averagetemp, {$lte:parseInt(req.query.averagetemp_below)});
+            }else{
+                query.averagetemp={lte: parseInt(req.query.averagetemp_below)};
+            }
+        }
+        if(req.query.averagetemp){
+            query.averagetemp=parseInt(req.queryaveragetemp);
+        }
+
+        db.count(query,function(err, count){
+            res.status(200).send({"count": count});
+        })
+    })
+
 
     app.get("/api/v2/cadiz-agroclimatic-informations-stats", (req, res) => {
         // Paginación
