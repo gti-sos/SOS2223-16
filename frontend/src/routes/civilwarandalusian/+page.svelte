@@ -275,16 +275,12 @@ if(status == 200) {
 }
 }
 async function prevPage() {
-        if (offset >= limit) {
-            offset -= limit;
-        }
+        offset = offset-10;
         getOrganisations();
     }
 
     async function nextPage() {
-        if (offset + limit < wars.length) {
-            offset += limit;
-        }
+        offset = offset + 10;
         getOrganisations();
     }
 </script>
@@ -388,8 +384,12 @@ async function prevPage() {
 <div style="text-align:center;">
     <button type="button" on:click={initialData}>Insertar datos de prueba</button>
     <button type="button" on:click={deleteAllOrgs}>Borrar todos los Registros</button>
+    {#if offset > 0}
     <button type="button" on:click={prevPage}>Anterior</button>
+    {/if}
+    {#if (offset+10) <= wars.length}
     <button type="button" on:click={nextPage}>Siguiente</button>
+    {/if}
 <br>
 <br>
 
@@ -439,8 +439,69 @@ async function prevPage() {
 <br />
 <form on:submit|preventDefault={getOrganisations}>
     <label>
+        buscar por Id:
+        <input type="number" bind:value={id0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
         buscar por provincia:
         <input type="text" bind:value={provinceInt0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por caracter:
+        <input type="text" bind:value={characterInt0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por titulo:
+        <input type="text" bind:value={title0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por municipio:
+        <input type="text" bind:value={municipalityInt0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por municipio:
+        <input type="text" bind:value={municipalityInt0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por photo fosa:
+        <input type="text" bind:value={Photo_PieFosa0} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        buscar por datos act:
+        <input type="number" bind:value={dates_actInt0} />        
     </label>
     <button type="submit">Buscar</button>
 </form>
@@ -462,38 +523,3 @@ async function prevPage() {
     </label>
     <button type="submit">Buscar</button>
 </form>
-<!-- 
-{#if editForm}
-<div id="form">
-    <form on:submit={submitEdit}>
-
-        <label for="dateEdit">Id:</label>
-        <input type="number" id="id" name="id" value = "{orgEdited.Id}"><br><br>
-
-        <label for="tittleEdit">Titulo:</label>
-        <input type="text" id="tittleEdit" name="tittle" value = "{orgEdited.tittle}"><br><br>
-
-        <label for="characterEdit">character:</label>
-        <input type="text" id="characterEdit" name="character" value = "{orgEdited.character}"><br><br>
-
-        <label for="provinceEdit">provincia:</label>
-        <input type="text" id="provinceEdit" name="province" value = "{orgEdited.province}"><br><br>
-
-        <label for="municipalityEdit">municipality:</label>
-        <input type="text" id="municipalityEdit" name="municipality" value = "{orgEdited.municipality}"><br><br>
-
-        <label for="Photo_PieFosaEdit">Dirección:</label>
-        <input type="text" id="Photo_PieFosaEdit" name="Photo_PieFosa" value = "{orgEdited.Photo_PieFosa}"><br><br>
-
-        <label for="victimsEdit">victimas:</label>
-        <input type="number" id="victimsEdit" name="victims" value = "{orgEdited.victims}"><br><br>
-
-        <label for="dates_actEdit">Dirección:</label>
-        <input type="text" id="dates_actEdit" name="dates_act" value = "{orgEdited.dates_act}"><br><br>
-
-        <input type="submit" value="Editar">
-    </form><br>
-    <button type="button" on:click={editForm}>Cancelar</button>
-</div>
-{/if}
- -->
