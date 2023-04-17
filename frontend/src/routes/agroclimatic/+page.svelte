@@ -79,25 +79,29 @@
         const params = new URLSearchParams();
         if (desde) params.append("from", desde);
         if (hasta) params.append("to", hasta);
-        if(añoInt) params.append("date",añoInt);
-        if (reg_numInt) params.append("reg_num",reg_numInt);
-        if (stations_idInt) params.append("stations_id",stations_idInt);
-        if (maxtempInt) params.append("maxtemp",maxtempInt);
-        if (mintempInt) params.append("mintemp",mintempInt);
-        if (averagetempInt) params.append("averagetemp",averatempInt);
-        if (locationInt) params.append("location",locationInt);
-        if (añoInt_over) params.append("date_over",añoInt_over);
-        if (reg_numInt_over) params.append("reg_num_over",reg_numInt_over);
-        if (stations_idInt_over) params.append("stations_id_over",stations_idInt_over);
-        if (maxtempInt_over) params.append("maxtemp_over",maxtempInt_over);
-        if (mintempInt_over) params.append("mintemp_over",mintempInt_over);
-        if (averagetempInt_over) params.append("averagetemp_over",averatempInt_over);
-        if (añoInt_below) params.append("date_below",añoInt_below);
-        if (reg_numInt_below) params.append("reg_num_below",reg_numInt_below);
-        if (stations_idInt_below) params.append("stations_id_below",stations_idInt_below);
-        if (maxtempInt_below) params.append("maxtemp_below",maxtempInt_below);
-        if (mintempInt_below) params.append("mintemp_below",mintempInt_below);
-        if (averagetempInt_below) params.append("averagetemp_below",averatempInt_below);
+        if (añoInt) params.append("date", añoInt);
+        if (reg_numInt) params.append("reg_num", reg_numInt);
+        if (stations_idInt) params.append("stations_id", stations_idInt);
+        if (maxtempInt) params.append("maxtemp", maxtempInt);
+        if (mintempInt) params.append("mintemp", mintempInt);
+        if (averagetempInt) params.append("averagetemp", averatempInt);
+        if (locationInt) params.append("location", locationInt);
+        if (añoInt_over) params.append("date_over", añoInt_over);
+        if (reg_numInt_over) params.append("reg_num_over", reg_numInt_over);
+        if (stations_idInt_over)
+            params.append("stations_id_over", stations_idInt_over);
+        if (maxtempInt_over) params.append("maxtemp_over", maxtempInt_over);
+        if (mintempInt_over) params.append("mintemp_over", mintempInt_over);
+        if (averagetempInt_over)
+            params.append("averagetemp_over", averatempInt_over);
+        if (añoInt_below) params.append("date_below", añoInt_below);
+        if (reg_numInt_below) params.append("reg_num_below", reg_numInt_below);
+        if (stations_idInt_below)
+            params.append("stations_id_below", stations_idInt_below);
+        if (maxtempInt_below) params.append("maxtemp_below", maxtempInt_below);
+        if (mintempInt_below) params.append("mintemp_below", mintempInt_below);
+        if (averagetempInt_below)
+            params.append("averagetemp_below", averatempInt_below);
         if (hasta < desde) {
             alert("El año final es menor que el año inicial");
             resultStatus = 404;
@@ -110,10 +114,9 @@
             method: "GET",
         });
         try {
-            const data = await res.json();            
+            const data = await res.json();
             result = JSON.stringify(data, null, 2);
             datos = data;
-            
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
@@ -219,7 +222,7 @@
 {/if}
 
 {#if mensaje === 40}
-<h1> No hay ningún dato que coincida</h1>
+    <h1>No hay ningún dato que coincida</h1>
 {/if}
 <h1>Estadísticas agroclimáticas de Cádiz</h1>
 
@@ -309,7 +312,7 @@
 <form on:submit|preventDefault={getDatos}>
     <label>
         Temperatura máxima establecida como mínima:
-        <input type="number" bind:value={maxtempInt} />        
+        <input type="number" bind:value={maxtempInt} />
     </label>
     <button type="submit">Buscar</button>
 </form>
@@ -318,99 +321,50 @@
 <form on:submit|preventDefault={getDatos}>
     <label>
         Temperatura média establecida como máxima:
-        <input type="number" bind:value={averagetempInt} />        
+        <input type="number" bind:value={averagetempInt} />
     </label>
     <button type="submit">Buscar</button>
 </form>
 <br />
 <br />
-<h2>Buscar un registro en concreto a partir de un valor</h2>
+<h2>Buscar un registro en concreto a partir de uno de sus valores en concreto</h2>
+<br>
 <form on:submit|preventDefault={getDatos}>
-    <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>Año</th>
-                <th>Número de registro</th>
-                <th>Id</th>
-                <th>Temp máxima</th>
-                <th>Temp mínima</th>
-                <th>Temp media</th>
-                <th>Localidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input bind:value={añoInt} /></td>
-                <td><input bind:value={reg_numInt} /></td>
-                <td><input bind:value={stations_idInt} /></td>
-                <td><input bind:value={maxtempInt} /></td>
-                <td><input bind:value={mintempInt} /></td>
-                <td><input bind:value={averagetempInt} /></td>
-                <td><input bind:value={locationInt} /></td>
-                <td><button type="submit">Buscar</button></td>
-            </tr>
-        </tbody>
-
-    </Table>
+    <label>Año: <input bind:value={añoInt} /><br />
+        <br />Número de registro: <input bind:value={reg_numInt} /><br />
+        <br />Id: <input bind:value={stations_idInt} /><br />
+        <br />Temp máxima: <input bind:value={maxtempInt} /><br />
+        <br />Temp mínima: <input bind:value={mintempInt} /><br />
+        <br />Temp media: <input bind:value={averagetempInt} /><br />
+        <br />Localidadl: <input bind:value={locationInt} /><br />
+        <br /><button type="submit">Buscar</button>
+    </label>
 </form>
 <br />
 <br />
 <h2>Buscar un conjunto de registros a partir de un establecido como mínimo</h2>
+<br>
 <form on:submit|preventDefault={getDatos}>
-    <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>Año</th>
-                <th>Número de registro</th>
-                <th>Id</th>
-                <th>Temp máxima</th>
-                <th>Temp mínima</th>
-                <th>Temp media</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input bind:value={añoInt_over} /></td>
-                <td><input bind:value={reg_numInt_over} /></td>
-                <td><input bind:value={stations_idInt_over} /></td>
-                <td><input bind:value={maxtempInt_over} /></td>
-                <td><input bind:value={mintempInt_over} /></td>
-                <td><input bind:value={averagetempInt_over} /></td>
-                <td><button type="submit">Buscar</button></td>
-            </tr>
-        </tbody>
-
-    </Table>
+    <label>Año: <input bind:value={añoInt_over} /><br />
+        <br />Número de registro: <input bind:value={reg_numInt_over} /><br />
+        <br />Id: <input bind:value={stations_idInt_over} /><br />
+        <br />Temp máxima: <input bind:value={maxtempInt_over} /><br />
+        <br />Temp mínima: <input bind:value={mintempInt_over} /><br />
+        <br />Temp media: <input bind:value={averagetempInt_over} /><br />
+        <br /><button type="submit">Buscar</button>
+    </label>
 </form>
+
 <br />
 <br />
 <h2>Buscar un conjunto de registros a partir de un establecido como máximo</h2>
 <form on:submit|preventDefault={getDatos}>
-    <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>Año</th>
-                <th>Número de registro</th>
-                <th>Id</th>
-                <th>Temp máxima</th>
-                <th>Temp mínima</th>
-                <th>Temp media</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input bind:value={añoInt_below} /></td>
-                <td><input bind:value={reg_numInt_below} /></td>
-                <td><input bind:value={stations_idInt_below} /></td>
-                <td><input bind:value={maxtempInt_below} /></td>
-                <td><input bind:value={mintempInt_below} /></td>
-                <td><input bind:value={averagetempInt_below} /></td>
-                <td><button type="submit">Buscar</button></td>
-            </tr>
-        </tbody>
-
-    </Table>
+    <label>Año: <input bind:value={añoInt_below} /><br />
+        <br />Número de registro: <input bind:value={reg_numInt_below} /><br />
+        <br />Id: <input bind:value={stations_idInt_below} /><br />
+        <br />Temp máxima: <input bind:value={maxtempInt_below} /><br />
+        <br />Temp mínima: <input bind:value={mintempInt_below} /><br />
+        <br />Temp media: <input bind:value={averagetempInt_below} /><br />
+        <br /><button type="submit">Buscar</button>
+    </label>
 </form>
