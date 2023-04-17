@@ -19,6 +19,45 @@
     let newDates_act = "dates_act";
     let result = "";
     let resultStatus = "";
+    let mensaje = "";
+    let desde = "";
+    let hasta = "";
+    let offset = 0;
+    let limit = 10;
+    let idInt;
+    let dateNumInt;
+    let dates_actInt;
+    let victimsInt;
+
+
+
+    /**
+ * Calcular fecha entre dos años 
+*/
+    async function dosAños() {
+        resultStatus = result = "";
+        const params = new URLSearchParams();
+        if (desde) params.append("from", desde);
+        if (hasta) params.append("to", hasta);
+        if (hasta < desde) {
+            alert("El año final es menor que el año inicial");
+            status == 404;
+        }
+
+        const res = await fetch(`${API}?${params.toString()}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            wars = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
+
 
 
 
@@ -43,21 +82,38 @@ async function initialData() {
 /**
  * Get all organisations
 */
-    async function getOrganisations() {
-            resultStatus = result = "";
-            const res = await fetch(API, {
-                method: 'GET',
-            });
-            try {
-                const data = await res.json();
-                result = JSON.stringify(data,null,2);
-                wars = data;
-            } catch (error) {
-                console.log(error)
-            }
-            const status = await res.status;
-            resultStatus = status;
+
+async function getOrganisations() {
+        resultStatus = result = "";
+        const params = new URLSearchParams();
+        if (desde) params.append("from", desde);
+        if (hasta) params.append("to", hasta);
+        if (dateNumInt) params.append("dateNumeric_over", dateNumInt)
+        if (dates_actInt) params.append("dates_act_below", dates_actInt)
+        if (victimsInt) params.append("victims_over", victimsInt)
+        if (idInt) params.append("Id_below", idInt);
+        if (hasta < desde) {
+            alert("El año final es menor que el año inicial");
+            resultStatus = 404;
+            return;
         }
+        params.append("offset", offset);
+        params.append("limit", limit);
+
+        const res = await fetch(API + "?" + params.toString(), {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();            
+            result = JSON.stringify(data, null, 2);
+            wars = data;
+            
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
     onMount(async () => {
         getOrganisations();
     });
@@ -202,7 +258,19 @@ if(status == 200) {
     alert("Error en los datos introducidos");
 }
 }
+async function prevPage() {
+        if (offset >= limit) {
+            offset -= limit;
+        }
+        getOrganisations();
+    }
 
+    async function nextPage() {
+        if (offset + limit < wars.length) {
+            offset += limit;
+        }
+        getOrganisations();
+    }
 </script>
 <!--
 <style>
@@ -236,10 +304,18 @@ if(status == 200) {
 }
 </style>
 -->
+
+{#if resultStatus === 404}
+    <h1>Página no disponible, acceda al Menu principal</h1>
+{/if}
+
+{#if mensaje === 40}
+<h1> No hay ningún dato que coincida</h1>
+{/if}
 <h1>Fosas Comunes</h1>
 <br>
 <!-- svelte-ignore missing-declaration -->
-<Table>
+<Table striped bordered hover>
     <thead>
         <tr>
             <th>Id</th>
@@ -288,12 +364,80 @@ if(status == 200) {
         </tr>
     </tbody>
 </Table>
+<br />
+<p>
+    Pulse el botón "siguiente" o "Anterior" para mas registros.
+</p>
 <br>
 <div style="text-align:center;">
     <button type="button" on:click={initialData}>Insertar datos de prueba</button>
     <button type="button" on:click={deleteAllOrgs}>Borrar todos los Registros</button>
+    <button type="button" on:click={prevPage}>Anterior</button>
+    <button type="button" on:click={nextPage}>Siguiente</button>
 <br>
+<br>
+
+
 </div>
+<h2>Buscar fosas de la guerra civil entre dos fechas</h2>
+
+<form on:submit|preventDefault={dosAños}>
+    <p>Buscar por año de la guerra:</p>
+    <label>
+        Desde
+        <input type="number" bind:value={desde} />
+        Hasta
+        <input type="number" bind:value={hasta} />
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        Desplazamiento:
+        <input type="number" bind:value={offset} />
+        Límite:
+        <input type="number" bind:value={limit} />
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        Año máximo establecida como mínimo:
+        <input type="number" bind:value={dateNumInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        Año actualizacion establecida como máximo:
+        <input type="number" bind:value={dates_actInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        Nº victimas mínnimo:
+        <input type="number" bind:value={victimsInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
+<br />
+<br />
+<form on:submit|preventDefault={getOrganisations}>
+    <label>
+        Nº Id maximo:
+        <input type="number" bind:value={idInt} />        
+    </label>
+    <button type="submit">Buscar</button>
+</form>
 <!-- 
 {#if editForm}
 <div id="form">
