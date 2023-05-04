@@ -94,7 +94,7 @@ function loadBackend_agroclimaticV2(app) {
             "reg_num": 38295,
             "stations_id": 9,
             "maxtemp": 18.18,
-            "mintemp": 80.5,
+            "mintemp": 8.05,
             "averagetemp": 12.61,
             "location": "Cádiz"
         },
