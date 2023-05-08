@@ -19,12 +19,11 @@
     let resultStatus2 = "";
     let result2 = "";
     let datos = [];
+    let datosId=[];
+    let algo = [];
     let fut = [];
     let years = [];
 //----------------
-
-
-
 
 // onMount
     onMount(async () =>{
@@ -33,33 +32,33 @@
 // -------    
 
 // Petición API
-    const url = "https://api-football-beta.p.rapidapi.com/leagues";
-    const options = {
-        method: "GET",
-        params: { id: "61" }, //id de la leage
-        headers: {
-            "X-RapidAPI-Key": "d8479c0b7emsh6dfec3aab4ff8ddp1d8607jsnd7559b94f8d0",
-            "X-RapidAPI-Host": "api-football-beta.p.rapidapi.com",
-        },
-    };
+    // const url = "https://api-football-beta.p.rapidapi.com/leagues";
+    // const options = {
+    //     method: "GET",
+    //     params: { id: "61" }, //id de la leage
+    //     headers: {
+    //         "X-RapidAPI-Key": "d8479c0b7emsh6dfec3aab4ff8ddp1d8607jsnd7559b94f8d0",
+    //         "X-RapidAPI-Host": "api-football-beta.p.rapidapi.com",
+    //     },
+    // };
 // -----
 
 // Get datos
     async function getDatos(){
         //Le hacemos el get a la API
-        resultStatus2 = result2 = "";
-        const res2 = await fetch(url,options);
-        if(res2.ok){
-            try{
-                const data2  = await res2.json();
-                result2 = JSON.stringify(data2,null,2);
-                fut = response.data2.response[0].seasons.map(s => s.year);
-            }catch(error){}
-        }else{
-            console.log("Error al devolver la gráfica");
-        }
-        const status2 = await res2.status2;
-        resultStatus2 = status2;
+        // resultStatus2 = result2 = "";
+        // const res2 = await fetch(url,options);
+        // if(res2.ok){
+        //     try{
+        //         const data2  = await res2.json();
+        //         result2 = JSON.stringify(data2,null,2);
+        //         fut = response.data2.response[0].seasons.map(s => s.year);
+        //     }catch(error){}
+        // }else{
+        //     console.log("Error al devolver la gráfica");
+        // }
+        // const status2 = await res2.status2;
+        // resultStatus2 = status2;
 
         //Get a mi api
         resultStatus = result = "";
@@ -70,6 +69,10 @@
             const data = await res.json();
             result = JSON.stringify(data,null,2);
             datos = data;
+            algo = [...new Set(datos.map(d => (d.date)).sort((a,b) => a - b))];
+            console.log(algo);
+            datosId=[...new Set(datos.map(d => (d.stations_id)).sort((a,b) => a - b))];
+            console.log(datosId);
             loadChart();
         }catch(error){
             console.log(`Error parsing result: ${error}`);
@@ -81,15 +84,15 @@
 // ------
 
 // Total años
-function años(y1,y2){
-        let t = y1.concat(y2);
-        let t2 = t.filter((item, index) => {
-            return t.indexOf(item) === index;
-        });
-        return t2;
-    }
-    // years = datos.date.sort((a,b) => (a.date) - (b.date));
-    // años(fut,years)
+    // function años(y1,y2){
+    //         let t = y1.concat(y2);
+    //         let t2 = t.filter((item, index) => {
+    //             return t.indexOf(item) === index;
+    //         });
+    //         return t2;
+    //     }
+        // years = datos.date.sort((a,b) => (a.date) - (b.date));
+        // años(fut,years)
 // ----------
 
 // loadChart()
@@ -119,7 +122,7 @@ function años(y1,y2){
             },
             plotOptions: {
                 series: {
-                    pointStart: fut
+                    pointStart:  2000
                 },
                 area: {
                     fillOpacity: 0.5
@@ -139,8 +142,6 @@ function años(y1,y2){
                 data: datos.map(dato => dato.averagetemp)
             }]
         });
-
-        
     }
 // -----------
 </script>

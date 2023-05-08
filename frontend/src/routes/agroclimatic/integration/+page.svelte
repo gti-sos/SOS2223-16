@@ -1,5 +1,5 @@
 <script>
-    import extSi from "./extSi.svelte";
+    import ext1 from "./ext1.svelte";
 </script>
 
-<svelte:component this={extSi} />
+<svelte:component this={ext1} />
