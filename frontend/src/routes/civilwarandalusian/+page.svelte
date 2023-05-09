@@ -98,7 +98,7 @@ async function getOrganisations() {
         if (desde) params.append("from", desde);
         if (hasta) params.append("to", hasta);
         if (id0) params.append("Id", id0);
-        if (title0) params.append("tittle", title0);
+        if (title0) params.append("title", title0);
         if (dates_actInt0) params.append("dates_act", dates_actInt0);
         if (characterInt0) params.append("character", characterInt0);
         if (provinceInt0) params.append("province", provinceInt0);
