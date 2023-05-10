@@ -3,12 +3,17 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.js"></script>
+    <link rel="stylesheet" href="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.css">
 </svelte:head>
 
 <script>
     // @ts-nocheck
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
+    import bb, {bar,zoom} from "billboard.js";
+
+
 
     let API = "/api/v2/cadiz-agroclimatic-informations-stats";
     if (dev) API = "http://localhost:8080" + API;
@@ -22,7 +27,7 @@
     let datosId = [];
     let algo = [];
     let fut = [];
-    let years = [];
+    let dicc={};
 //----------------
 
  // onMount
@@ -69,12 +74,16 @@
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
             datos = data;
-            // algo = [...new Set(datos.map((d) => d.date).sort((a, b) => a - b))];
-            // console.log(algo);
-            // datosId = [...new Set(datos.map((d) => d.stations_id).sort((a, b) => a - b)),];
-            // console.log(datosId);
-            console.log(datos.map((a) => a.date));
+            
+            for(let i=0;i<datos.length;i++){
+                let clave = datos.map((a) => a.date)[i];
+                let valor = datos.map((a) => a.maxtemp)[i];
+                if(!dicc[clave] || valor>dicc[clave]){
+                    dicc[clave] = valor;
+                }
+            };
             loadChart();
+            loadBillboard();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
@@ -90,19 +99,19 @@
                 type: "column",
             },
             title: {
-                text: "Temperaturas por año e id",
+                text: "Estadísticas agroclimáticas",
             },
             subtitle: {
-                text: "Pertenecientes a Cádiz",
+                text: "Gráfica hecha con HighCharts",
             },
             xAxis: {
-                categories: datos.map((a) => `${a.date}-${a.stations_id}`),
+                categories: datos.map((a) => `${a.reg_num}-${a.location}-${a.stations_id}`),
                 crosshair: true,
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: "Rainfall (mm)",
+                    text: "Grados (ºC)",
                 },
             },
             tooltip: {
@@ -138,39 +147,34 @@
         });
     }
 // -------------------
+
+// loadBillboard()
+    async function loadBillboard(){
+        bb.generate({
+            bindto: "#Chart",
+            data:{
+                x: "tr",
+                columns: [
+                    ["tr", ...Object.keys(dicc)],
+                    ["Máx Temperatura", ...Object.values(dicc)],
+                ],
+                type: bar(),
+                
+            },            
+        });
+    }
+// -----------------
 </script>
 
 <main>
     <figure class="highcharts-figure">
         <div id="container"></div>
-        <p class="highcharts-description">
-         Gráfica de las temperaturas de Cádiz
-        </p>
+        <h1 class="highcharts-description">
+         Estadísticas agroclimáticas
+        </h1>
+        <h5>Temperatura máxima por año</h5>
+        <p>hecho con billboard.js</p>
     </figure>
-    <table>
-        <thead>
-            <tr>
-                <th>Año</th>
-                <th>Número de registro</th>
-                <th>Id</th>
-                <th>Temp máxima</th>
-                <th>Temp mínima</th>
-                <th>Temp media</th>
-                <th>Localidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each datos as dato}
-                <tr>                
-                    <td>{dato.date}</td>
-                    <td><a href="/agroclimatic/{dato.reg_num}">{dato.reg_num}</a></td>
-                    <td>{dato.stations_id}</td>
-                    <td>{dato.maxtemp}</td>
-                    <td>{dato.mintemp}</td>
-                    <td>{dato.averagetemp}</td>
-                    <td>{dato.location}</td>
-                </tr>
-            {/each}
-        </tbody>
-    </table>
+    <div id="Chart"></div>
+    
 </main>
