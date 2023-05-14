@@ -11,7 +11,7 @@
     // @ts-nocheck
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
-    import bb, {bar,zoom} from "billboard.js";
+    import bb, {bar} from "billboard.js";
 
 
 
@@ -36,35 +36,8 @@
     });
  // -------
 
-// Petición API
-    // const url = "https://api-football-beta.p.rapidapi.com/leagues";
-    // const options = {
-    //     method: "GET",
-    //     params: { id: "61" }, //id de la leage
-    //     headers: {
-    //         "X-RapidAPI-Key": "d8479c0b7emsh6dfec3aab4ff8ddp1d8607jsnd7559b94f8d0",
-    //         "X-RapidAPI-Host": "api-football-beta.p.rapidapi.com",
-    //     },
-    // };
-// -----
-
 // Get datos
     async function getDatos() {
-        //Le hacemos el get a la API
-        // resultStatus2 = result2 = "";
-        // const res2 = await fetch(url,options);
-        // if(res2.ok){
-        //     try{
-        //         const data2  = await res2.json();
-        //         result2 = JSON.stringify(data2,null,2);
-        //         fut = response.data2.response[0].seasons.map(s => s.year);
-        //     }catch(error){}
-        // }else{
-        //     console.log("Error al devolver la gráfica");
-        // }
-        // const status2 = await res2.status2;
-        // resultStatus2 = status2;
-
         //Get a mi api
         resultStatus = result = "";
         const res = await fetch(API, {
@@ -74,7 +47,6 @@
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
             datos = data;
-            
             for(let i=0;i<datos.length;i++){
                 let clave = datos.map((a) => a.date)[i];
                 let valor = datos.map((a) => a.maxtemp)[i];
@@ -82,6 +54,7 @@
                     dicc[clave] = valor;
                 }
             };
+            console.log(datos.length);
             loadChart();
             loadBillboard();
         } catch (error) {

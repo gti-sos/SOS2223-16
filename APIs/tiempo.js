@@ -1,22 +1,36 @@
 import axios from "axios";
 
+let dicc = {};
+
 const options = {
   method: 'GET',
-  url: 'https://api-football-beta.p.rapidapi.com/leagues',
-  params: { id: '61' }, //id de la leage
+  url: 'https://myanimelist.p.rapidapi.com/anime/top/bypopularity',
   headers: {
     'X-RapidAPI-Key': 'd8479c0b7emsh6dfec3aab4ff8ddp1d8607jsnd7559b94f8d0',
-    'X-RapidAPI-Host': 'api-football-beta.p.rapidapi.com'
+    'X-RapidAPI-Host': 'myanimelist.p.rapidapi.com'
   }
 };
 
 try {
   const response = await axios.request(options);
-  console.log(response.data);
-  const d = response.data.response[0].seasons.map(s => s.year);
-  const l = response.data.results;
+  const data = response.data;
+  for(let i=0;i<data.length;i++){
+    let clave = data[i].title;
+    let valor = data[i].members;
+    dicc[clave] = valor;
+  }
   
-  console.log(l);
+  console.log(dicc);
 } catch (error) {
   console.error(error);
 }
+
+// for (let i=0;i<data.length;i++){
+//   for(let j=0;j<data[i].locationDetails.length;j++){
+//     let clave = data[i].locationDetails[j].name;
+//     let valor = data[i].locationDetails[j].adminLevel;
+//     if(valor > 0){
+//       dicc[clave] = valor;
+//     }
+//   }
+// }
