@@ -1,16 +1,16 @@
-<svelte:head>
+<!-- <svelte:head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-</svelte:head>
+</svelte:head> -->
 
 <script>
     // @ts-nocheck
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
     import axios from "axios";
-    import uPlot from 'uplot';
+    import * as anychart from 'anychart';
 
 
     let API = "/api/v2/cadiz-agroclimatic-informations-stats";
@@ -72,13 +72,15 @@
             const data = await res.json();
             result = JSON.stringify(data,null,2);
             datos = data;
-            for(let i = 0; i< datos.length;i++){
-                let clave = datos.map((a)=>a.date)[i];
-                let valor = null;
-                if(!dicc[clave] || valor > dicc[clave]){
-                    dicc[clave] = valor;
-                }
-            }
+            // for(let i = 0; i< datos.length;i++){
+            //     let clave = datos.map((a)=>a.date)[i];
+            //     let valor = null;
+            //     if(!dicc[clave] || valor > dicc[clave] || 
+            //     (valor != null && dicc[clave]==null)){
+            //         dicc[clave] = valor;
+            //     }
+            // }
+            console.log(dicc);
 
             for(let i = 0; i< datos.length;i++){
                 let clave = datos.map((a)=>a.date)[i];
@@ -97,31 +99,38 @@
     }
 
 // loadChart()
-    async function loadChart() {
-        const data = datos.map((d) => [new Date(d.date).getTime(), d.maxtemp]);
-    const opts = {
-        title: "Temperatura máxima",
-        scales: {
-            x: {
-                time: true,
-                auto: true,
-            },
-            y: {
-                auto: true,
-            },
-        },
-        series: [
-            {},
-        ],
-    };
-    const uplot = new uPlot(opts, [data], document.getElementById("chart"));
-    };
+async function loadChart() {
+  // Crear un objeto de datos para el gráfico de barras
+  const chartData = [];
+  for (const [clave, valor] of Object.entries(dicc2)){
+    chartData.push([clave, valor]);
+  }
+  for (const [clave, valor] of Object.entries(dicc)) {
+    chartData.push([clave, valor]);
+  }
 
-   
+  // Crear un gráfico de barras
+  const chart = anychart.bar();
+
+  var series = chart.splineArea(data);
+  // Asignar datos al gráfico
+  chart.data(chartData);
+
+  // Configurar título y etiquetas del eje x
+  chart.yAxis().title("Fecha");
+  chart.yAxis().labels()    
+
+  // Configurar título y etiquetas del eje y
+  chart.xAxis().title("Valor");
+
+  // Renderizar el gráfico en el elemento con el ID 'chart-container'
+  chart.container("chart-container");
+  chart.draw();
+}
 // -------------------
 </script>
 
 <main>
-    <div id="chart"></div>
+    <div id="chart-container" style="width: 600px; height: 700px;"></div>
     
 </main>
