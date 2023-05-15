@@ -119,7 +119,8 @@ function loadBackend_professionalorganisations_v2(app) {
         });
 
     });
-    /** llamada para grafica de años que devuelve numero de registros por año */
+
+    /** Call for the year chart, this will return all the professional organisations grouped by year */
 
     app.get(BASE_API_URL + "/professionalorganisations-stats/yearsTable", (req, res) => {
         db.find({}, function (err, professionalorganisations) {
@@ -134,6 +135,119 @@ function loadBackend_professionalorganisations_v2(app) {
             res.status(200).send(yearsProfessionalOrganisationsDict);
         });
     });
+
+    /** llamada para el grafo de burbujas, devolverá todos los datos agrupados por campos */
+    app.get(BASE_API_URL + "/professionalorganisations-stats/bubbleChart", (req, res) => {
+        let response = [];
+        let yearsBubble = {
+            name: 'Años',
+            data: []
+        };
+        let registryBubble = {
+            name: 'Numero de registro',
+            data: []
+        };
+        let professionalOrgBubble = {
+            name: 'Colegio Profesional',
+            data: []
+        };
+        let locationBubble = {
+            name: 'Localización',
+            data: []
+        };
+        let PhoneBubble = {
+            name: 'Número de teléfono',
+            data: []
+        };
+        let PostalCodeBubble = {
+            name: 'Código postal',
+            data: []
+        };
+        let AdressBubble = {
+            name: 'Calle',
+            data: []
+        };
+
+
+
+        db.find({}, function (err, professionalorganisations) {
+            professionalorganisations.forEach(element => {
+                if (yearsBubble.data.find(x => x.name == element.date.toString()) != undefined) {
+                    yearsBubble.data.find(x => x.name == element.date.toString()).value += 1;
+                } else {
+                    yearsBubble.data.push({
+                        name: element.date.toString(),
+                        value: 1
+                    })
+                }
+
+                if (registryBubble.data.find(x => x.name == element.registry_number.toString()) != undefined) {
+                    registryBubble.data.find(x => x.name == element.registry_number.toString()).value += 1;
+                } else {
+                    registryBubble.data.push({
+                        name: element.registry_number.toString(),
+                        value: 1
+                    })
+                }
+
+                if (professionalOrgBubble.data.find(x => x.name == element.professional_org) != undefined) {
+                    professionalOrgBubble.data.find(x => x.name == element.professional_org).value += 1;
+                } else {
+                    professionalOrgBubble.data.push({
+                        name: element.professional_org,
+                        value: 1
+                    })
+                }
+
+                if (locationBubble.data.find(x => x.name == element.location) != undefined) {
+                    locationBubble.data.find(x => x.name == element.location).value += 1;
+                } else {
+                    locationBubble.data.push({
+                        name: element.location,
+                        value: 1
+                    })
+                }
+
+                if (PhoneBubble.data.find(x => x.name == element.phone_number) != undefined) {
+                    PhoneBubble.data.find(x => x.name == element.phone_number).value += 1;
+                } else {
+                    PhoneBubble.data.push({
+                        name: element.phone_number,
+                        value: 1
+                    })
+                }
+
+                if (PostalCodeBubble.data.find(x => x.name == element.postal_code.toString()) != undefined) {
+                    PostalCodeBubble.data.find(x => x.name == element.postal_code.toString()).value += 1;
+                } else {
+                    PostalCodeBubble.data.push({
+                        name: element.postal_code.toString(),
+                        value: 1
+                    })
+                }
+
+                if (AdressBubble.data.find(x => x.name == element.adress) != undefined) {
+                    AdressBubble.data.find(x => x.name == element.adress).value += 1;
+                } else {
+                    AdressBubble.data.push({
+                        name: element.adress,
+                        value: 1
+                    })
+                }
+            });
+
+            response.push(yearsBubble);
+            response.push(registryBubble);
+            response.push(professionalOrgBubble);
+            response.push(locationBubble);
+            response.push(PhoneBubble);
+            response.push(PostalCodeBubble);
+            response.push(AdressBubble);
+            res.status(200).send(response);
+
+        });
+    });
+
     /** Count the number of Professional Organisations */
     app.get(BASE_API_URL + "/professionalorganisations-stats/count-professional-organisations", function (req, res) {
         //search
@@ -446,9 +560,6 @@ function loadBackend_professionalorganisations_v2(app) {
             return element;
         }
     }
-
-
-
 }
 
 export { loadBackend_professionalorganisations_v2 };
