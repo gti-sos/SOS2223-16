@@ -78,7 +78,7 @@
                 text: "Gráfica hecha con HighCharts",
             },
             xAxis: {
-                categories: datos.map((a) => `${a.reg_num}-${a.location}-${a.stations_id}`),
+                categories: datos.map((a) => `${a.reg_num}-${a.location}-${a.stations_id}-${a.date}`),
                 crosshair: true,
             },
             yAxis: {
