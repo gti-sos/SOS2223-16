@@ -119,7 +119,21 @@ function loadBackend_professionalorganisations_v2(app) {
         });
 
     });
+    /** llamada para grafica de años que devuelve numero de registros por año */
 
+    app.get(BASE_API_URL + "/professionalorganisations-stats/yearsTable", (req, res) => {
+        db.find({}, function (err, professionalorganisations) {
+            let yearsProfessionalOrganisationsDict = {};
+            professionalorganisations.forEach(element => {
+                if (element.date in yearsProfessionalOrganisationsDict) {
+                    yearsProfessionalOrganisationsDict[element.date] += 1;
+                } else {
+                    yearsProfessionalOrganisationsDict[element.date] = 1;
+                }
+            });
+            res.status(200).send(yearsProfessionalOrganisationsDict);
+        });
+    });
     /** Count the number of Professional Organisations */
     app.get(BASE_API_URL + "/professionalorganisations-stats/count-professional-organisations", function (req, res) {
         //search
@@ -432,6 +446,8 @@ function loadBackend_professionalorganisations_v2(app) {
             return element;
         }
     }
+
+
 
 }
 
