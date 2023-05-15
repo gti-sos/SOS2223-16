@@ -2,26 +2,50 @@
     // @ts-nocheck
     import { onMount } from 'svelte';
     import { dev } from "$app/environment";
-
+    import { chart } from 'svelte-apexcharts?client';
     const BASE_API_URL = "/api/v2"
-    let API = BASE_API_URL + "/professionalorganisations-stats";
-    if (dev) API = "http://localhost:8080" + API;
+    let API;
+    if (dev){
+        API = "http://localhost:8080" + BASE_API_URL+ "/professionalorganisations-stats";
+    }else{
+        API = BASE_API_URL + "/professionalorganisations-stats";
+    }
 
     let organisations = [];
     let result = "";
     let resultStatus = "";
-
     let currentPage=0;
     let numberOfPages=0;
     let numElements=0;
     let filterString = "";
-
     let message=null;
     let timeoutId=null;
     let messageColor="green";
+    let options =  {
+                chart: {
+                type: "bar",
+                },
+                series: [
+                {
+                    name: "Colegios profesionales",
+                    data: [],
+                },
+                ],
+                xaxis: {
+                categories: [],
+                },
+            };
+
 /**
  * Load Initial Data
 */
+
+onMount(async () => {
+
+
+        getOrganisations();
+    });
+
 async function initialData() {
             resultStatus = result = "";
             const res = await fetch(API+"/loadInitialData", {
@@ -31,11 +55,29 @@ async function initialData() {
             if(status == 201){
                 getOrganisations();
                 showMessage("Datos añadidos con éxito", true);
-
+                updateTable();
             }else{
                 showMessage("La base de datos ya contiene datos", false);
             }
 }
+/**Update table*/
+
+
+    async function updateTable(){
+        const res = await fetch(API+"/yearsTable", {
+                method: 'GET',
+            });
+            const resJSON= await res.json();
+            console.log(res);
+            console.log(resJSON);
+            options.series[0].data=[];
+            options.xaxis.categories=[];
+            for (const property in resJSON) {
+                options.series[0].data.push(resJSON[property]);
+                options.xaxis.categories.push(property);
+            }
+    }
+
 
 /**
  * Get all organisations
@@ -71,9 +113,6 @@ async function initialData() {
             const status = await res.status;
             resultStatus = status;
         }
-    onMount(async () => {
-        getOrganisations();
-    });
 
 
     let form = false;
@@ -94,7 +133,7 @@ async function initialData() {
             if(status == 200) {
                 getOrganisations();
                 showMessage("Borrado con éxito", true);
-
+                updateTable();
             }
         }
 
@@ -110,7 +149,7 @@ async function initialData() {
             if(status == 200) {
                 getOrganisations();
                 showMessage("Borrado con éxito", true);
-
+                updateTable();
             }
         } 
 
@@ -154,6 +193,7 @@ function editOrg(org) {
         if(status == 201) {
             getOrganisations();
             showMessage("Colegio profesional creado con éxito", true);
+            updateTable();
         }else if(status == 409){
             showMessage("El colegio profesional ya existe", false);
         }else{
@@ -186,6 +226,7 @@ const status = await res.status;
 if(status == 200) {
     getOrganisations();
     showMessage("Colegio profesional editado con éxito", true);
+    updateTable();
 }else if(status == 404){
     showMessage("El colegio profesional no existe", false);
 }else{
@@ -420,10 +461,19 @@ const filter = async event =>{
         <td colspan="9">No se han encontrado registros</td>
     </tr>
     {/if}
-    
-    
-    
-</table>
+</table><br>
+
+<!--Awesome Charting-->
+<div style = 
+"margin-left: 10px;
+width: 35%;
+border-radius: 16px;
+background-image: linear-gradient(131.83deg, #FFFAFA 0%, #FFF7F7 99.21%);"> 
+Gráfico que muestra los colegios porfesionales por año
+{#if options != null} 
+    <div use:chart={options} />
+{/if}
+</div><br>
 
 <!--Buttons that allow you to go to another page-->
 <div style="text-align:center;">
@@ -516,4 +566,3 @@ const filter = async event =>{
     {numberOfPages} 
     {/if}
 </div>
-
