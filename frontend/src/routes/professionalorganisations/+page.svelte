@@ -21,21 +21,9 @@
     let message=null;
     let timeoutId=null;
     let messageColor="green";
-    let options =  {
-                chart: {
-                type: "bar",
-                },
-                series: [
-                {
-                    name: "Colegios profesionales",
-                    data: [],
-                },
-                ],
-                xaxis: {
-                categories: [],
-                },
-            };
 
+
+    
 /**
  * Load Initial Data
 */
@@ -60,24 +48,6 @@ async function initialData() {
                 showMessage("La base de datos ya contiene datos", false);
             }
 }
-/**Update table*/
-
-
-    async function updateTable(){
-        const res = await fetch(API+"/yearsTable", {
-                method: 'GET',
-            });
-            const resJSON= await res.json();
-            console.log(res);
-            console.log(resJSON);
-            options.series[0].data=[];
-            options.xaxis.categories=[];
-            for (const property in resJSON) {
-                options.series[0].data.push(resJSON[property]);
-                options.xaxis.categories.push(property);
-            }
-    }
-
 
 /**
  * Get all organisations
@@ -312,9 +282,6 @@ const filter = async event =>{
 </script>
 
 <style>
-
-
-
 #table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -372,8 +339,8 @@ const filter = async event =>{
 }
 
 </style>
-<h1>Colegios Porfesionales</h1>
 
+<h1>Colegios Porfesionales</h1>
 
 <!--Table to filter organisations-->
     <form  on:submit={filter}>
@@ -462,18 +429,6 @@ const filter = async event =>{
     </tr>
     {/if}
 </table><br>
-
-<!--Awesome Charting-->
-<div style = 
-"margin-left: 10px;
-width: 35%;
-border-radius: 16px;
-background-image: linear-gradient(131.83deg, #FFFAFA 0%, #FFF7F7 99.21%);"> 
-Gráfico que muestra los colegios porfesionales por año
-{#if options != null} 
-    <div use:chart={options} />
-{/if}
-</div><br>
 
 <!--Buttons that allow you to go to another page-->
 <div style="text-align:center;">
