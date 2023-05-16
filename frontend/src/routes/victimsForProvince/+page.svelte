@@ -111,7 +111,7 @@
               placement: 'out',
             },
             {
-              type: 'all',
+             type: 'all',
               text: '%npv%',
               placement: 'in',
             },
@@ -137,7 +137,7 @@
           refAngle: 270,
         },
         series: [{
-            text: 'Docs',
+            text: 'Sevilla',
             values: [106541],
             backgroundColor: '#00BAF2',
             lineColor: '#00BAF2',
@@ -147,7 +147,7 @@
             },
           },
           {
-            text: 'Gallery',
+            text: 'Cadiz',
             values: [56711],
             backgroundColor: '#E80C60',
             lineColor: '#E80C60',
@@ -157,7 +157,7 @@
             },
           },
           {
-            text: 'Index',
+            text: 'Huelva',
             values: [43781],
             backgroundColor: '#9B26AF',
             lineColor: '#9B26AF',
