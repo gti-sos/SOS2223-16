@@ -10,6 +10,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@jridgewell/sourcemap-codec": "^1.4.15",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-node": "^1.2.3",
 		"@sveltejs/kit": "^1.5.0",
@@ -24,15 +25,13 @@
 		"@amcharts/amcharts4": "^4.10.35",
 		"@amcharts/amcharts5": "^5.3.12",
 		"anychart": "^8.11.0",
-
 		"apexcharts": "^3.40.0",
-		"svelte-apexcharts": "^1.0.2",
-		"sveltestrap": "^5.10.0",
 		"billboard.js": "^3.8.0-next.2",
 		"chart.js": "^4.3.0",
 		"d3": "^7.8.4",
 		"plottable": "^3.13.0",
+		"svelte-apexcharts": "^1.0.2",
+		"sveltestrap": "^5.10.0",
 		"uplot": "^1.6.24"
-
 	}
 }
