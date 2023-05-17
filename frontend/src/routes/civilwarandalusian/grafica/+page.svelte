@@ -343,7 +343,7 @@
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            nuevo highcharts
+            nuevo highcharts1
         </p>
     </figure>
     
