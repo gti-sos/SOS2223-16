@@ -1,190 +1,352 @@
-<!DOCTYPE html>
-<html>
+<svelte:head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-<head>
-  <meta charset="utf-8">
-  <title>ZingSoft Demo</title>
-  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
-  <style>
-    @import 'https://fonts.googleapis.com/css?family=Montserrat';
-    @import 'https://fonts.googleapis.com/css?family=Lato:400';
-    .chart--container {
-      height: 100%;
-      width: 100%;
-      min-height: 530px;
+</svelte:head>
+
+
+<script>
+     
+
+    //@ts-nocheck
+    import  {onMount} from 'svelte';
+    import { dev } from "$app/environment";
+    
+    let API = "/api/v2/civilwarandalusian-stats";
+    if (dev) API = "http://localhost:8080" + API;
+
+    onMount(async () =>{
+        loadChart();
+    });
+
+    async function getAPIDatos() {
+        //Get a mi api
+        var resultado = {};
+        resultStatus = result = "";
+        const res = await fetch(API, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+            for(let i=0;i<datos.length;i++){
+                let clave = datos.map((a) => a.province)[i];
+                let valor = datos.map((a) => a.victims)[i];
+                if(resultado.hasOwnProperty(clave)){
+                    resultado[clave] += valor;
+                    } else {
+                    resultado[clave] = valor;
+                    }
+                 };
+            console.log(datos.length);
+            loadChart();
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
     }
 
-    .zc-ref {
-      display: none;
-    }
-  </style>
-</head>
 
-<body>
-  <div id="myChart" class="chart--container"><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
-  <script>
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-    let chartConfig = {
-      gui: {
-        contextMenu: {
-          backgroundColor: '#306EAA', // sets background for entire contextMenu
-          button: {
-            backgroundColor: '#2D66A4',
-            lineColor: '#2D66A4',
-            visible: true,
-          },
-          docked: true,
-          gear: {
-            alpha: 1,
-            backgroundColor: '#2D66A4',
-          },
-          item: {
-            backgroundColor: '#306EAA',
-            borderColor: '#306EAA',
-            borderWidth: '0px',
-            color: '#fff',
-            fontFamily: 'Lato',
-          },
-          position: 'right',
+    async function loadChart(){
+
+        Highcharts.chart('container', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares. January, 2022',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>',
+        align: 'left'
+    },
+
+    accessibility: {
+        announceNewData: {
+            enabled: true
         },
-      },
-      graphset: [{
-        type: 'ring',
-        backgroundColor: '#FBFCFE',
-        title: {
-          text: 'Monthly Page Views',
-          fontColor: '#1E5D9E',
-          fontFamily: 'Lato',
-          fontSize: '14px',
-          padding: '15px',
-        },
-        subtitle: {
-          text: '06/10/20 - 07/11/20',
-          fontColor: '#777',
-          fontFamily: 'Lato',
-          fontSize: '12px',
-          padding: '5px',
-        },
-        legend: {
-          adjustLayout: true,
-          align: 'center',
-          backgroundColor: '#FBFCFE',
-          borderWidth: '0px',
-          item: {
-            cursor: 'pointer',
-            fontColor: '#777',
-            fontSize: '12px',
-            offsetX: '-6px',
-          },
-          marker: {
-            type: 'circle',
-            borderWidth: '0px',
-            cursor: 'pointer',
-            size: 5,
-          },
-          mediaRules: [{
-            maxWidth: '500px',
-            visible: false,
-          }, ],
-          toggleAction: 'remove',
-          verticalAlign: 'bottom',
-        },
-        plot: {
-          tooltip: {
-            text: '<span style="color:%color">Page Url: %t</span><br><span style="color:%color">Pageviews: %v</span>',
-            anchor: 'c',
-            backgroundColor: 'none',
-            borderWidth: '0px',
-            fontSize: '16px',
-            mediaRules: [{
-              maxWidth: '500px',
-              y: '54%',
-            }, ],
-            sticky: true,
-            thousandsSeparator: ',',
-            x: '50%',
-            y: '50%',
-          },
-          valueBox: [{
-              type: 'all',
-              text: '%t',
-              placement: 'out',
+        point: {
+            valueSuffix: '%'
+        }
+    },
+
+    plotOptions: {
+        series: {
+            borderRadius: 5,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}: {point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: 'Browsers',
+            colorByPoint: true,
+            data: [
+                {
+                    name: 'Chrome',
+                    y: 61.04,
+                    drilldown: 'Chrome'
+                },
+                {
+                    name: 'Safari',
+                    y: 9.47,
+                    drilldown: 'Safari'
+                },
+                {
+                    name: 'Edge',
+                    y: 9.32,
+                    drilldown: 'Edge'
+                },
+                {
+                    name: 'Firefox',
+                    y: 8.15,
+                    drilldown: 'Firefox'
+                },
+                {
+                    name: 'Other',
+                    y: 11.02,
+                    drilldown: null
+                }
+            ]
+        }
+    ],
+    drilldown: {
+        series: [
+            {
+                name: 'Chrome',
+                id: 'Chrome',
+                data: [
+                    [
+                        'v97.0',
+                        36.89
+                    ],
+                    [
+                        'v96.0',
+                        18.16
+                    ],
+                    [
+                        'v95.0',
+                        0.54
+                    ],
+                    [
+                        'v94.0',
+                        0.7
+                    ],
+                    [
+                        'v93.0',
+                        0.8
+                    ],
+                    [
+                        'v92.0',
+                        0.41
+                    ],
+                    [
+                        'v91.0',
+                        0.31
+                    ],
+                    [
+                        'v90.0',
+                        0.13
+                    ],
+                    [
+                        'v89.0',
+                        0.14
+                    ],
+                    [
+                        'v88.0',
+                        0.1
+                    ],
+                    [
+                        'v87.0',
+                        0.35
+                    ],
+                    [
+                        'v86.0',
+                        0.17
+                    ],
+                    [
+                        'v85.0',
+                        0.18
+                    ],
+                    [
+                        'v84.0',
+                        0.17
+                    ],
+                    [
+                        'v83.0',
+                        0.21
+                    ],
+                    [
+                        'v81.0',
+                        0.1
+                    ],
+                    [
+                        'v80.0',
+                        0.16
+                    ],
+                    [
+                        'v79.0',
+                        0.43
+                    ],
+                    [
+                        'v78.0',
+                        0.11
+                    ],
+                    [
+                        'v76.0',
+                        0.16
+                    ],
+                    [
+                        'v75.0',
+                        0.15
+                    ],
+                    [
+                        'v72.0',
+                        0.14
+                    ],
+                    [
+                        'v70.0',
+                        0.11
+                    ],
+                    [
+                        'v69.0',
+                        0.13
+                    ],
+                    [
+                        'v56.0',
+                        0.12
+                    ],
+                    [
+                        'v49.0',
+                        0.17
+                    ]
+                ]
             },
             {
-             type: 'all',
-              text: '%npv%',
-              placement: 'in',
+                name: 'Safari',
+                id: 'Safari',
+                data: [
+                    [
+                        'v15.3',
+                        0.1
+                    ],
+                    [
+                        'v15.2',
+                        2.01
+                    ],
+                    [
+                        'v15.1',
+                        2.29
+                    ],
+                    [
+                        'v15.0',
+                        0.49
+                    ],
+                    [
+                        'v14.1',
+                        2.48
+                    ],
+                    [
+                        'v14.0',
+                        0.64
+                    ],
+                    [
+                        'v13.1',
+                        1.17
+                    ],
+                    [
+                        'v13.0',
+                        0.13
+                    ],
+                    [
+                        'v12.1',
+                        0.16
+                    ]
+                ]
             },
-          ],
-          animation: {
-            effect: 'ANIMATION_EXPAND_VERTICAL',
-            sequence: 'ANIMATION_BY_PLOT_AND_NODE',
-          },
-          backgroundColor: '#FBFCFE',
-          borderWidth: '0px',
-          hoverState: {
-            cursor: 'hand',
-          },
-          slice: '60%',
-        },
-        plotarea: {
-          margin: '70px 0px 10px 0px',
-          backgroundColor: 'transparent',
-          borderRadius: '10px',
-          borderWidth: '0px',
-        },
-        scaleR: {
-          refAngle: 270,
-        },
-        series: [{
-            text: 'Sevilla',
-            values: [106541],
-            backgroundColor: '#00BAF2',
-            lineColor: '#00BAF2',
-            lineWidth: '1px',
-            marker: {
-              backgroundColor: '#00BAF2',
+            {
+                name: 'Edge',
+                id: 'Edge',
+                data: [
+                    [
+                        'v97',
+                        6.62
+                    ],
+                    [
+                        'v96',
+                        2.55
+                    ],
+                    [
+                        'v95',
+                        0.15
+                    ]
+                ]
             },
-          },
-          {
-            text: 'Cadiz',
-            values: [56711],
-            backgroundColor: '#E80C60',
-            lineColor: '#E80C60',
-            lineWidth: '1px',
-            marker: {
-              backgroundColor: '#E80C60',
-            },
-          },
-          {
-            text: 'Huelva',
-            values: [43781],
-            backgroundColor: '#9B26AF',
-            lineColor: '#9B26AF',
-            lineWidth: '1px',
-            marker: {
-              backgroundColor: '#9B26AF',
-            },
-          },
-        ],
-        noData: {
-          text: 'No Selection',
-          alpha: 0.6,
-          backgroundColor: '#20b2db',
-          bold: true,
-          fontSize: '18px',
-          textAlpha: 0.9,
-        },
-      }, ],
-    };
-
-    zingchart.render({
-      id: 'myChart',
-      data: chartConfig,
-      height: '100%',
-      width: '100%',
+            {
+                name: 'Firefox',
+                id: 'Firefox',
+                data: [
+                    [
+                        'v96.0',
+                        4.17
+                    ],
+                    [
+                        'v95.0',
+                        3.33
+                    ],
+                    [
+                        'v94.0',
+                        0.11
+                    ],
+                    [
+                        'v91.0',
+                        0.23
+                    ],
+                    [
+                        'v78.0',
+                        0.16
+                    ],
+                    [
+                        'v52.0',
+                        0.15
+                    ]
+                ]
+            }
+        ]
+    }
     });
-  </script>
-</body>
+}
 
-</html>
+
+</script>
+
+
+<main>
+    <h1>
+        Graph1
+    </h1>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            nuevo highcharts
+        </p>
+    </figure>
+    
+
+</main>
+

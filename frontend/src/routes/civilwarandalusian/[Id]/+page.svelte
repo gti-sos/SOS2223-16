@@ -99,7 +99,7 @@
 </script>
 
 {#if resultStatus === 404}
-    <h1>La fosa buscada no existe.</h1>
+  //  <h1>La fosa buscada no existe.</h1>
 {/if}
 {#if resultStatus === 200}
     <h1>Información de la fosa</h1>
