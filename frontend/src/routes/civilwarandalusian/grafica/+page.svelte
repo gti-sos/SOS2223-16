@@ -16,21 +16,51 @@
     let API = "/api/v2/civilwarandalusian-stats";
     if (dev) API = "http://localhost:8080" + API;
 
+    onMount(async () =>{
+        getAPIDatos();
+    });
+
+    async function getAPIDatos() {
+        //Get a mi api
+        var resultado = {};
+        resultStatus = result = "";
+        const res = await fetch(API, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+            for(let i=0;i<datos.length;i++){
+                let clave = datos.map((a) => a.province)[i];
+                let valor = datos.map((a) => a.victims)[i];
+                if(resultado.hasOwnProperty(clave)){
+                    resultado[clave] += valor;
+                    } else {
+                    resultado[clave] = valor;
+                    }
+                 };
+            console.log(datos.length);
+            loadChart();
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
+
+
     async function loadChart(){
         var colors = Highcharts.getOptions().colors,
         categories = [
-        'Chrome',
-        'Safari',
-        'Edge',
-        'Firefox',
-        'Other'
+            resultados[clave]
          ],
         data = [
         {
             y: 61.04,
             color: colors[2],
             drilldown: {
-                name: 'Chrome',
+                name: resultados[clave][0],
                 categories: [
                     'Chrome v97.0',
                     'Chrome v96.0',
@@ -60,31 +90,7 @@
                     'Chrome v49.0'
                 ],
                 data: [
-                    36.89,
-                    18.16,
-                    0.54,
-                    0.7,
-                    0.8,
-                    0.41,
-                    0.31,
-                    0.13,
-                    0.14,
-                    0.1,
-                    0.35,
-                    0.17,
-                    0.18,
-                    0.17,
-                    0.21,
-                    0.1,
-                    0.16,
-                    0.43,
-                    0.11,
-                    0.16,
-                    0.15,
-                    0.14,
-                    0.11,
-                    0.13,
-                    0.12
+                    resultados[valor][0]
                 ]
             }
         },
@@ -268,9 +274,7 @@
     });
     }
 
-    onMount(async () =>{
-        loadChart();
-    });
+    
 
 
 </script>

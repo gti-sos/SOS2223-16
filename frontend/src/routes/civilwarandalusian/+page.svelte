@@ -497,7 +497,7 @@ async function prevPage() {
     <button type="submit">Buscar</button>
 </form>
 <br />
-br />
+<br />
 <form on:submit|preventDefault={getOrganisations}>
     <label>
         buscar por datos act:
