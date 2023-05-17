@@ -57,7 +57,7 @@
          ],
         data = [
         {
-            y: 61.04,
+            y: resultados[valor],
             color: colors[2],
             drilldown: {
                 name: resultados[clave][0],
@@ -144,7 +144,7 @@
             y: 8.15,
             color: colors[1],
             drilldown: {
-                name: 'Firefox',
+                name:  resultados[clave][0],
                 categories: [
                     'Firefox v96.0',
                     'Firefox v95.0',
