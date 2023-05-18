@@ -15,12 +15,7 @@
     let API = "/api/v2/cadiz-agroclimatic-informations-stats";
     if (dev) API = "http://localhost:8080" + API;
 
-    let data2 = null;
-    let error = null;
-    let datos2 = null;
     let datos = null;
-    let data = null;
-    let responsse = null;
     let result2 = "";
     let resultStatus2 = "";
     let result = "";
@@ -118,7 +113,7 @@
                 type: "areaspline",
             },
             title: {
-                text: `Estadísticas agroclimáticas y Magnitud de terremotos"`,
+                text: `Estadísticas agroclimáticas y Magnitud de terremotos`,
             },
             subtitle: {
                 text: "Gráfica hecha con HighCharts y tipo areaspline",

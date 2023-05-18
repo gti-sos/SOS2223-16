@@ -9,12 +9,9 @@
     let API = "/api/v2/cadiz-agroclimatic-informations-stats";
     if (dev) API = "http://localhost:8080" + API;
 
-    let data2 = null;
     let error = null;
-    let datos2 = null;
     let datos = null;
     let data = null;
-    let responsse = null;
     let result2 = "";
     let resultStatus2 = "";
     let result = "";
@@ -65,14 +62,6 @@
             const data = await res.json();
             result = JSON.stringify(data,null,2);
             datos = data;
-            // for(let i = 0; i< datos.length;i++){
-            //     let clave = datos.map((a)=>a.date)[i];
-            //     let valor = null;
-            //     if(!dicc[clave] || valor > dicc[clave] || 
-            //     (valor != null && dicc[clave]==null)){
-            //         dicc[clave] = valor;
-            //     }
-            // }
             console.log(dicc);
 
             for(let i = 0; i< datos.length;i++){
@@ -93,7 +82,6 @@
 
 // loadChart()
 async function loadChart() {
-  // Crear un objeto de datos para el gráfico de barras
   const chartData = [];
   for (const [clave, valor] of Object.entries(dicc2)){
     chartData.push([clave, valor]);
@@ -101,22 +89,11 @@ async function loadChart() {
   for (const [clave, valor] of Object.entries(dicc)) {
     chartData.push([clave, valor]);
   }
-
-  // Crear un gráfico de barras
   const chart = anychart.bar();
-
   var series = chart.splineArea(data);
-  // Asignar datos al gráfico
   chart.data(chartData);
-
-  // Configurar título y etiquetas del eje x
-  chart.yAxis().title("Fecha");
-  chart.yAxis().labels()    
-
-  // Configurar título y etiquetas del eje y
-  chart.xAxis().title("Valor");
-
-  // Renderizar el gráfico en el elemento con el ID 'chart-container'
+  chart.yAxis().title("Valor");
+  chart.yAxis().labels();
   chart.container("chart-container");
   chart.draw();
 }
@@ -124,6 +101,6 @@ async function loadChart() {
 </script>
 
 <main>
+    <h1>Temperaturas anuales y número de espectadores de anime</h1>
     <div id="chart-container" style="width: 600px; height: 700px;"></div>
-    
 </main>

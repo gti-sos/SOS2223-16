@@ -59,6 +59,8 @@
     }
     onMount(async () => {
             await languagesAPI();
+            await pokemonAPI();
+
         });
 
 
@@ -109,10 +111,6 @@
         }]
     }); 
     }
-    onMount(async () => {
-            await pokemonAPI();
-    });
-
 </script>
 
 <style>

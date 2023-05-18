@@ -15,12 +15,8 @@
     let API = "/api/v2/cadiz-agroclimatic-informations-stats";
     if (dev) API = "http://localhost:8080" + API;
 
-    let data2 = null;
     let error = null;
-    let datos2 = null;
     let datos = null;
-    let data = null;
-    let responsse = null;
     let result2 = "";
     let resultStatus2 = "";
     let result = "";
@@ -70,7 +66,6 @@
                     dicc[clave] = data2.ingredients[i].servingSize.grams;
                 }
             }
-            // console.log(dicc);
         } catch (err) {
             error = err;
         }
@@ -117,7 +112,7 @@
                 type: "column",
             },
             title: {
-                text: `Estadísticas agroclimáticas y Gramos por ingredientes de "cake"`,
+                text: `Estadísticas agroclimáticas y Gramos por ingredientes de un pastel`,
             },
             subtitle: {
                 text: "Gráfica hecha con HighCharts y tipo barra",
@@ -168,5 +163,4 @@
     <figure class="highcharts-figure">
         <div id="container2"></div>
     </figure>
-    
 </main>

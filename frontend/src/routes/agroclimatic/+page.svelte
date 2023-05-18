@@ -297,17 +297,7 @@
     </label>
     <button type="submit">Buscar</button>
 </form>
-<!-- <br />
-<br />
-<form on:submit|preventDefault={getDatos}>
-    <label>
-        Desplazamiento:
-        <input type="number" bind:value={offset} />
-        Límite:
-        <input type="number" bind:value={limit} />
-    </label>
-    <button type="submit">Buscar</button>
-</form> -->
+
 <br />
 <br />
 <form on:submit|preventDefault={getDatos}>

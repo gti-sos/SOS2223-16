@@ -12,7 +12,6 @@
     let error = null;
     let datos2 = null;
     let datos = null;
-    let data = null;
     let responsse = null;
     let result2 = "";
     let resultStatus2 ="";
@@ -83,60 +82,11 @@
         resultStatus = status;
     }
 
-// loadChart()
-    // async function loadChart() {
-    //     Highcharts.chart("container1", {
-    //         chart: {
-    //             type: "column",
-    //         },
-    //         title: {
-    //             text: "Estadísticas agroclimáticas y Leage de Futbol",
-    //         },
-    //         subtitle: {
-    //             text: "Gráfica hecha con HighCharts",
-    //         },
-    //         xAxis: {
-    //             categories: Object.keys(dicc),
-    //             crosshair: true,
-    //         },
-    //         yAxis: {
-    //             min: 0,
-    //             title: {
-    //                 text: "Valor",
-    //             },
-    //         },
-    //         tooltip: {
-    //             headerFormat:
-    //                 '<span style="font-size:10px">{point.key}</span><table>',
-    //             pointFormat:
-    //                 '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-    //                 '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-    //             footerFormat: "</table>",
-    //             shared: true,
-    //             useHTML: true,
-    //         },
-    //         plotOptions: {
-    //             column: {
-    //                 pointPadding: 0.2,
-    //                 borderWidth: 0,
-    //             },
-    //         },
-    //         series: [
-    //             {
-    //                 name: "Leage",
-    //                 data: Object.values(dicc),
-    //             },
-    //             {
-    //                 name: "Temperatura Media",
-    //                 data: Object.values(dicc2),
-    //             },                
-    //         ],
-    //     });
-    // }
+
 //-------
     function loadChart() {
         const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'radar',
             data: {
                 labels: Object.keys(dicc),
@@ -168,17 +118,8 @@
 
 </script>
 
-<!-- <main>
-    <figure class="highcharts-figure">
-        <div id="container1"></div>
-        <h4 class="highcharts-description">
-         
-        </h4>
-    </figure>
-    
-</main> -->
 <main>
-    <h1>Estadísticas agroclimáticas y Leage de Futbol</h1>
+    <h5>Estadísticas agroclimáticas y Leage de Fútbol</h5>
     <h5>Gráfica hecha con Chart.js y tipo radar</h5>
     <canvas id="myChart"></canvas>
 </main>
