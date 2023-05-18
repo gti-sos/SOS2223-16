@@ -1,6 +1,5 @@
 import axios from 'axios';
 import datastore from 'nedb';
-import { element } from 'svelte/internal';
 const db = new datastore();
 const BASE_API_URL = "/api/v2"
 
