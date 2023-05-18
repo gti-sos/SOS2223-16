@@ -1,4 +1,6 @@
+import axios from 'axios';
 import datastore from 'nedb';
+import { element } from 'svelte/internal';
 const db = new datastore();
 const BASE_API_URL = "/api/v2"
 
@@ -118,6 +120,87 @@ function loadBackend_professionalorganisations_v2(app) {
             }
         });
 
+    });
+
+    /** Languages API */
+    app.get(BASE_API_URL + "/professionalorganisations-stats/languages", (req, res) => {
+        const options = {
+            method: 'GET',
+            url: 'https://api.languagetoolplus.com/v2/languages',
+        };
+
+        axios.request(options).then(function (response) {
+            let languagesArray = [];
+            response.data.forEach(element => {
+                if (languagesArray.find(x => x.name == element.name) != undefined) {
+                    languagesArray.find(x => x.name == element.name).weight += 1;
+                } else {
+                    languagesArray.push({
+                        "name": element.name,
+                        "weight": 1
+                    });
+                }
+            });
+            res.send(languagesArray);
+
+        }).catch(function (error) {
+            console.error(error);
+            res.status(400);
+
+        });
+    });
+
+    /** Pokemon API */
+    app.get(BASE_API_URL + "/professionalorganisations-stats/pokemon", (req, res) => {
+        const options = {
+            method: 'GET',
+            url: 'https://pokeapi.co/api/v2/pokemon/pikachu',
+        };
+
+        axios.request(options).then(function (response) {
+            let pikachuStatsArray = [];
+            const pikachuTotal = response.data.stats.reduce((total, objeto) => total + objeto.base_stat, 0);
+            response.data.stats.forEach(element => {
+                pikachuStatsArray.push({
+                    "name": element.stat.name,
+                    "y": element.base_stat * 100 / pikachuTotal,
+                    "drilldown": element.stat.name
+                });
+            });
+            res.send(pikachuStatsArray);
+
+        }).catch(function (error) {
+            console.error(error);
+            res.status(400);
+
+        });
+
+    });
+
+    /** Spotify API */
+    app.get(BASE_API_URL + "/professionalorganisations-stats/spotify", (req, res) => {
+        const options = {
+            method: 'GET',
+            url: 'https://spotify23.p.rapidapi.com/search/',
+            params: {
+                q: 'pop',
+                type: 'albums',
+                offset: '0',
+                limit: '100',
+                numberOfTopResults: '5'
+            },
+            headers: {
+                'X-RapidAPI-Key': 'b58e867985mshf07d32cb259174cp1f8199jsn4f949cac1e2c',
+                'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+            }
+        };
+        axios.request(options).then(function (response) {
+            let MusicArray = [];
+            console.log(response.data);
+            res.send(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
     });
 
     /** Call for the year chart, this will return all the professional organisations grouped by year */
@@ -560,6 +643,10 @@ function loadBackend_professionalorganisations_v2(app) {
             return element;
         }
     }
+
+
+
 }
 
 export { loadBackend_professionalorganisations_v2 };
+

@@ -32,27 +32,26 @@
                     },
                 };
     
-    /**Update table*/
+    /**AwesomeCharting*/
     async function updateTable(){
             const res = await fetch(API+"/yearsTable", {
                     method: 'GET',
-                });
-                const resJSON= await res.json();
-                console.log(res);
-                console.log(resJSON);
-                options.series[0].data=[];
-                options.xaxis.categories=[];
-                for (const property in resJSON) {
-                    options.series[0].data.push(resJSON[property]);
-                    options.xaxis.categories.push(property);
-                }
-        }
-
+            });
+            const resJSON= await res.json();
+            console.log(res);
+            console.log(resJSON);
+            options.series[0].data=[];
+            options.xaxis.categories=[];
+            for (const property in resJSON) {
+                options.series[0].data.push(resJSON[property]);
+                options.xaxis.categories.push(property);
+            }
+    }
         onMount(async () => {
             await updateTable();
         });
     
-    /**Update table*/
+    /**HighChart*/
     async function loadChart(){
             const res = await fetch(API+"/bubbleChart", {
                     method: 'GET',
@@ -156,8 +155,7 @@
 }
 </style>
 
-<!--Awesome Charting-->
-
+<!--Charts-->
 <table>
     <tr>
         <td style="width: 50%;">
