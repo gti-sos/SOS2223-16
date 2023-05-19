@@ -1,13 +1,24 @@
 import Datastore from 'nedb';
+import request from "request";
 const db = new Datastore();
 
 function loadBackend_agroclimaticV2(app) {
+
+    
 
     app.get("/api/v2/cadiz-agroclimatic-informations-stats/docs", (req, res) => {
         res.redirect('https://documenter.getpostman.com/view/26036256/2s93Xwy47A');
     });
 
+    app.use("/api/v2/cadiz-agroclimatic-informations-stats/proxy",function(req,res){
+        let urlHost = "https://api-football-beta.p.rapidapi.com";
+        let url = urlHost + req.url;
+        console.log('piped: proxy' + req.url);
+        console.log(url);
+        req.pipe(request(url)).pipe(res);
+    });
 
+    
     const INITIAL_DATA = [
         {
             "date": 2005,

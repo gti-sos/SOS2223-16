@@ -30,7 +30,7 @@
 // Get datos
     async function getDatos(){
         try{
-            const response = await fetch( "https://api-football-beta.p.rapidapi.com/leagues/seasons", {
+            const response = await fetch( API+"/proxy/leagues/seasons", {
                 headers: {
                     "X-RapidAPI-Host": "api-football-beta.p.rapidapi.com",
                     "X-RapidAPI-Key":"d8479c0b7emsh6dfec3aab4ff8ddp1d8607jsnd7559b94f8d0",
