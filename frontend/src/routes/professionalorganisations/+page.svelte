@@ -46,7 +46,6 @@ async function initialData() {
             if(status == 201){
                 getOrganisations();
                 showMessage("Datos añadidos con éxito", true);
-                updateTable();
             }else{
                 showMessage("La base de datos ya contiene datos", false);
             }
@@ -106,7 +105,6 @@ async function initialData() {
             if(status == 200) {
                 getOrganisations();
                 showMessage("Borrado con éxito", true);
-                updateTable();
             }
         }
 
@@ -122,7 +120,6 @@ async function initialData() {
             if(status == 200) {
                 getOrganisations();
                 showMessage("Borrado con éxito", true);
-                updateTable();
             }
         } 
 
@@ -166,7 +163,6 @@ function editOrg(org) {
         if(status == 201) {
             getOrganisations();
             showMessage("Colegio profesional creado con éxito", true);
-            updateTable();
         }else if(status == 409){
             showMessage("El colegio profesional ya existe", false);
         }else{
@@ -199,7 +195,6 @@ const status = await res.status;
 if(status == 200) {
     getOrganisations();
     showMessage("Colegio profesional editado con éxito", true);
-    updateTable();
 }else if(status == 404){
     showMessage("El colegio profesional no existe", false);
 }else{

@@ -20,6 +20,10 @@ test('navigate to professional organisations page', async ({ page }) => {
   // Click to get data.
   await page.getByRole('button', { name: 'Insertar datos de prueba' }).click();
 
+  // Wait to avoid false negatives.
+  await page.waitForTimeout(2000); // waits for 2 seconds
+
+
   //expect to have data.
   await expect((await page.locator(".organisationRow").all()).length).toBeGreaterThan(5);
 });
