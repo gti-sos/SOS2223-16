@@ -2,7 +2,6 @@
     // @ts-nocheck
     import { onMount } from 'svelte';
     import { dev } from "$app/environment";
-    import { chart } from 'svelte-apexcharts?client';
     const BASE_API_URL = "/api/v2"
     let API;
     if (dev){

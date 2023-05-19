@@ -21,13 +21,39 @@
             API = BASE_API_URL + "/professionalorganisations-stats";
         }
 
-    /**Lenguages API*/
-    async function languagesAPI(){
-        const res = await fetch(API+"/languages", {
+    
+    
+    onMount(async () => {
+            await languagesAPI();
+            await pokemonAPI();
+            await spotifyAPI();
+            await MovieAPI();
+
+        });
+
+/**Lenguages API*/
+async function languagesAPI(){
+        console.log("API")
+        const res = await fetch(API+"/proxy/languages", {
             method: 'GET',
         });
         const resJSON= await res.json();
+
         console.log(resJSON);
+
+        let languagesArray = [];
+        resJSON.forEach(element => {
+            let existingLanguage = languagesArray.find(x => x.name === element.name);
+            if (existingLanguage !== undefined) {
+                    existingLanguage.weight += 1;
+                } else {
+                    languagesArray.push({
+                        name: element.name,
+                        weight: 1
+                    });
+                }
+            });
+        
         Highcharts.chart('container', {
         accessibility: {
             screenReaderSection: {
@@ -39,7 +65,7 @@
                 },
                 series: [{
                     type: 'wordcloud',
-                    data: resJSON,
+                    data: languagesArray,
                     name: 'Occurrences'
                 }],
                     title: {
@@ -47,7 +73,7 @@
                         align: 'left'
                     },
                     subtitle: {
-                        text: 'según paises',
+                        text: 'uso de proxy para acceder a la API',
                         align: 'left'
                     },
                     tooltip: {
@@ -55,13 +81,7 @@
                     }
                 
         });
-    
     }
-    onMount(async () => {
-            await languagesAPI();
-            await pokemonAPI();
-
-        });
 
 
     /**Pokemon API*/
@@ -110,6 +130,131 @@
             data: resJSON
         }]
     }); 
+    }
+
+    /**Spotify API*/
+    async function spotifyAPI(){
+        const res = await fetch(API+"/spotify", {
+            method: 'GET',
+        });
+        const resJSON= await res.json();
+        Highcharts.chart('container3', {
+            title: {
+            text: 'Integración entre dos APIs: Spotify y Professional Organisations'
+            },
+        yAxis: {
+            min: 0
+        },
+        series: [
+            {
+                type: 'scatter',
+                name: 'Nuevos Colegios Profesionales',
+                data: resJSON.professionalorganisations,
+                marker: {
+                    radius: 6
+                },      
+            }, 
+            {
+                type: 'scatter',
+                name: 'Álbumes de Spotify de género pop publicados',
+                data: resJSON.spotify,
+                marker: {
+                    radius: 4
+                }
+            }]
+        });
+    }
+
+    /**Movie API*/
+    async function MovieAPI(){
+        const res = await fetch(API+"/movies", {
+            method: 'GET',
+        });
+        const resJSON= await res.json();
+        var chart = Highcharts.chart('container4', {
+            chart: {
+            type: 'column'
+            },
+
+            title: {
+            text: 'Integración entre dos APIs: Películas de Harry Potter y Professional Organisations'
+            },
+
+            subtitle: {
+            text: 'Haz click en los botones para cambiar el tamaño del gráfico'
+            },
+
+            legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+            },
+
+            xAxis: {
+            categories: resJSON.HarryPotter[0],
+            labels: {
+                x: -10
+            }
+            },
+
+            yAxis: {
+            allowDecimals: false,
+            title: {
+                text: 'Amount'
+            }
+            },
+
+            series: [{
+            name: 'Películas de Harry Potter',
+            data: resJSON.HarryPotter,
+            }, {
+            name: 'Colegios Profesionales',
+            data: resJSON.professionalorganisations,
+            }],
+
+            responsive: {
+            rules: [{
+                condition: {
+                maxWidth: 500
+                },
+                chartOptions: {
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    layout: 'horizontal'
+                },
+                yAxis: {
+                    labels: {
+                    align: 'left',
+                    x: 0,
+                    y: -5
+                    },
+                    title: {
+                    text: null
+                    }
+                },
+                subtitle: {
+                    text: null
+                },
+                credits: {
+                    enabled: false
+                }
+                }
+            }]
+            }
+});
+
+document.getElementById('small').addEventListener('click', function () {
+chart.setSize(400);
+});
+
+document.getElementById('large').addEventListener('click', function () {
+chart.setSize(600);
+});
+
+document.getElementById('auto').addEventListener('click', function () {
+chart.setSize(null);
+});
     }
 </script>
 
@@ -166,4 +311,12 @@ background: #f1f7ff;
     <figure class="highcharts-figure">
         <div id="container2"></div>
     </figure>
+    <figure class="highcharts-figure">
+        <div id="container3"></div>
+    </figure>
+    <figure class="highcharts-figure">
+        <div id="container4"></div>
+        <button id="small">Pequeño</button>
+        <button id="large">Mediano</button>
+        <button id="auto">Grande</button>
 </main>

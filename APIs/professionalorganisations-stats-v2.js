@@ -1,9 +1,20 @@
 import axios from 'axios';
 import datastore from 'nedb';
+import request from "request";
+
 const db = new datastore();
 const BASE_API_URL = "/api/v2"
 
 function loadBackend_professionalorganisations_v2(app) {
+
+
+    /** PROXY  */
+    app.use("/api/v2/professionalorganisations-stats/proxy", function (req, res) {
+        let urlHost = "https://api.languagetoolplus.com/v2/";
+        let url = urlHost + req.url;
+        console.log('piped: proxy ' + req.url);
+        req.pipe(request(url)).pipe(res);
+    });
 
     app.get(BASE_API_URL + "/professionalorganisations-stats/docs", (req, res) => {
 
@@ -106,6 +117,7 @@ function loadBackend_professionalorganisations_v2(app) {
 
     ];
 
+
     /** GET ALL */
     app.get(BASE_API_URL + "/professionalorganisations-stats/loadInitialData", (req, res) => {
 
@@ -119,34 +131,6 @@ function loadBackend_professionalorganisations_v2(app) {
             }
         });
 
-    });
-
-    /** Languages API */
-    app.get(BASE_API_URL + "/professionalorganisations-stats/languages", (req, res) => {
-        const options = {
-            method: 'GET',
-            url: 'https://api.languagetoolplus.com/v2/languages',
-        };
-
-        axios.request(options).then(function (response) {
-            let languagesArray = [];
-            response.data.forEach(element => {
-                if (languagesArray.find(x => x.name == element.name) != undefined) {
-                    languagesArray.find(x => x.name == element.name).weight += 1;
-                } else {
-                    languagesArray.push({
-                        "name": element.name,
-                        "weight": 1
-                    });
-                }
-            });
-            res.send(languagesArray);
-
-        }).catch(function (error) {
-            console.error(error);
-            res.status(400);
-
-        });
     });
 
     /** Pokemon API */
@@ -194,11 +178,88 @@ function loadBackend_professionalorganisations_v2(app) {
             }
         };
         axios.request(options).then(function (response) {
-            let MusicArray = [];
-            console.log(response.data);
-            res.send(response.data);
+            let musicArray = [];
+            let professionalOrgArray = [];
+            response.data.albums.items.forEach(album => {
+                const year = album.data.date.year;
+                if (musicArray.find(x => x[0] == year) != undefined) {
+                    musicArray.find(x => x[0] == year)[1] += 1;
+                } else {
+                    musicArray.push([
+                        year,
+                        1
+                    ]);
+                }
+            });
+            db.find({}, function (err, professionalorganisations) {
+                professionalorganisations.forEach(element => {
+                    const date = element.date;
+                    if (professionalOrgArray.find(x => x[0] == date) != undefined) {
+                        professionalOrgArray.find(x => x[0] == date)[1] += 1;
+                    } else {
+                        professionalOrgArray.push([
+                            date,
+                            1
+                        ]);
+                    }
+                });
+                res.send({ "spotify": musicArray, "professionalorganisations": professionalOrgArray });
+            });
+
+
         }).catch(function (error) {
-            console.error(error);
+            res.status(400);
+        });
+    });
+
+    /** Movies API */
+    app.get(BASE_API_URL + "/professionalorganisations-stats/movies", (req, res) => {
+        const options = {
+            method: 'GET',
+            url: 'https://movies-tv-shows-database.p.rapidapi.com/',
+            params: {
+                title: 'Harry Potter'
+            },
+            headers: {
+                Type: 'get-movies-by-title',
+                'X-RapidAPI-Key': 'b58e867985mshf07d32cb259174cp1f8199jsn4f949cac1e2c',
+                'X-RapidAPI-Host': 'movies-tv-shows-database.p.rapidapi.com'
+            }
+        };
+
+        axios.request(options).then(function (response) {
+            let moviesArray = [];
+            let professionalOrgArray = [];
+            response.data.movie_results.forEach(movie => {
+                const year = movie.year;
+                if (moviesArray.find(x => x.year == year) != undefined) {
+                    moviesArray.find(x => x.year == year)[1] += 1;
+                } else {
+                    moviesArray.push([
+                        year,
+                        1
+                    ]);
+                }
+            });
+            db.find({}, function (err, professionalorganisations) {
+                professionalorganisations.forEach(element => {
+                    const date = element.date;
+                    if (professionalOrgArray.find(x => x[0] == date) != undefined) {
+                        professionalOrgArray.find(x => x[0] == date)[1] += 1;
+                    } else {
+                        professionalOrgArray.push([
+                            date,
+                            1
+                        ]);
+                    }
+                });
+                res.send({ "HarryPotter": moviesArray, "professionalorganisations": professionalOrgArray });
+            });
+
+
+        }).catch(function (error) {
+            console.log(error);
+            res.status(400);
         });
     });
 
@@ -217,6 +278,7 @@ function loadBackend_professionalorganisations_v2(app) {
             res.status(200).send(yearsProfessionalOrganisationsDict);
         });
     });
+
 
     /** llamada para el grafo de burbujas, devolverá todos los datos agrupados por campos */
     app.get(BASE_API_URL + "/professionalorganisations-stats/bubbleChart", (req, res) => {
