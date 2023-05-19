@@ -1,5 +1,5 @@
 <script>
-    import bill from "./integ1_Chart.svelte";
+    import bill from "./integ1_Chart_proxy.svelte";
     import intt from "./integ2_HighChart.svelte";
     import int2 from "./integ3_HighChart2.svelte";
     import int3 from "./integ4.svelte";

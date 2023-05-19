@@ -23,7 +23,7 @@
 
 // onMount
     onMount(async () => {
-            await getDatos();
+        await getDatos();
     });
 // -------
 
