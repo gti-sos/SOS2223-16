@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Inicio</title>
+</svelte:head>
+
 <body style="text-align: center">
 <h1>SOS2223-16</h1>
 

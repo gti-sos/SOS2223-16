@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Colegios Profesionales</title>
+</svelte:head>
+
 <script>
     // @ts-nocheck
     import { onMount } from 'svelte';
@@ -409,7 +413,7 @@ const filter = async event =>{
     {/if}
 
     {#each organisations as organisation}
-    <tr>
+    <tr class="organisationRow">
         <td>{organisation.professional_org}</td>
         <td>{organisation.date}</td>
         <td>{organisation.registry_number}</td>
