@@ -1,10 +1,10 @@
-# .github/workflows/deploy.yml
 name: Deploy to Cloud Run
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   deploy:
     timeout-minutes: 20
