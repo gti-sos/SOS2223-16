@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Estadísticas agroclimáticas de Cádiz</title>
+</svelte:head>
 <script>
     // @ts-nocheck
 
@@ -221,7 +224,7 @@
 {#if mensaje === 40}
     <h1>No hay ningún dato que coincida</h1>
 {/if}
-<title>Estadísticas agroclimáticas de Cádiz</title>
+
 
 <br />
 
