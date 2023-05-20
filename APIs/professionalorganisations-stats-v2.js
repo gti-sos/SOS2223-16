@@ -263,6 +263,25 @@ function loadBackend_professionalorganisations_v2(app) {
         });
     });
 
+    /** All stats graph */
+    app.get(BASE_API_URL + "/analytics/professionalorganisations", (req, res) => {
+        let professionalOrgArray = [];
+        db.find({}, function (err, professionalorganisations) {
+            professionalorganisations.forEach(element => {
+                const date = element.date;
+                if (professionalOrgArray.find(x => x[0] == date) != undefined) {
+                    professionalOrgArray.find(x => x[0] == date)[1] += 1;
+                } else {
+                    professionalOrgArray.push([
+                        date,
+                        1
+                    ]);
+                }
+            });
+            res.send(professionalOrgArray);
+        });
+    });
+
     /** Call for the year chart, this will return all the professional organisations grouped by year */
 
     app.get(BASE_API_URL + "/professionalorganisations-stats/yearsTable", (req, res) => {
