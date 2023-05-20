@@ -221,7 +221,7 @@
 {#if mensaje === 40}
     <h1>No hay ningún dato que coincida</h1>
 {/if}
-<h1>Estadísticas agroclimáticas de Cádiz</h1>
+<title>Estadísticas agroclimáticas de Cádiz</title>
 
 <br />
 
