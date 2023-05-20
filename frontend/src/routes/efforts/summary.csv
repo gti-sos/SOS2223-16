@@ -1,0 +1,81 @@
+﻿Project,Client,Description,Duration
+SOS2223-16,,#10 Crear cuenta postman,00:45:44
+SOS2223-16,,#11 Añadir nuevos datos del documento de trabajo,00:45:28
+SOS2223-16,,#12 Crear una cuenta de la herramienta Postman.,00:18:37
+SOS2223-16,,#13 Añadir nuevos datos al documento de trabajo,01:15:22
+SOS2223-16,,"#14 Create new file ""Index-MMC.js"" in the SOS2223-16 repository.",01:26:46
+SOS2223-16,,#15 Replicar el algoritmo index-CBM.js,01:02:14
+SOS2223-16,,#16 desarrollar ruta /samples/CBM,01:04:05
+SOS2223-16,,#17 Verificar la hoja de trabajo,00:16:25
+SOS2223-16,,#18 Duplicar el algoritmo dentro del archivo index-CLC.js,00:15:55
+SOS2223-16,,#19 crear modulo de nodejs que contenga el archivo principal “index.js”,02:33:08
+SOS2223-16,,#20 Crear ruta dinámica “/cool”,01:11:37
+SOS2223-16,,#22 Crear ruta dinámica “/cool”,00:47:31
+SOS2223-16,,#23 Crear modulo de nodejs que contenga el archivo principal “index.js”,01:31:18
+SOS2223-16,,#24 Desarrollar ruta /samples/MMC,00:45:48
+SOS2223-16,,#25 Crear recurso /api/v1/professionalorganisations_stats/loadInitialData,01:36:10
+SOS2223-16,,#26 Implementación de buenas prácticas en la API,01:08:42
+SOS2223-16,,#27 Desarrollar una colección de llamadas en POSTMAN,00:30:07
+SOS2223-16,,#28 Desplegar en Google Cloud una API REST,02:14:26
+SOS2223-16,,#29 Probar todas las funcionalidades de la API con llamadas en POSTMAN,00:39:49
+SOS2223-16,,#30 Crear ruta /api/v1/FFFFF/loadInitialData,00:17:05
+SOS2223-16,,#31 Crear ruta /api/v1/FFFFF/loadInitialData,01:52:17
+SOS2223-16,,#32 Probar todas las funcionalidades de la API con llamadas en POSTMAN,01:59:48
+SOS2223-16,,#33 Desplegar en Google Cloud una API REST,01:55:09
+SOS2223-16,,#37 Completar README del repositorio general y del grupo,00:31:14
+SOS2223-16,,#38 crear ruta /api/v1/professionalorganisations-stats/docs,00:48:55
+SOS2223-16,,#39 Implementar API basada en una base de datos NeDB,01:45:09
+SOS2223-16,,#40 Implementar una persistencia de una base de datos NeDB,00:18:32
+SOS2223-16,,#41 Implementar búsquedas por todos los campos en la API,02:19:56
+SOS2223-16,,#42 Crear ruta /api/v1/cadiz-agroclimatic-informations-stats/docs,00:30:27
+SOS2223-16,,#43 Implementar una persistencia de una base de datos NeDB,00:58:15
+SOS2223-16,,#44 Crear ruta /api/v1/andalusian-civil-war-graves-stats/docs,00:57:21
+SOS2223-16,,#45 Desarrollar una colección de llamadas en POSTMAN,01:56:35
+SOS2223-16,,#46 Verificar todos los requisitos del F06,00:32:03
+SOS2223-16,,#47 Corregir aquellos que no devuelven 400 si el dato no cumple la estructura,02:02:01
+SOS2223-16,,"#48 No recibir ""_id"" cuando se muestren datos",00:28:32
+SOS2223-16,,#49 Extender la colección de llamadas de POSTMAN,01:05:02
+SOS2223-16,,#50 script de lanzamiento de test con newman,01:12:04
+SOS2223-16,,#51 borrar propiedad _id autogenerada,01:03:09
+SOS2223-16,,#52 Extender la colección de llamadas POSTMAN,04:50:58
+SOS2223-16,,#53 Script de lanzamiento de test con Newman,01:57:28
+SOS2223-16,,"#54 No recibir ""_id""  cuando se muestren datos",07:40:31
+SOS2223-16,,#55 Front-end que permita que permita las gestiones de API REST,01:20:05
+SOS2223-16,,#56 Comprobar que los elementos son comprensibles para usuarios no tecnicos,01:10:35
+SOS2223-16,,#57 Comprobar que se muestra un mensaje informativo del estado de la operación,00:58:08
+SOS2223-16,,#58 crear vista correctamente configurada en http://sos2223-16.appspot.com/,01:25:44
+SOS2223-16,,#59 Integrar Front-end Svelte,01:32:28
+SOS2223-16,,#6 add new data to shared job document,01:01:40
+SOS2223-16,,#60 Mostrar mensajes de estados,01:05:07
+SOS2223-16,,#61 Comprobar que se muestra un mensaje informativo del estado de la operación,00:19:30
+SOS2223-16,,#62 Comprobar que los elementos son comprensibles para usuarios no tecnicos,02:12:11
+SOS2223-16,,#63 Front-end que permita que permita las gestiones de API REST,08:03:32
+SOS2223-16,,#64 Los elementos de la interfaz deben ser comprensibles para un usuario no técnico,01:20:00
+SOS2223-16,,"#65 Desplegar una ""v2""",01:24:50
+SOS2223-16,,#66 Se debe recargar el frontend de forma automatizada,00:40:09
+SOS2223-16,,#67 Búsqueda de recursos,01:02:08
+SOS2223-16,,#68 Paginación de la web,01:09:56
+SOS2223-16,,#69 Nuevos mensajes de códigos,01:03:23
+SOS2223-16,,#7 create postman account,00:43:22
+SOS2223-16,,#79 Realizar conjunto de visualizaciones de los recursos de su API,02:10:53
+SOS2223-16,,"#8 create new file ""index-CBM.js"" in the SOS2223-16 repository",02:10:09
+SOS2223-16,,#80 Integraciones y usos,13:28:31
+SOS2223-16,,#81 Arreglo gcloud,01:07:43
+SOS2223-16,,#82 e2e,01:03:25
+SOS2223-16,,#83 Integración datos conjuntos,01:00:08
+SOS2223-16,,"#9 Crear un nuevo archivo ""index-CLC.js"" en el repositorioSOS2223-16",01:39:59
+SOS2223-16,,Hacer 4 integraciones · Issue #73 · gti-sos/SOS2223-16,02:30:12
+SOS2223-16,,realizar la visualización de los recursos · Issue #74 · gti-sos/SOS2223-16,04:02:25
+SOS2223-16,,Realizar video de 5 minutos · Issue #75 · gti-sos/SOS2223-16,02:26:00
+SOS2223-16,,,00:03:56
+,,#10 Crear cuenta postman,00:20:39
+,,#2 Crear y configurar en Toggl un proyecto llamado SOS2223-16 en el workspace,00:00:42
+,,#3 Registrar información en el repositorio común de la asignatura,00:10:36
+,,"#4 Crear una milestone llamada ""F02"" definida para feedback con fecha correspondiente establecida.",00:02:53
+,,#5 Añadir nuevos ejemplos a la plantilla,00:23:32
+,,#76 Añadir a la aplicación una vista (o un conjunto de vistas) que muestre las siguientes visualizaciones de información a partir de los datos que proporciona la API desarrollada en entregables anteriores,08:34:39
+,,"#9 Crear un nuevo archivo ""index-CLC.js"" en el repositorioSOS2223-16",00:24:03
+,,Issues · gti-sos/SOS2223-16,00:00:15
+,,realizar la visualización de los recursos · Issue #74 · gti-sos/SOS2223-16,01:12:02
+,,Realizar video de 5 minutos · Issue #75 · gti-sos/SOS2223-16,00:19:32
+,,,00:00:06
