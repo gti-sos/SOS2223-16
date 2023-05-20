@@ -243,7 +243,7 @@
     </thead>
     <tbody>
         {#each datos as dato}
-            <tr>                
+            <tr class="organizacion">                
                 <td>{dato.date}</td>
                 <td><a href="/agroclimatic/{dato.reg_num}">{dato.reg_num}</a></td>
                 <td>{dato.stations_id}</td>
