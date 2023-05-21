@@ -102,5 +102,6 @@ async function loadChart() {
 
 <main>
     <h1>Máximas temperaturas anuales y número de espectadores de anime</h1>
+    <h4>Integración hecha con anychart</h4>
     <div id="chart-container" style="width: 600px; height: 700px;"></div>
 </main>
