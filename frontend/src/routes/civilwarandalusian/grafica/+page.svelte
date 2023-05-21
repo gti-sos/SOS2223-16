@@ -1,11 +1,10 @@
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    
-
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </svelte:head>
 
 
@@ -37,6 +36,7 @@
 
     onMount(async () =>{
         getAPIDatos();
+
     });
 
     async function getAPIDatos() {
@@ -65,7 +65,7 @@
                     });
             console.log(datos.length);
             loadChart();
-            
+            loadZChart();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
@@ -77,16 +77,16 @@
 
     async function loadChart(){
         Highcharts.chart('container', {
-    chart: {
-        type: 'variablepie'
-    },
-    title: {
-        text: 'Estadisticas fosas comunes',
-        align: 'left'
-    },
-    tooltip: {
-        headerFormat: '',
-        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+            chart: {
+            type: 'variablepie'
+                    },
+            itle: {
+            text: 'Estadisticas fosas comunes',
+            align: 'left'
+            },
+            tooltip: {
+            headerFormat: '',
+            pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
             'victimas: <b>{point.y}</b><br/>' +
             'Año acontecimiento: <b>{point.z}</b><br/>'+
             'provincia: <b>{point.m}</b><br/>'+
@@ -95,17 +95,17 @@
             'descripcion : <b>{point.i}</b><br/>'+
             'Enlace foto : <b>{point.o}</b><br/>'+
             'Año actualizacion : <b>{point.u}</b><br/>'
-    }, 
+            }, 
     
    
     
-    series: [{
-        minPointSize: 10,
-        innerSize: '20%',
-        zMin: 0,
-        name: 'ciudades',
-        borderRadius: 5,
-        data: [{
+            series: [{
+            minPointSize: 10,
+            innerSize: '20%',
+            zMin: 0,
+            name: 'ciudades',
+            borderRadius: 5,
+            data: [{
             name: municipality[0],
             y: victims[0],
             z: dateNumeric[0],
@@ -202,19 +202,153 @@
             o: Photo_PieFosa[8],
             u: dates_act[8]
         },
-    ],
+        ],
         colors: [
             '#4caefe',
             '#3dc3e8',
             '#2dd9db',
             
         ]
-    }]
-});
+        }]
+    });
 }
+    async function loadZChart(){
+        
+        let chartConfig = {
+        type: 'area',
+        title: {
+            text: 'Areas en Fosas Comunes ',
+            adjustLayout: true,
+            fontColor: '#424242',
+            marginTop: '15px',
+        },
+        subtitle: {
+            text: 'Por marmorcam',
+            adjustLayout: true,
+            fontColor: '#616161',
+            marginTop: '45px',
+        },
+        plot: {
+            tooltip: {
+            visible: false,
+            },
+            alphaArea: 0.6,
+            aspect: 'spline',
+            stacked: true,
+        },
+        plotarea: {
+            margin: 'dynamic',
+        },
+        scaleX: {
+            item: {
+            fontColor: '#616161',
+            paddingTop: '5px',
+            },
+            label: {
+            fontColor: '#616161',
+            text: 'Desglose de Fosas Comunes',
+            },
+            labels: datos.map(a=> a.municipality),
+            lineColor: '#AAA5A5',
+            tick: {
+            lineColor: '#AAA5A5',
+            },
+        },
+        scaleY: {
+            guide: {
+            lineColor: '#AAA5A5',
+            lineStyle: 'dotted',
+            },
+            item: {
+            fontColor: '#616161',
+            paddingRight: '5px',
+            },
+            label: {
+            fontColor: '#616161',
+            text: 'Quantity',
+            },
+            lineColor: '#AAA5A5',
+            short: true,
+            shortUnit: 'k',
+            tick: {
+            lineColor: '#AAA5A5',
+            },
+        },
+        crosshairX: {
+            lineColor: '#AAA5A5',
+            plotLabel: {
+            backgroundColor: '#EBEBEC',
+            borderColor: '#AAA5A5',
+            borderRadius: '2px',
+            borderWidth: '2px',
+            fontColor: '#616161',
+            thousandsSeparator: ',',
+            },
+            scaleLabel: {
+            backgroundColor: '#EBEBEC',
+            borderColor: '#AAA5A5',
+            fontColor: '#424242',
+            },
+        },
+        series: [
+            {
+            text: 'dateNumeric',
+            values: datos.map(a=> a.dateNumeric),
+            backgroundColor: '#4CAF50',
+            lineColor: '#4CAF50',
+            marker: {
+                backgroundColor: '#4CAF50',
+                borderColor: '#4CAF50',
+            },
+            },
+            {
+            text: 'victimas',
+            values: datos.map(a=> a.victims),
+            backgroundColor: '#E53935',
+            lineColor: '#E53935',
+            marker: {
+                backgroundColor: '#E53935',
+                borderColor: '#E53935',
+            },
+            },
+            {
+            text: 'datesACt',
+            values: datos.map(a=> a.dates_act),
+            backgroundColor: '#00BCD4',
+            lineColor: '#00BCD4',
+            marker: {
+                backgroundColor: '#00BCD4',
+                borderColor: '#00BCD4',
+            },
+            },
+        ],
+        };
+
+        zingchart.render({
+        id: 'myChart',
+        data: chartConfig,
+        height: '100%',
+        width: '100%',
+        });
+
+    }
+
+
 
 </script>
 <style>
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
+@import 'https://fonts.googleapis.com/css?family=Lato:400';
+
+.chart--container {
+  height: 100%;
+  width: 100%;
+  min-height: 530px;
+}
+
+
+
+
     #container {
     height: 500px;
 }
@@ -265,16 +399,16 @@
 
 <main>
     <h1>
-        Graph1
+        Grafica Highcharts
     </h1>
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            nuevo highcharts1
-            
+            Tipo variablepie
         </p>
     </figure>
-    
-
+    <h5>Grafica zingchart</h5>
+        <p>Tipo <area shape="" coords="" href="" alt=""></p>
+    <div id="myChart" class="chart--container"></div>
 </main>
 

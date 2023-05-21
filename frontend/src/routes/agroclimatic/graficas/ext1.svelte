@@ -115,7 +115,8 @@
                 {
                     name: "Temperatura Media",
                     data: datos.map(a => a.averagetemp),
-                },                
+                },
+                              
             ],
         });
     }
