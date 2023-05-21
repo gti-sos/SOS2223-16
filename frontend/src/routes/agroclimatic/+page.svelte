@@ -300,25 +300,6 @@
     </label>
     <button type="submit">Buscar</button>
 </form>
-
-<br />
-<br />
-<form on:submit|preventDefault={getDatos}>
-    <label>
-        Temperatura máxima establecida como mínima:
-        <input type="number" bind:value={maxtempInt} />
-    </label>
-    <button type="submit">Buscar</button>
-</form>
-<br />
-<br />
-<form on:submit|preventDefault={getDatos}>
-    <label>
-        Temperatura média establecida como máxima:
-        <input type="number" bind:value={averagetempInt} />
-    </label>
-    <button type="submit">Buscar</button>
-</form>
 <br />
 <br />
 <h2>Buscar un registro en concreto a partir de uno de sus valores en concreto</h2>
