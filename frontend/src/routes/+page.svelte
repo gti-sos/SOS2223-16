@@ -38,7 +38,7 @@
     </ul>
     <h2>APIs</h2>
     <ul>
-        <li><a href="https://sos2223-16.appspot.com/api/v1/professionalorganisations-stats">professionalorganisations-stats</a></li>
+        <li><a href="https://sos2223-16.appspot.com/api/v2/professionalorganisations-stats">professionalorganisations-stats</a></li>
         <li><a href="https://sos2223-16.appspot.com/api/v1/cadiz-agroclimatic-informations-stats">cadiz-agroclimatic-informations-stats</a></li>
         <li><a href="https://sos2223-16.appspot.com/api/v1/civilwarandalusian-stats">civilwarandalusian-stats</a></li>
     </ul>
