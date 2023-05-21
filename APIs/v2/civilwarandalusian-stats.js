@@ -1,8 +1,30 @@
 import datastore from 'nedb';
 const db = new datastore();
-const BASE_API_URL = "/api/v2"
+const BASE_API_URL = "/api/v2";
+
+import request from "request";
+
 
 function loadBackend_civilwarandalusianV2(app) {
+    /** PROXY  */
+    app.use("/api/v2/civilwarandalusian-stats/proxy", function(req, res){
+        var url = "https://drinks-digital1.p.rapidapi.com/v1/cocktails";
+        var head = {
+            'X-RapidAPI-Key': '031e30be2bmsh4012077306f5d0fp169105jsn72f6d2c3886b',
+            'X-RapidAPI-Host': 'drinks-digital1.p.rapidapi.com'
+
+        };
+        req.pipe(request({ url: url, headers: head })).pipe(res);
+    });
+    
+   // app.use("/api/v2/civilwarandalusian-stats/proxy",function(req,res){
+     //   var urlHost = 'https://drinks-digital1.p.rapidapi.com/v1/cocktails';
+       // var url = urlHost+req.url;
+        //console.log('piped: proxy' +req.url);
+        //req.pipe(request(url)).pipe(res);
+
+    //});
+    
 
     app.get(BASE_API_URL + "civilwarandalusian-stats/docs", (req, res) => {
 

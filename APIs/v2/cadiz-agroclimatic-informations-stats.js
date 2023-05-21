@@ -4,8 +4,6 @@ const db = new Datastore();
 
 function loadBackend_agroclimaticV2(app) {
 
-    
-
     app.get("/api/v2/cadiz-agroclimatic-informations-stats/docs", (req, res) => {
         res.redirect('https://documenter.getpostman.com/view/26036256/2s93Xwy47A');
     });

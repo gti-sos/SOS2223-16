@@ -1,8 +1,18 @@
 import datastore from 'nedb';
+import request from "request";
 const db = new datastore();
 const BASE_API_URL = "/api/v1"
 
 function loadBackend_civilwarandalusian(app) {
+    
+    /** PROXY  */
+    app.use("/api/v2/civilwarandalusian-stats/proxy",function(req,res){
+        let urlHost = "https://drinks-digital1.p.rapidapi.com";
+        let url = urlHost + req.url;
+        console.log('piped: proxy' + req.url);
+        console.log(url);
+        req.pipe(request(url)).pipe(res);
+    });
 
     app.get(BASE_API_URL + "civilwarandalusian-stats/docs", (req, res) => {
 
