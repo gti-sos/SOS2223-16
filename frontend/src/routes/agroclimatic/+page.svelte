@@ -243,7 +243,7 @@
     </thead>
     <tbody>
         {#each datos as dato}
-            <tr class="organizacion">                
+            <tr>                
                 <td>{dato.date}</td>
                 <td><a href="/agroclimatic/{dato.reg_num}">{dato.reg_num}</a></td>
                 <td>{dato.stations_id}</td>
@@ -297,25 +297,6 @@
         <input type="number" bind:value={desde} />
         Hasta
         <input type="number" bind:value={hasta} />
-    </label>
-    <button type="submit">Buscar</button>
-</form>
-
-<br />
-<br />
-<form on:submit|preventDefault={getDatos}>
-    <label>
-        Temperatura máxima establecida como mínima:
-        <input type="number" bind:value={maxtempInt} />
-    </label>
-    <button type="submit">Buscar</button>
-</form>
-<br />
-<br />
-<form on:submit|preventDefault={getDatos}>
-    <label>
-        Temperatura média establecida como máxima:
-        <input type="number" bind:value={averagetempInt} />
     </label>
     <button type="submit">Buscar</button>
 </form>
