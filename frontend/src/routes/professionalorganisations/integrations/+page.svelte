@@ -131,7 +131,7 @@ async function languagesAPI(){
         const resJSON= await res.json();
         Highcharts.chart('container3', {
             title: {
-            text: 'Integración entre dos APIs: Spotify y Professional Organisations'
+            text: 'Integración entre dos APIs: Spotify y Colegios Profesionales'
             },
         yAxis: {
             min: 0
@@ -168,7 +168,7 @@ async function languagesAPI(){
             },
 
             title: {
-            text: 'Integración entre dos APIs: Películas de Harry Potter y Professional Organisations'
+            text: 'Integración entre dos APIs: Películas de Harry Potter y Colegios Profesionales'
             },
 
             subtitle: {
