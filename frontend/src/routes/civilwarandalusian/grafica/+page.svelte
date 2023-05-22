@@ -411,4 +411,3 @@
         <p>Tipo <area shape="" coords="" href="" alt=""></p>
     <div id="myChart" class="chart--container"></div>
 </main>
-

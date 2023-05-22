@@ -28,3 +28,4 @@
 <ul><a href="/professionalorganisations/graph">Gráficas de colegios profesionales</a></ul>
 <ul><a href="/professionalorganisations/integrations">Integraciones de colegios profesionales</a></ul>
 <ul><a href="/civilwarandalusian/grafica">Graficas Fosas De La Guerra Civil</a></ul>
+<ul><a href="/civilwarandalusian/integrations">Integraciones de guerra civil/a></ul>
