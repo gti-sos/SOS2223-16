@@ -48,6 +48,6 @@
         <li><a href="https://sos2223-16.appspot.com/api/v2/professionalorganisations-stats/docs">professionalorganisations-stats (v2)</a><br><p>Desarrollado por Carolina Bernal Marchena</p></li>
         <li><a href="https://sos2223-16.appspot.com/api/v1/cadiz-agroclimatic-informations-stats/docs">cadiz-agroclimatic-informations-stats (v1)</a><br><p>Desarrollado por Carlos López Cárdenas</p></li>
         <li><a href="https://documenter.getpostman.com/view/26036256/2s93Xwy47A">https://sos2223-16.ew.r.appspot.com/api/v2/cadiz-agroclimatic-informations-stats/docs</a><p>Desarrollado por Carlos López Cárdenas</p></li>
-        <li><a href="https://sos2223-16.ew.r.appspot.com/api/v1/civilwarandalusian-stats/docs">https://sos2223-16.ew.r.appspot.com/api/v1/civilWarAndalusian-stats/docs</a><p>Desarrollado por Marcos Morales Campos</p></li>
+        <li><a href="https://sos2223-16.ew.r.appspot.com/civilwarandalusian-stats/docs">https://sos2223-16.ew.r.appspot.com/api/v1/civilwarandalusian-stats/docs</a><p>Desarrollado por Marcos Morales Campos</p></li>
     </ul>
 </body>
