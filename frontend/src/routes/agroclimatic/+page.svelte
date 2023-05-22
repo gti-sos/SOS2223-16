@@ -4,7 +4,7 @@
 <script>
     // @ts-nocheck
 
-    import { onMount } from "svelte";
+    console.log("A");import { onMount } from "svelte";
     import { dev } from "$app/environment";
     import { Button, Table } from "sveltestrap";
 
@@ -129,7 +129,7 @@
     }
 
     async function initialData() {
-        resultStatus = result = "";
+        console.log("T");resultStatus = result = "";
         const res = await fetch(API + "/loadInitialData", {
             method: "GET",
         });

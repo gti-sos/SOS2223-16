@@ -54,7 +54,6 @@
                     dicc[clave] = valor;
                 }
             };
-            console.log(datos.length);
             loadChart();
             loadBillboard();
         } catch (error) {

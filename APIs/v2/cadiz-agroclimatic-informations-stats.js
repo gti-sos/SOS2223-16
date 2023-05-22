@@ -397,13 +397,6 @@ function loadBackend_agroclimaticV2(app) {
             return false;
         }
 
-
-
-        // if (typeof cadizAgroclimaticInformation.maxtemp != "number" || isNaN(parseFloat(cadizAgroclimaticInformation.maxtemp))) {
-        //     console.log("m es float");
-        //     return false;
-        // }
-
         /** mintemp es numérico */
         if (Number.isNaN(cadizAgroclimaticInformation.mintemp) ||
             Number.isInteger(cadizAgroclimaticInformation.mintemp)
